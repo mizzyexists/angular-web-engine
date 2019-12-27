@@ -1,0 +1,21 @@
+<div *ngIf="loggedUser">
+  <ngb-alert type="success" [dismissible]="false" *ngIf="saveSuccess">
+  <strong>Saved!</strong> New password has been saved successfully. Redirecting...
+</ngb-alert>
+<ngb-alert type="danger" [dismissible]="false" *ngIf="invalidInput">
+  <strong>Whoops!</strong> Please enter a new password or cancel the operation.
+</ngb-alert>
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Change Password</h2>
+  <form [formGroup]="changePasswordForm" (ngSubmit)="onUpdate()">
+    <div class="form-group">
+      <label for="password">New Password:</label>
+      <input type="password" placeholder="password" name="password" class="form-control" id="password">
+    </div>
+    <div class="form-group">
+    </div>
+    <button type="submit" class="btn btn-success">Change Password</button>
+  </form>
+  <button style="margin-top: 5px;" class="btn btn-danger" (click)="cancelChange(userID)">Cancel</button>
+</div>
+</div>

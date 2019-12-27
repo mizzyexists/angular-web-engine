@@ -1,0 +1,29 @@
+<div *ngIf="loggedUser">
+  <ngb-alert type="success" [dismissible]="false" *ngIf="saveSuccess">
+  <strong>Saved!</strong> User has been saved successfully. Redirecting...
+</ngb-alert>
+<ngb-alert type="danger" [dismissible]="false" *ngIf="deleteSuccess">
+  <strong>Deleted!</strong> User has been deleted.
+</ngb-alert>
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Edit User</h2>
+  <form [formGroup]="usereditForm" (ngSubmit)="onUpdate()">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" formControlName="username" placeholder="username" name="username" class="form-control" id="username">
+    </div>
+    <div class="form-group">
+      <label for="usertype">Usertype:</label>
+      <select formControlName="usertype" name="usertype" id="usertype" class="form-control">
+        <option value = "User">User</option>
+        <option value = "Moderator">Moderator</option>
+        <option value = "Admin">Administrator</option>
+        <option value = "Super-Admin">Super-Admin</option>
+      </select>
+    </div>
+    <button class="btn btn-success">Apply Settings</button>
+  </form>
+  <button style="margin-top: 5px;" class="btn btn-primary" (click)="changePassword(userID)">Change Password</button>
+  <button style="margin-top: 5px; margin-left: 5px;" class="btn btn-danger" routerLink="/viewusers">Cancel</button>
+</div>
+</div>

@@ -1,0 +1,22 @@
+<div *ngIf="loggedUser">
+  <ngb-alert type="success" [dismissible]="false" *ngIf="saveSuccess">
+  <strong>Saved!</strong> The user has been saved successfully.
+</ngb-alert>
+<ngb-alert type="danger" [dismissible]="false" *ngIf="deleteSuccess">
+  <strong>Deleted!</strong> The user has been deleted.
+</ngb-alert>
+<table class="table table-stip">
+<tr class="bg-dark text-white">
+  <td>UID</td>
+  <td>Username</td>
+  <td>Usertype</td>
+  <td>Action</td>
+</tr>
+<tr *ngFor="let user of userData">
+  <td>{{user.uid}}</td>
+  <td>{{user.username}}</td>
+  <td>{{user.usertype}}</td>
+  <td><a href="javascript:void(0);" class="btn btn-success" (click)="editUser(user.uid)">Edit</a> | <a href="javascript:void(0);" class="btn btn-danger" (click)="deleteUser(user.uid)">Delete</a></td>
+</tr>
+</table>
+</div>

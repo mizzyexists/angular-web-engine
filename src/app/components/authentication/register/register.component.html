@@ -1,0 +1,24 @@
+<div>
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Register User</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" formControlName="username" placeholder="Username" name="username" class="form-control" id="username">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" formControlName="password" placeholder="password" name="password" class="form-control" id="password">
+    </div>
+    <div class="form-group">
+      <label for="usertype">Usertype:</label>
+      <select formControlName="usertype" name="usertype.name" id="usertype" class="form-control">
+               <option value = "User">User</option>
+               <option value = "Moderator">Moderator</option>
+               <option value = "Admin">Administrator</option>
+               <option value = "Super-Admin">Super-Admin</option>
+      </select>
+    </div>
+    <button class="btn btn-success">Register</button>
+  </form>
+</div>

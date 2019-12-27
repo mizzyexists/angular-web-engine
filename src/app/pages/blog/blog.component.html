@@ -1,0 +1,46 @@
+<ngb-alert type="success" [dismissible]="false" *ngIf="saveSuccess">
+  <strong>Saved!</strong> Your blog post has been saved successfully.
+</ngb-alert>
+<ngb-alert type="danger" [dismissible]="false" *ngIf="deleteSuccess">
+  <strong>Deleted!</strong> Your blog post has been deleted.
+</ngb-alert>
+
+<div class="blog-post" *ngFor="let post of blogInfo">
+  <h1>{{post.blogtitle}}</h1>
+  <p>{{post.blogcontent}}</p>
+  <small>{{post.blogauthor}}</small>
+  <br><br>
+  <div *ngIf="loggedUser">
+  <button (click)="selectPost(post)">Select Post</button>
+    <button (click)="deletePost(post.id)">Delete Post</button>
+    </div>
+  </div>
+<br>
+<!-- ---------------------- -->
+<div *ngIf="loggedUser">
+<form #newpost="ngForm" (ngSubmit)="addPost(newpost)">
+  <label>Blog Title</label>
+  <input type="text" name="blogtitle" ngModel>
+  <br>
+  <label>Blog Content</label>
+  <input type="textarea" name="blogcontent" ngModel>
+  <br>
+  <label>Blog Author: {{loggedUser}}</label>
+  <input type="hidden" name="blogauthor" value="{{loggedUser}}" ngModel="{{loggedUser}}">
+  <br>
+  <input type="submit" value="Create Post">
+  </form>
+  <br>
+  <form #editpost="ngForm" (ngSubmit)="editPost(editpost)">
+    <label>Blog Title</label>
+    <input type="text" name="blogtitle" [(ngModel)]="selectedPost.blogtitle">
+    <br>
+    <label>Blog Content</label>
+    <input type="textarea" name="blogcontent" [(ngModel)]="selectedPost.blogcontent">
+    <br>
+    <label>Blog Author: {{selectedPost.blogauthor}}</label>
+    <input type="hidden" name="blogauthor" [(ngModel)]="selectedPost.blogauthor">
+    <br>
+    <input type="submit" value="Submit Edits">
+    </form>
+  </div>
