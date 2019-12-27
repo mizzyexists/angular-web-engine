@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## v1.0.0
+## Version 1
+### 1.0.0
 - Created login system
 - Created permissions based admin system
     - Pages check permissions before loading
