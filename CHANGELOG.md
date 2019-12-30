@@ -2,6 +2,9 @@
 
 ## Version 1
 
+## 1.0.3b
+- Removed blog post editing buttons for "User" level
+
 ### 1.0.3
 - Added Toast Notifications
 - Removed Old Notifications

@@ -3,7 +3,7 @@
   <p>{{post.blogcontent}}</p>
   <small>{{post.blogauthor}}</small>
   <br><br>
-  <div *ngIf="loggedUser">
+  <div *ngIf="loggedUser && jwtUsertype!='User'">
   <button (click)="selectPost(post)">Select Post</button>
     <button (click)="deletePost(post.id)">Delete Post</button>
     </div>
