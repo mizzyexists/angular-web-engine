@@ -2,6 +2,11 @@
 
 ## Version 1
 
+### 1.0.5
+- Fixed routing login/logout issue when app is in production
+- Removed lingering console.log entries
+- Removed unused Router imports
+
 ### 1.0.4b
 - General clean-up and error correcting for compiler
 

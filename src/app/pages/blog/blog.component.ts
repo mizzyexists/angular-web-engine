@@ -65,11 +65,9 @@ export class BlogComponent implements OnInit {
   }
   else{
     form.reset();
-    console.log("No Selected Post")
   }
 }
   selectPost(blogInfo: BlogInfo){
   this.selectedPost = blogInfo;
-  console.log("Post Selected", this.selectedPost)
 }
 }

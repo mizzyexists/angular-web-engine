@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       if(data.jwt || data.email) {
         window.localStorage.setItem('jwt', data.jwt);
         this.toastService.show('Login Succesful. Please Wait...', { classname: 'bg-success text-light'});
-        setTimeout(() => window.location.href = '/dashboard', 2000);
+        setTimeout(() => window.location.href = '/', 2000);
       }
       else {
         this.toastService.show('Please check your username and password and try again', { classname: 'bg-danger text-light'});

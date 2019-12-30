@@ -36,7 +36,6 @@ export class DashboardComponent implements OnInit {
     });
     this.blogApi.readPosts().subscribe((blogInfo: BlogInfo[])=>{
     this.blogInfo = blogInfo;
-    console.log("Blog Posts Loaded" , blogInfo);
   });
     this.setttingsApi.readSettings().subscribe((settings: Settings[])=>{
     this.settings = settings;
