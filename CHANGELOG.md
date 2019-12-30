@@ -2,6 +2,9 @@
 
 ## Version 1
 
+### 1.0.4b
+- General clean-up and error correcting for compiler
+
 ### 1.0.4
 - Added Users to Dashboard if logged in user is above 'User' level
 - Added break to blog title on Dashboard if it exceeds 20 characters

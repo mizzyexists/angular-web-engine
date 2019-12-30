@@ -39,7 +39,7 @@ export class SettingsComponent implements OnInit {
     });
     }
 
-  createSetting(form:Storage){
+  createSetting(form: { value: Settings; reset: () => void; }){
     this.setttingsApi.createSetting(form.value).subscribe((settings: Settings)=>{
       console.log("New Setting Submitted", settings);
       form.reset();
@@ -60,7 +60,7 @@ export class SettingsComponent implements OnInit {
       });
     });
   }
-  editSetting(form:Storage){
+  editSetting(form: { value: Settings; reset: { (): void; (): void; }; }){
     if(this.selectedSetting && this.selectedSetting.id){
       form.value.id = this.selectedSetting.id;
     this.setttingsApi.updateSetting(form.value).subscribe((settings: Settings)=>{

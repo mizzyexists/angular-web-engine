@@ -33,7 +33,7 @@ export class BlogComponent implements OnInit {
   });
 }
 
-  addPost(form:Storage){
+  addPost(form: { value: BlogInfo; controls: { [x: string]: { reset: () => void; }; }; }){
     this.blogApi.createPost(form.value).subscribe(()=>{
       form.controls['blogtitle'].reset()
       form.controls['blogcontent'].reset()
@@ -51,7 +51,7 @@ export class BlogComponent implements OnInit {
       });
     });
   }
-  editPost(form:Storage){
+  editPost(form: { value: BlogInfo; reset: { (): void; (): void; }; }){
     if(this.selectedPost && this.selectedPost.id){
       form.value.id = this.selectedPost.id;
     this.blogApi.updatePost(form.value).subscribe(()=>{

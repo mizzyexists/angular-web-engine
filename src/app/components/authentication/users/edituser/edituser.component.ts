@@ -48,9 +48,8 @@ export class EdituserComponent implements OnInit {
     });
     this.userID = routeParams.uid;
 }
-  onUpdate(userData: UserData){
+  onUpdate(){
     console.log(this.usereditForm.value)
-    console.log(userData)
     this.authApi.editUser(this.usereditForm.value).subscribe(()=>{
       this.toastService.show('User Updated. Please Wait...', { classname: 'bg-success text-light'});
       setTimeout(() => this.router.navigate(['viewusers']), 3000);
