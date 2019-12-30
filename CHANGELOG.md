@@ -2,6 +2,10 @@
 
 ## Version 1
 
+### 1.0.2
+- Added data to Dashboard. (Blog posts and settings)
+- Made certain menu items only visible based of logged in user's permissions
+
 ### 1.0.1
 - Fixed issue with logout where username was not removed from nav-bar
 - Improved how JWT expires and removes the token from local storage
