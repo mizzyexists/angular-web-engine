@@ -2,6 +2,13 @@
 
 ## Version 1
 
+### 1.0.6
+- Fixed username in nav to always be in titlecase
+- Added Hash-bangs as a temp-fix for correct production routing (Will remove later)
+- Added "Add User" button to "viewusers" page
+- Decreased logout/login/action delay time
+- Fixed blog page button styling
+
 ### 1.0.5
 - Fixed routing login/logout issue when app is in production
 - Removed lingering console.log entries

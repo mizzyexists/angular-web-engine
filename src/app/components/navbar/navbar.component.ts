@@ -36,6 +36,6 @@ export class NavbarComponent implements OnInit {
     AuthData[0] = false;
     this.loggedUser = null;
     this.toastService.show('You have been logged out', { classname: 'bg-success text-light'});
-    setTimeout(() => window.location.href = '/', 2000);
+    setTimeout(() => window.location.href = '/', 500);
   }
   }

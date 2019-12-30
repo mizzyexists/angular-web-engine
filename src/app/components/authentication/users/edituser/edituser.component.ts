@@ -51,8 +51,8 @@ export class EdituserComponent implements OnInit {
   onUpdate(){
     console.log(this.usereditForm.value)
     this.authApi.editUser(this.usereditForm.value).subscribe(()=>{
-      this.toastService.show('User Updated. Please Wait...', { classname: 'bg-success text-light'});
-      setTimeout(() => this.router.navigate(['viewusers']), 3000);
+      this.toastService.show('User Updated', { classname: 'bg-success text-light'});
+      setTimeout(() => this.router.navigate(['viewusers']), 500);
     });
   }
 

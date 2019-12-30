@@ -4,8 +4,8 @@
   <small>{{post.blogauthor}}</small>
   <br><br>
   <div *ngIf="loggedUser && jwtUsertype!='User'">
-  <button (click)="selectPost(post)">Select Post</button>
-    <button (click)="deletePost(post.id)">Delete Post</button>
+  <button style="margin:2px;" class="btn btn-primary" (click)="selectPost(post)">Select Post</button>
+    <button style="margin:2px;" class="btn btn-primary" (click)="deletePost(post.id)">Delete Post</button>
     </div>
   </div>
 <br>
@@ -21,7 +21,7 @@
   <label>Blog Author: {{loggedUser}}</label>
   <input type="hidden" name="blogauthor" value="{{loggedUser}}" ngModel="{{loggedUser}}">
   <br>
-  <input type="submit" value="Create Post">
+  <input class="btn btn-primary" type="submit" value="Create Post">
   </form>
   <br>
   <form #editpost="ngForm" (ngSubmit)="editPost(editpost)">
@@ -34,6 +34,6 @@
     <label>Blog Author: {{selectedPost.blogauthor}}</label>
     <input type="hidden" name="blogauthor" [(ngModel)]="selectedPost.blogauthor">
     <br>
-    <input type="submit" value="Submit Edits">
+    <input class="btn btn-primary" type="submit" value="Submit Edits">
     </form>
   </div>

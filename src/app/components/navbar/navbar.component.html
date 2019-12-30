@@ -5,8 +5,8 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard">Dashboard</a>
       </li>
       <li *ngIf="loggedUser" class="nav-item">
         <a class="nav-link" routerLink="/blog">Blog</a>
@@ -19,7 +19,7 @@
       </li>
     </ul>
     <span class="navbar-text text-white" *ngIf="loggedUser">
-      Hello {{loggedUser}}!
+      Hello {{loggedUser | titlecase}}!
     </span>
     <span class="navbar-text text-white" *ngIf="!loggedUser">
       Please Sign In
