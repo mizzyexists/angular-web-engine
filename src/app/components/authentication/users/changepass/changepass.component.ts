@@ -11,6 +11,7 @@ import { AuthData } from 'src/app/models/authdata';
   styleUrls: ['./changepass.component.css']
 })
 export class ChangepassComponent implements OnInit {
+  isDisabled: boolean = true;
   changePasswordForm: FormGroup;
   userData: UserData[]
   saveSuccess: boolean;
@@ -21,6 +22,7 @@ export class ChangepassComponent implements OnInit {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
+  passwordInput: string = "Unlock";
   constructor(private formBuilder:FormBuilder, private authApi: AuthService, private router: Router, private routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -54,6 +56,15 @@ export class ChangepassComponent implements OnInit {
       setTimeout(() => this.saveSuccess = false, 3000);
       setTimeout(() => this.router.navigate(['viewusers']), 3000);
   });
+  }
+  checkPass(){
+    if(this.isDisabled == true){
+      this.isDisabled = false;
+      this.passwordInput = "Lock";
+    } else {
+      this.isDisabled = true;
+      this.passwordInput = "Unlock";
+    }
   }
 
   cancelChange(userID:number): void{

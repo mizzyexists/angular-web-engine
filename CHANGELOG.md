@@ -1,6 +1,12 @@
 # CHANGELOG
 
 ## Version 1
+
+### 1.0.1
+- Fixed issue with logout where username was not removed from nav-bar
+- Improved how JWT expires and removes the token from local storage
+- Updated auth service to check permissions more efficiently
+
 ### 1.0.0
 - Created login system
 - Created permissions based admin system

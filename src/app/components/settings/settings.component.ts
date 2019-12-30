@@ -37,7 +37,6 @@ export class SettingsComponent implements OnInit {
     this.deleteSuccess = false;
     this.setttingsApi.readSettings().subscribe((settings: Settings[])=>{
     this.settings = settings;
-    console.log("Settings Loaded" , settings);
     });
     }
 

@@ -32,11 +32,8 @@ export class NavbarComponent implements OnInit {
   }
   logout() {
     window.localStorage.removeItem('jwt');
-    window.localStorage.removeItem('username');
-    window.localStorage.removeItem('usertype');
     AuthData[0] = false;
-    this.router.navigate(['login']);
     this.loggedUser = null;
-    alert("You have been logged out.")
+    window.location.href = '/login';
   }
   }

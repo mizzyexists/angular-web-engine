@@ -55,7 +55,8 @@ export class AuthService {
     this.authorize(this.token).subscribe((authData: AuthData) => {
     this.authCheck = authData
     if(!authData || authData[0]!=true){
-    this.router.navigate(['login']);
+    window.localStorage.removeItem('jwt');
+    window.location.href = '/login';
       };
     this.jwtData = authData[1];
     this.jwtUsername = this.jwtData.data.username;
