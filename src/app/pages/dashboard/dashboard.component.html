@@ -19,8 +19,25 @@
         <tbody>
         <tr *ngFor="let post of blogInfo; index as i">
           <th scope="row">{{ i + 1 }}</th>
-          <td><a routerLink="/blog">{{ post.blogtitle }}</a></td>
+          <td><a routerLink="/blog">{{ post.blogtitle | slice:0:20 }}...</a></td>
           <td>{{ post.blogauthor }}</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+      <div *ngIf="jwtUsertype!='User'" class="col">
+        <h2>Users</h2>
+        <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">UID</th>
+          <th scope="col">Username</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of userData">
+          <td>{{ user.uid }}</td>
+          <td>{{ user.username }}</td>
         </tr>
         </tbody>
       </table>
