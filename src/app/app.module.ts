@@ -14,6 +14,7 @@ import { EdituserComponent } from './components/authentication/users/edituser/ed
 import { ViewusersComponent } from './components/authentication/users/viewusers/viewusers.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChangepassComponent } from './components/authentication/users/changepass/changepass.component';
+import { ToastsContainer } from './models/toast.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ChangepassComponent } from './components/authentication/users/changepas
     EdituserComponent,
     ViewusersComponent,
     NavbarComponent,
-    ChangepassComponent
+    ChangepassComponent,
+    ToastsContainer
   ],
   imports: [
     BrowserModule,

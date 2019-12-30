@@ -3,6 +3,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
 import { UserData } from 'src/app/models/userdata';
 import { AuthData } from 'src/app/models/authdata';
+import { ToastService } from '../../../../services/toast.service';
 
 @Component({
   selector: 'app-viewusers',
@@ -11,15 +12,13 @@ import { AuthData } from 'src/app/models/authdata';
 })
 export class ViewusersComponent implements OnInit {
   userData: UserData[];
-  saveSuccess: boolean;
-  deleteSuccess: boolean;
   token: any;
   authCheck: AuthData;
   loggedUser: string;
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
-  constructor(private authApi:AuthService, private router: Router) { }
+  constructor(private toastService: ToastService, private authApi:AuthService, private router: Router) { }
 
   ngOnInit() {
     this.authApi.checkAuthToken();
@@ -37,12 +36,10 @@ export class ViewusersComponent implements OnInit {
   }
 
   deleteUser(uid:number){
-    this.authApi.deleteUser(uid).subscribe((userData: UserData)=>{
-      console.log("User Deleted", userData)
+    this.authApi.deleteUser(uid).subscribe(()=>{
+      this.toastService.show('User Deleted', { classname: 'bg-danger text-light'});
         this.authApi.fetchUsers().subscribe((userData: UserData[])=>{
         this.userData = userData;
-        this.deleteSuccess = true;
-        setTimeout(() => this.deleteSuccess = false, 5000);
       });
     });
   }

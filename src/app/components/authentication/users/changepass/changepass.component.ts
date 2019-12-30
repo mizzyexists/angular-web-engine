@@ -4,6 +4,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserData } from 'src/app/models/userdata';
 import { AuthData } from 'src/app/models/authdata';
+import { ToastService } from '../../../../services/toast.service';
 
 @Component({
   selector: 'app-changepass',
@@ -14,7 +15,6 @@ export class ChangepassComponent implements OnInit {
   isDisabled: boolean = true;
   changePasswordForm: FormGroup;
   userData: UserData[]
-  saveSuccess: boolean;
   token: string;
   authCheck: AuthData;
   loggedUser: string;
@@ -23,7 +23,7 @@ export class ChangepassComponent implements OnInit {
   jwtUsername: any;
   jwtUsertype: any;
   passwordInput: string = "Unlock";
-  constructor(private formBuilder:FormBuilder, private authApi: AuthService, private router: Router, private routes: ActivatedRoute) { }
+  constructor(private toastService: ToastService, private formBuilder:FormBuilder, private authApi: AuthService, private router: Router, private routes: ActivatedRoute) { }
 
   ngOnInit() {
     this.authApi.checkAuthToken();
@@ -39,7 +39,6 @@ export class ChangepassComponent implements OnInit {
     this.userData = userData;
   });
     const routeParams = this.routes.snapshot.params;
-    // $GET[]
     this.changePasswordForm = this.formBuilder.group({
       uid: [],
       password: ['', Validators.required]
@@ -49,11 +48,10 @@ export class ChangepassComponent implements OnInit {
     });
     this.userID = routeParams.uid;
   }
-  onUpdate(userData: UserData){
-    this.authApi.updatePass(this.changePasswordForm.value).subscribe((userData: UserData)=>{
-      console.log("User Updated", userData);
-      this.saveSuccess = true;
-      setTimeout(() => this.saveSuccess = false, 3000);
+  onUpdate(){
+    this.authApi.updatePass(this.changePasswordForm.value).subscribe(()=>{
+      console.log(this.changePasswordForm.value);
+      this.toastService.show('Password Updated. Please Wait...', { classname: 'bg-success text-light'});
       setTimeout(() => this.router.navigate(['viewusers']), 3000);
   });
   }

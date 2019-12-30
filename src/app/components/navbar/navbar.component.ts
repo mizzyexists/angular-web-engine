@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthData } from '../../models/authdata';
 import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../services/toast.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +21,7 @@ export class NavbarComponent implements OnInit {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
-  constructor(private router: Router, private authApi: AuthService) { }
+  constructor(private toastService: ToastService, private router: Router, private authApi: AuthService) { }
 
   ngOnInit() {
     this.token = window.localStorage.getItem('jwt');
@@ -34,6 +36,7 @@ export class NavbarComponent implements OnInit {
     window.localStorage.removeItem('jwt');
     AuthData[0] = false;
     this.loggedUser = null;
-    window.location.href = '/login';
+    this.toastService.show('You have been logged out', { classname: 'bg-success text-light'});
+    setTimeout(() => window.location.href = '/login', 2000);
   }
   }

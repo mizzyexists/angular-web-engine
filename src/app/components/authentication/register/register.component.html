@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="loggedUser && jwtUsertype!='Moderator' && jwtUsertype!='User'">
 <div class="col-md-6 user-container">
   <h2 class="text-center">Register User</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">

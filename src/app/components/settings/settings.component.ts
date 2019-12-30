@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SettingsApiService } from '../../services/settingsapi.service';
 import { Settings } from '../../models/settings';
 import { AuthData } from 'src/app/models/authdata';
-import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -21,7 +20,7 @@ export class SettingsComponent implements OnInit {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
-  constructor(private authApi: AuthService, private router: Router, private setttingsApi : SettingsApiService) { }
+  constructor(private authApi: AuthService, private setttingsApi : SettingsApiService) { }
 
   ngOnInit() {
     this.authApi.checkAuthToken();
@@ -85,7 +84,7 @@ export class SettingsComponent implements OnInit {
   console.log("Post Selected", this.selectedSetting)
   }
 
-  settingDeclaration(settings: Settings){
+  settingDeclaration(){
     this.setttingsApi.siteURL = this.settings[0].value;
     this.setttingsApi.logoURL = this.settings[1].value;
     this.setttingsApi.faviconURL = this.settings[2].value;

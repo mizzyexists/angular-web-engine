@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { AuthData } from 'src/app/models/authdata';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,6 @@ import { AuthData } from 'src/app/models/authdata';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  invalidLogin: boolean = false;
-  successfulLogin: boolean = false;
   message: any;
   token: any;
   authCheck: any;
@@ -21,7 +20,7 @@ export class LoginComponent implements OnInit {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
-  constructor(private formBuilder:FormBuilder, private authApi: AuthService, private router: Router) { }
+  constructor(private toastService: ToastService, private formBuilder:FormBuilder, private authApi: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.token = window.localStorage.getItem('jwt');
@@ -54,13 +53,11 @@ export class LoginComponent implements OnInit {
       this.message = data.message;
       if(data.jwt || data.email) {
         window.localStorage.setItem('jwt', data.jwt);
-        this.invalidLogin = false;
-        this.successfulLogin = true;
+        this.toastService.show('Login Succesful. Please Wait...', { classname: 'bg-success text-light'});
         setTimeout(() => window.location.href = '/dashboard', 2000);
       }
       else {
-        this.invalidLogin = true;
-        setTimeout(() => this.invalidLogin = false, 5000);
+        this.toastService.show('Please check your username and password and try again', { classname: 'bg-danger text-light'});
       }
     })
   }

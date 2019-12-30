@@ -2,6 +2,12 @@
 
 ## Version 1
 
+### 1.0.3
+- Added Toast Notifications
+- Removed Old Notifications
+- Added permissions to blog editing
+- Fixed password form issue where it was not posting value from the form
+
 ### 1.0.2
 - Added data to Dashboard. (Blog posts and settings)
 - Made certain menu items only visible based of logged in user's permissions

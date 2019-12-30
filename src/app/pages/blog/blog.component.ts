@@ -3,6 +3,7 @@ import { BlogApiService } from '../../services/blogapi.service';
 import { BlogInfo } from 'src/app/models/bloginfo';
 import { AuthData } from 'src/app/models/authdata';
 import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-blog',
@@ -11,15 +12,13 @@ import { AuthService } from '../../services/auth.service';
 })
 export class BlogComponent implements OnInit {
   blogInfo: BlogInfo[];
-  saveSuccess: boolean;
-  deleteSuccess: boolean;
   selectedPost:  BlogInfo  = { id:  null , blogtitle: null, blogcontent:  null, blogauthor: null};
   loggedUser: string;
   token: string;
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
-  constructor(private authApi : AuthService, private blogApi : BlogApiService) { }
+  constructor(private toastService: ToastService, private authApi : AuthService, private blogApi : BlogApiService) { }
 
   ngOnInit() {
     this.token = window.localStorage.getItem('jwt');
@@ -29,47 +28,38 @@ export class BlogComponent implements OnInit {
       this.jwtUsertype = this.jwtData.data.usertype;
       this.loggedUser = this.jwtUsername;
     });
-    this.saveSuccess = false;
-    this.deleteSuccess = false;
     this.blogApi.readPosts().subscribe((blogInfo: BlogInfo[])=>{
     this.blogInfo = blogInfo;
-    console.log("Blog Posts Loaded" , blogInfo);
   });
 }
 
   addPost(form:Storage){
-    this.blogApi.createPost(form.value).subscribe((blogInfo: BlogInfo)=>{
-      console.log("New Blog Post Submitted", blogInfo);
+    this.blogApi.createPost(form.value).subscribe(()=>{
       form.controls['blogtitle'].reset()
       form.controls['blogcontent'].reset()
+      this.toastService.show('Blog Post Created', { classname: 'bg-success text-light'});
         this.blogApi.readPosts().subscribe((blogInfo: BlogInfo[])=>{
         this.blogInfo = blogInfo;
-        this.saveSuccess = true;
-        setTimeout(() => this.saveSuccess = false, 5000);
       });
     });
   }
   deletePost(id:number){
-    this.blogApi.deletePost(id).subscribe((blogInfo: BlogInfo)=>{
-      console.log("Post Deleted", blogInfo)
+    this.blogApi.deletePost(id).subscribe(()=>{
+      this.toastService.show('Blog Post Deleted', { classname: 'bg-danger text-light'});
         this.blogApi.readPosts().subscribe((blogInfo: BlogInfo[])=>{
         this.blogInfo = blogInfo;
-        this.deleteSuccess = true;
-        setTimeout(() => this.deleteSuccess = false, 5000);
       });
     });
   }
   editPost(form:Storage){
     if(this.selectedPost && this.selectedPost.id){
       form.value.id = this.selectedPost.id;
-    this.blogApi.updatePost(form.value).subscribe((blogInfo: BlogInfo)=>{
-      console.log("Post Edited Successfully", blogInfo)
+    this.blogApi.updatePost(form.value).subscribe(()=>{
+      this.toastService.show('Blog Post Saved', { classname: 'bg-success text-light'});
       this.blogApi.readPosts().subscribe((blogInfo: BlogInfo[])=>{
       this.blogInfo = blogInfo;
       form.reset();
       this.selectedPost = { id:  null , blogtitle: null, blogcontent:  null, blogauthor: null};
-      this.saveSuccess = true;
-      setTimeout(() => this.saveSuccess = false, 5000);
     });
     })
   }

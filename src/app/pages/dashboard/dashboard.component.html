@@ -19,7 +19,7 @@
         <tbody>
         <tr *ngFor="let post of blogInfo; index as i">
           <th scope="row">{{ i + 1 }}</th>
-          <td>{{ post.blogtitle }}</td>
+          <td><a routerLink="/blog">{{ post.blogtitle }}</a></td>
           <td>{{ post.blogauthor }}</td>
         </tr>
         </tbody>

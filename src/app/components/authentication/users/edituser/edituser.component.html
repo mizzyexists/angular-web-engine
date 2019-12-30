@@ -1,10 +1,4 @@
 <div *ngIf="loggedUser">
-  <ngb-alert type="success" [dismissible]="false" *ngIf="saveSuccess">
-  <strong>Saved!</strong> User has been saved successfully. Redirecting...
-</ngb-alert>
-<ngb-alert type="danger" [dismissible]="false" *ngIf="deleteSuccess">
-  <strong>Deleted!</strong> User has been deleted.
-</ngb-alert>
 <div class="col-md-6 user-container">
   <h2 class="text-center">Edit User</h2>
   <form [formGroup]="usereditForm" (ngSubmit)="onUpdate()">

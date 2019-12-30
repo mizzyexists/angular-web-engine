@@ -4,6 +4,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserData } from 'src/app/models/userdata';
 import { AuthData } from 'src/app/models/authdata';
+import { ToastService } from '../../../../services/toast.service';
 
 @Component({
   selector: 'app-edituser',
@@ -13,7 +14,6 @@ import { AuthData } from 'src/app/models/authdata';
 export class EdituserComponent implements OnInit {
   usereditForm: FormGroup;
   userData: UserData[]
-  saveSuccess: boolean;
   token: string;
   authCheck: AuthData;
   loggedUser: string;
@@ -21,7 +21,7 @@ export class EdituserComponent implements OnInit {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
-  constructor(private formBuilder:FormBuilder, private authApi: AuthService, private router: Router, private routes: ActivatedRoute) { }
+  constructor(private toastService: ToastService, private formBuilder:FormBuilder, private authApi: AuthService, private router: Router, private routes: ActivatedRoute) { }
 
   ngOnInit() {
     this.authApi.checkAuthToken();
@@ -51,10 +51,8 @@ export class EdituserComponent implements OnInit {
   onUpdate(userData: UserData){
     console.log(this.usereditForm.value)
     console.log(userData)
-    this.authApi.editUser(this.usereditForm.value).subscribe((userData: UserData)=>{
-      console.log("User Updated", userData);
-      this.saveSuccess = true;
-      setTimeout(() => this.saveSuccess = false, 3000);
+    this.authApi.editUser(this.usereditForm.value).subscribe(()=>{
+      this.toastService.show('User Updated. Please Wait...', { classname: 'bg-success text-light'});
       setTimeout(() => this.router.navigate(['viewusers']), 3000);
     });
   }
