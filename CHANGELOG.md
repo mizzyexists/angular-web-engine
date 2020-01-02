@@ -2,6 +2,10 @@
 
 ## Version 1
 
+### 1.0.6b
+- Fixed Nav brand Link 404 with Hash-bangs
+- Added Cancel button to register page
+
 ### 1.0.6
 - Fixed username in nav to always be in titlecase
 - Added Hash-bangs as a temp-fix for correct production routing (Will remove later)

@@ -56,7 +56,7 @@ export class AuthService {
     this.authCheck = authData
     if(!authData || authData[0]!=true){
     window.localStorage.removeItem('jwt');
-    window.location.href = '/login';
+    window.location.href = '/#/login';
       };
     this.jwtData = authData[1];
     this.jwtUsername = this.jwtData.data.username;
