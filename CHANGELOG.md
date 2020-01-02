@@ -2,6 +2,12 @@
 
 ## Version 1
 
+### 1.0.7
+- Fixed cancel button on "Register" page
+- Made username when adding a blog post titlecase
+- Added Footer with Build Version
+- Added app name to Nav Brand
+
 ### 1.0.6b
 - Fixed Nav brand Link 404 with Hash-bangs
 - Added Cancel button to register page

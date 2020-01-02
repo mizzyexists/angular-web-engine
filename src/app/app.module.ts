@@ -15,6 +15,7 @@ import { ViewusersComponent } from './components/authentication/users/viewusers/
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChangepassComponent } from './components/authentication/users/changepass/changepass.component';
 import { ToastsContainer } from './models/toast.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ToastsContainer } from './models/toast.component';
     ViewusersComponent,
     NavbarComponent,
     ChangepassComponent,
-    ToastsContainer
+    ToastsContainer,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
