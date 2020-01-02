@@ -18,7 +18,6 @@ export class AuthService {
   token: string;
   jwtData: any;
   usertype: string;
-  authCheck: AuthData;
   jwtUsertype: any;
   jwtUsername: any;
   loggedUser: any;
@@ -53,7 +52,6 @@ export class AuthService {
   checkAuthToken(){
     this.token = window.localStorage.getItem('jwt');
     this.authorize(this.token).subscribe((authData: AuthData) => {
-    this.authCheck = authData
     if(!authData || authData[0]!=true){
     window.localStorage.removeItem('jwt');
     window.location.href = '/#/login';

@@ -2,6 +2,9 @@
 
 ## Version 1
 
+### 1.0.7b
+- Removed un-needed variables from AUTH code
+
 ### 1.0.7
 - Fixed cancel button on "Register" page
 - Made username when adding a blog post titlecase
