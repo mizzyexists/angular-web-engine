@@ -1,12 +1,13 @@
-<div *ngIf="loggedUser">
-<table class="table table-stip">
-<tr class="bg-dark text-white">
+<div class="container" *ngIf="loggedUser">
+  <br>
+<table class="table table-stip shadow">
+<tr class="bg-dark text-white text-center">
   <td>UID</td>
   <td>Username</td>
   <td>Usertype</td>
   <td>Action</td>
 </tr>
-<tr *ngFor="let user of userData">
+<tr class="text-center" *ngFor="let user of userData">
   <td>{{user.uid}}</td>
   <td>{{user.username}}</td>
   <td>{{user.usertype}}</td>
@@ -14,5 +15,4 @@
 </tr>
 </table>
 <button style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/register">New User</button>
-
 </div>

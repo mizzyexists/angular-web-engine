@@ -2,6 +2,11 @@
 
 ## Version 1
 
+### 1.0.8
+- Added new styling to blog page with new forms
+- Updated permissions to be more specific for blog editing privileges
+- Added new styling to user list
+
 ### 1.0.7c
 - Added title to "Blog" page
 
