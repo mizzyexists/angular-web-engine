@@ -2,6 +2,9 @@
 
 ## Version 1
 
+### 1.0.7c
+- Added title to "Blog" page
+
 ### 1.0.7b
 - Removed un-needed variables from AUTH code
 
