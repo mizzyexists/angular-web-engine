@@ -16,6 +16,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChangepassComponent } from './components/authentication/users/changepass/changepass.component';
 import { ToastsContainer } from './models/toast.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbUserModule, NbCardModule, NbMenuModule, NbActionsModule, NbSidebarModule, NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { EditpostComponent } from './pages/blog/editpost/editpost.component';
+import { NewpostComponent } from './pages/blog/newpost/newpost.component';
+import { ViewpostComponent } from './pages/blog/viewpost/viewpost.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +37,11 @@ import { FooterComponent } from './components/footer/footer.component';
     NavbarComponent,
     ChangepassComponent,
     ToastsContainer,
-    FooterComponent
+    FooterComponent,
+    EditpostComponent,
+    NewpostComponent,
+    ViewpostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +49,16 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbCardModule,
+    NbActionsModule,
+    NbSidebarModule.forRoot(),
+    NbMenuModule.forRoot(),
+    NbUserModule,
+    NbEvaIconsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,10 @@
-<div *ngIf="loggedUser">
+<div *ngIf="loggedUser && jwtUsertype=='Super-Admin'">
 <div class="col-md-6 user-container">
   <h2 class="text-center">Edit User</h2>
   <form [formGroup]="usereditForm" (ngSubmit)="onUpdate()">
     <div class="form-group">
       <label for="username">Username:</label>
-      <input type="text" formControlName="username" placeholder="username" name="username" class="form-control" id="username">
+      <input type="text" formControlName="username" name="username" class="form-control" id="username">
     </div>
     <div class="form-group">
       <label for="usertype">Usertype:</label>
@@ -14,6 +14,25 @@
         <option value = "Admin">Administrator</option>
         <option value = "Super-Admin">Super-Admin</option>
       </select>
+    </div>
+    <div class="form-group">
+      <label for="fname">First Name:</label>
+      <input type="text" formControlName="fname" name="fname" class="form-control" id="fname">
+    </div>
+    <div class="form-group">
+      <label for="lname">Last Name:</label>
+      <input type="text" formControlName="lname" name="lname" class="form-control" id="lname">
+    </div>
+    <div class="form-group">
+      <label for="bio_text">Biography:</label>
+      <textarea rows="10" cols="40" formControlName="bio_text" name="bio_text" class="form-control" id="bio_text"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="avatar">Profile Image:</label>
+      <input type="file" (change)="onFileSelect($event)" name="avatar" class="form-control" id="avatar">
+    </div>
+    <div class="form-group">
+      <input type="hidden" formControlName="image_path" name="image_path" class="form-control" id="image_path">
     </div>
     <button class="btn btn-success">Apply Settings</button>
   </form>

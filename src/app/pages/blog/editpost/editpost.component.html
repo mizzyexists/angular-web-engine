@@ -1,0 +1,22 @@
+<div *ngIf="loggedUser && jwtUsertype=='Super-Admin'">
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Edit Post</h2>
+  <form [formGroup]="posteditForm" (ngSubmit)="onUpdate()">
+    <div class="form-group">
+      <label for="blogtitle">Blog Title:</label>
+      <input type="text" formControlName="blogtitle" name="blogtitle" class="form-control" id="blogtitle">
+    </div>
+    <div class="form-group">
+      <label for="blogcontent">Blog Content:</label>
+        <textarea rows="10" cols="40" formControlName="blogcontent" name="blogcontent" class="form-control" id="blogcontent"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="blogauthor">Blog Author:</label>
+      <input type="text" disabled formControlName="blogauthor" name="blogauthor" class="form-control" id="blogauthor">
+    </div>
+    <button class="btn btn-success">Apply Settings</button>
+  </form>
+  <button style="margin-top: 5px;" class="btn btn-danger" routerLink="/viewpost/{{postID}}">Cancel</button>
+  <button style="margin-top: 5px; margin-left: 5px;" class="btn btn-warning" (click)="deletePost()">Delete</button>
+</div>
+</div>

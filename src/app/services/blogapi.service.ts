@@ -18,6 +18,9 @@ export class BlogApiService {
   readPosts(): Observable<BlogInfo[]>{
     return this.httpClient.get<BlogInfo[]>(`${this.PHP_API_SERVER}/blog/read.php`);
   }
+  fetchPostByID(id: number): Observable<BlogInfo[]>{
+    return this.httpClient.get<BlogInfo[]>(`${this.PHP_API_SERVER}/blog/readbyid.php/?id=${id}`);
+  }
   createPost(blogInfo: BlogInfo): Observable<BlogInfo>{
     return this.httpClient.post<BlogInfo>(`${this.PHP_API_SERVER}/blog/create.php`, blogInfo);
   }

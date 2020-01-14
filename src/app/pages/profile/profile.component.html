@@ -1,0 +1,11 @@
+<img width="200px" src="{{profileAvatar}}"/>
+<br>
+Username: {{profileUser}}
+<br>
+UserType: {{profileType}}
+<br>
+Full Name: {{profileName}}
+<br>
+Bio:<br>{{profileBio}}
+<br>
+<button *ngIf="userID==profileID" style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/edituser/{{userID}}">Edit Profile</button>

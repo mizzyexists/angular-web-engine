@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogApiService } from '../../services/blogapi.service';
 import { BlogInfo } from 'src/app/models/bloginfo';
+import { Router } from '@angular/router';
 import { AuthData } from 'src/app/models/authdata';
 import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../services/toast.service';
@@ -18,8 +19,12 @@ export class BlogComponent implements OnInit {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
-  constructor(private toastService: ToastService, private authApi : AuthService, private blogApi : BlogApiService) { }
-
+  constructor(
+    private toastService: ToastService,
+    private authApi : AuthService,
+    private blogApi : BlogApiService,
+    private router : Router
+  ){}
   ngOnInit() {
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
@@ -32,42 +37,7 @@ export class BlogComponent implements OnInit {
     this.blogInfo = blogInfo;
   });
 }
-
-  addPost(form: { value: BlogInfo; controls: { [x: string]: { reset: () => void; }; }; }){
-    this.blogApi.createPost(form.value).subscribe(()=>{
-      form.controls['blogtitle'].reset()
-      form.controls['blogcontent'].reset()
-      this.toastService.show('Blog Post Created', { classname: 'bg-success text-light'});
-        this.blogApi.readPosts().subscribe((blogInfo: BlogInfo[])=>{
-        this.blogInfo = blogInfo;
-      });
-    });
+  editPost(id:number): void{
+    this.router.navigate(['editpost/' + id]);
   }
-  deletePost(id:number){
-    this.blogApi.deletePost(id).subscribe(()=>{
-      this.toastService.show('Blog Post Deleted', { classname: 'bg-danger text-light'});
-        this.blogApi.readPosts().subscribe((blogInfo: BlogInfo[])=>{
-        this.blogInfo = blogInfo;
-      });
-    });
-  }
-  editPost(form: { value: BlogInfo; reset: { (): void; (): void; }; }){
-    if(this.selectedPost && this.selectedPost.id){
-      form.value.id = this.selectedPost.id;
-    this.blogApi.updatePost(form.value).subscribe(()=>{
-      this.toastService.show('Blog Post Saved', { classname: 'bg-success text-light'});
-      this.blogApi.readPosts().subscribe((blogInfo: BlogInfo[])=>{
-      this.blogInfo = blogInfo;
-      form.reset();
-      this.selectedPost = { id:  null , blogtitle: null, blogcontent:  null, blogauthor: null};
-    });
-    })
-  }
-  else{
-    form.reset();
-  }
-}
-  selectPost(blogInfo: BlogInfo){
-  this.selectedPost = blogInfo;
-}
 }

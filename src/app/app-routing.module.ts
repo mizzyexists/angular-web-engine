@@ -8,13 +8,21 @@ import { ViewusersComponent } from './components/authentication/users/viewusers/
 import { EdituserComponent } from './components/authentication/users/edituser/edituser.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { ChangepassComponent } from './components/authentication/users/changepass/changepass.component';
+import { EditpostComponent } from './pages/blog/editpost/editpost.component';
+import { NewpostComponent } from './pages/blog/newpost/newpost.component';
+import { ViewpostComponent } from './pages/blog/viewpost/viewpost.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'viewusers', component: ViewusersComponent },
+  { path: 'profile/:uid', component: ProfileComponent },
   { path: 'edituser/:uid', component: EdituserComponent },
   { path: 'changepass/:uid', component: ChangepassComponent },
+  { path: 'viewpost/:id', component: ViewpostComponent },
+  { path: 'newpost', component: NewpostComponent },
+  { path: 'editpost/:id', component: EditpostComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'blog', component: BlogComponent },

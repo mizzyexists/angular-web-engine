@@ -1,10 +1,5 @@
 <div *ngIf="loggedUser">
   <div class="container-fluid">
-    <div class="row">
-      <div id="dash-title" class="col">
-        <h1>Welcome to your Dashboard</h1>
-      </div>
-    </div>
     <div id="content" class="row less-width">
       <div class="col">
         <h2>Blog Posts</h2>
@@ -19,7 +14,7 @@
         <tbody>
         <tr *ngFor="let post of blogInfo; index as i">
           <th scope="row">{{ i + 1 }}</th>
-          <td><a routerLink="/blog">{{ post.blogtitle | slice:0:20 }}...</a></td>
+          <td><a routerLink="/viewpost/{{post.id}}">{{ post.blogtitle | slice:0:20 }}...</a></td>
           <td>{{ post.blogauthor }}</td>
         </tr>
         </tbody>

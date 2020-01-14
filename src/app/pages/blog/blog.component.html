@@ -1,51 +1,19 @@
+<div *ngIf="loggedUser">
+<button *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'" class="btn btn-primary" routerLink="/newpost">New Post</button>
+</div>
+<div class="contaniner">
   <div class="row">
-    <div id="blog-title" class="col">
-      <h1>Blog</h1>
-    </div>
+<div class="col-12 blog-post" *ngFor="let post of blogInfo">
+    <a routerLink="/viewpost/{{post.id}}"><h1>{{post.blogtitle}}</h1>
+    <p>{{post.blogcontent | slice:0:20}}...</p>
+    <button class="btn btn-dark">Read More</button></a>
   </div>
-<div class="blog-post" *ngFor="let post of blogInfo">
-  <h1>{{post.blogtitle}}</h1>
-  <p>{{post.blogcontent}}</p>
-  <small>{{post.blogauthor}}</small>
-  <br><br>
-  <div *ngIf="loggedUser && jwtUsertype!='User'">
-  <button style="margin:2px;" class="btn btn-primary" (click)="selectPost(post)">Select Post</button>
-    <button style="margin:2px;" class="btn btn-primary" (click)="deletePost(post.id)">Delete Post</button>
-    </div>
   </div>
-<br>
-<!-- ---------------------- -->
-<div *ngIf="loggedUser && jwtUsertype!='User'" class="container shadow">
-<div *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'" class="row">
-<div class="col text-center">
-<form #newpost="ngForm" (ngSubmit)="addPost(newpost)">
-  <label>Blog Title</label><br>
-  <input type="text" name="blogtitle" ngModel>
-  <br><br>
-  <label>Blog Content</label><br>
-  <textarea rows="4" cols="30" name="blogcontent" ngModel></textarea>
-  <br>
-  <label>Blog Author<br>{{loggedUser | titlecase}}</label>
-  <input type="hidden" name="blogauthor" value="{{loggedUser | titlecase}}" ngModel="{{loggedUser | titlecase}}">
-  <br>
-  <input class="btn btn-primary mx-auto" type="submit" value="Create Post">
-  </form>
-  </div>
-  <br>
-  <div class="col text-center">
-  <form #editpost="ngForm" (ngSubmit)="editPost(editpost)">
-    <label>Blog Title</label><br>
-    <input type="text" name="blogtitle" [(ngModel)]="selectedPost.blogtitle">
-    <br><br>
-    <label>Blog Content</label><br>
-    <textarea rows="4" cols="30" name="blogcontent" [(ngModel)]="selectedPost.blogcontent"></textarea>
-    <br>
-    <label>Blog Author<br>{{selectedPost.blogauthor}}</label>
-    <input type="hidden" name="blogauthor" [(ngModel)]="selectedPost.blogauthor">
-    <br>
-    <input class="btn btn-primary mx-auto" type="submit" value="Submit Edits">
-    </form>
+</div>
+  <div class="contaniner" *ngIf="blogInfo==''">
+    <div class="row">
+    <div class="col d-flex justify-content-center">
+    <h4 style="color:grey;">There are no posts</h4>
     </div>
     </div>
-    <br>
   </div>

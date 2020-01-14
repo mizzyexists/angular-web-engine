@@ -1,4 +1,27 @@
 <app-toasts></app-toasts>
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<nb-layout>
+
+  <nb-layout-header fixed>
+    <div class="header-container">
+      <app-navbar></app-navbar>
+    </div>
+  </nb-layout-header>
+
+  <nb-sidebar responsive collapsedBreakpoints="['']">
+  <nb-menu *ngIf="sidebarCompact==false" [items]="sidebarctrls" (click)="compactSB()"></nb-menu>
+  <nb-menu *ngIf="sidebarCompact==true" [items]="sidebarctrls" (click)="expandSB()"></nb-menu>
+  <hr>
+  <nb-menu *ngIf="loggedUser && jwtUsertype=='Super-Admin'" [items]="saitems"></nb-menu>
+  <nb-menu *ngIf="loggedUser && jwtUsertype=='Admin'" [items]="aitems"></nb-menu>
+  <nb-menu *ngIf="!loggedUser && jwtUsertype!='Admin' && jwtUsertype!='Super-Admin'" [items]="items"></nb-menu>
+  <nb-menu *ngIf="loggedUser && jwtUsertype!='Admin' && jwtUsertype!='Super-Admin'" [items]="uitems"></nb-menu>
+  </nb-sidebar>
+
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+  <nb-layout-footer fixed>
+    <app-footer></app-footer>
+  </nb-layout-footer>
+
+</nb-layout>

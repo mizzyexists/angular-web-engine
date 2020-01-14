@@ -43,8 +43,8 @@ export class RegisterComponent implements OnInit {
   onSubmit(){
     console.log(this.registerForm.value)
     this.authApi.createUser(this.registerForm.value).subscribe(()=>{
-      this.toastService.show('User Created. Please Wait...', { classname: 'bg-success text-light'});
-      setTimeout(() => this.router.navigate(['viewusers']), 3000);
+      this.toastService.show('User Created.', { classname: 'bg-success text-light'});
+      setTimeout(() => this.router.navigate(['viewusers']), 500);
     });
   }
 

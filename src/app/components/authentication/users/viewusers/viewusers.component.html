@@ -3,15 +3,18 @@
 <table class="table table-stip shadow">
 <tr class="bg-dark text-white text-center">
   <td>UID</td>
+  <td>Avatar</td>
   <td>Username</td>
   <td>Usertype</td>
   <td>Action</td>
 </tr>
-<tr class="text-center" *ngFor="let user of userData">
-  <td>{{user.uid}}</td>
-  <td>{{user.username}}</td>
-  <td>{{user.usertype}}</td>
-  <td><a href="javascript:void(0);" class="btn btn-success" (click)="editUser(user.uid)">Edit</a> | <a href="javascript:void(0);" class="btn btn-danger" (click)="deleteUser(user.uid)">Delete</a></td>
+<tr (click)="viewUser(user.uid)" class="profile-item text-center" *ngFor="let user of userData">
+  <td class="align-middle">{{user.uid}}</td>
+  <td class="text-center align-middle"><img style="border-radius:40px; margin-right: 10px;" width=40px height=40px src={{user.image_path}}/></td>
+  <td class="align-middle" (click)="viewUser(user.uid)">{{user.username}}</td>
+  <td class="align-middle">{{user.usertype}}</td>
+  <td class="align-middle" *ngIf="loggedUser && jwtUsertype=='Super-Admin'"><a href="javascript:void(0);" class="btn btn-success" (click)="editUser(user.uid)">Edit</a> | <a href="javascript:void(0);" class="btn btn-danger" (click)="deleteUser(user.uid)">Delete</a></td>
+  <td class="align-middle" *ngIf="loggedUser && jwtUsertype!=='Super-Admin'">No Actions Available</td>
 </tr>
 </table>
 <button style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/register">New User</button>

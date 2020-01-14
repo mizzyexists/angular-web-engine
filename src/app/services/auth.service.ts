@@ -21,7 +21,10 @@ export class AuthService {
   jwtUsertype: any;
   jwtUsername: any;
   loggedUser: any;
-  constructor(private httpClient: HttpClient, private router:Router) {}
+  constructor(
+    private httpClient: HttpClient,
+    private router:Router
+  ){}
   fetchUsers(): Observable<UserData[]>{
     return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/authentication/read.php`);
   }
@@ -33,6 +36,9 @@ export class AuthService {
   }
   updatePass(userData: UserData){
     return this.httpClient.put<UserData>(`${this.PHP_API_SERVER}/authentication/updatepass.php`, userData);
+  }
+  addAvatar(uid: number, image_path: string){
+    return this.httpClient.put<UserData>(`${this.PHP_API_SERVER}/authentication/addavatar.php`, [uid, image_path]);
   }
   createUser(userData: UserData): Observable<UserData>{
     return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/authentication/create.php`, userData);
@@ -54,7 +60,7 @@ export class AuthService {
     this.authorize(this.token).subscribe((authData: AuthData) => {
     if(!authData || authData[0]!=true){
     window.localStorage.removeItem('jwt');
-    window.location.href = '/#/login';
+    window.location.href = '/';
       };
     this.jwtData = authData[1];
     this.jwtUsername = this.jwtData.data.username;

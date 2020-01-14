@@ -1,1 +1,9 @@
 
+a {
+  color: #fff;
+}
+
+.profile-item:hover{
+  background-color: #e0e4eb;;
+  cursor: pointer;
+}

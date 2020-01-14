@@ -20,6 +20,8 @@ export class NavbarComponent implements OnInit {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
+  image_path: any;
+  userID: any;
   constructor(private toastService: ToastService, private authApi: AuthService) { }
 
   ngOnInit() {
@@ -29,6 +31,8 @@ export class NavbarComponent implements OnInit {
       this.jwtUsername = this.jwtData.data.username;
       this.jwtUsertype = this.jwtData.data.usertype;
       this.loggedUser = this.jwtUsername;
+      this.userID = this.jwtData.data.uid;
+      this.image_path = this.jwtData.data.image_path;
     });
   }
   logout() {

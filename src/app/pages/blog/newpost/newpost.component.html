@@ -1,0 +1,24 @@
+<div *ngIf="loggedUser && jwtUsertype!='User'">
+<div *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'" class="row">
+<div class="col-md-6 user-container">
+    <h2 class="text-center">New Post</h2>
+<form [formGroup]="newpostform" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="blogtitle">Blog Title:</label>
+    <input type="text" formControlName="blogtitle" name="blogtitle" class="form-control" id="blogtitle">
+  </div>
+  <div class="form-group">
+    <label for="blogcontent">Blog Content:</label>
+      <textarea rows="10" cols="40" formControlName="blogcontent" name="blogcontent" class="form-control" id="blogcontent"></textarea>
+  </div>
+  <label>Blog Author:</label>
+  <input type="text" disabled formControlName="blogauthor" name="blogauthor" class="form-control" id="blogauthor">
+  <br><br>
+<button class="btn btn-primary">Create Post</button>
+  </form>
+  <button style="margin-top: 5px;" class="btn btn-danger" routerLink="/blog">Cancel</button>
+  </div>
+  <br>
+    </div>
+    <br>
+  </div>

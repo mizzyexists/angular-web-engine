@@ -1,4 +1,4 @@
-<div *ngIf="loggedUser">
+<div *ngIf="loggedUser && jwtUsertype=='Super-Admin'">
 <div class="col-md-6 user-container">
   <h2 class="text-center">Change Password</h2>
   <form [formGroup]="changePasswordForm" (ngSubmit)="onUpdate()">

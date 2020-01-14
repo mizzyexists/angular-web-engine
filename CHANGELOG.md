@@ -2,6 +2,36 @@
 
 ## Version 1
 
+### 1.1.0 - MAJOR UPDATE
+- **Added new admin panel using the Nebular System**
+    - Improved navigation
+    - Improved UI/UX
+    - Added permission-based views to sidebar navigation
+- **Blog System V2**
+    - Blog posts are now edited on their own pages per post
+    - Each blog post has its own ID
+    - Dashboard links now go to individual blog posts
+    - Admins can edit posts from 'post-view' page
+    - New posts are made on 'new-post' page
+    - 'No posts' message shows when there are no blog posts
+    - Reduced time delay on post save redirect
+    - Updating a post redirects user back to 'post-view' page
+    - Updated the UI/UX of 'blog-view'
+- **Media Uploading**
+    - Added profile images to users
+    - Keeps old image if no image is saved
+    - Saved on Server side
+- Blocked user editing out to only Super-Admins but Admins can view all users
+- Removed console log of login data
+- Side-nav compacts on button click
+- Added 'Profile' pages for user information
+- Added 'Edit' button on profile page
+- Top-nav responsiveness
+- Checked and patched all permissions and restricted areas for vulnerabilities
+
+### 1.0.9
+- Expired user tokens get refreshed and cleared on read
+
 ### 1.0.8
 - Added new styling to blog page with new forms
 - Updated permissions to be more specific for blog editing privileges

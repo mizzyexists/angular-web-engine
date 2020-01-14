@@ -1,3 +1,44 @@
 .navbar-text{
   padding-right: 5px;
 }
+
+.logo{
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 700px) {
+.logo-only{
+  display: block;
+}
+}
+@media only screen and (min-width: 701px) {
+.logo-only{
+  display: none;
+}
+}
+
+@media only screen and (max-width: 700px) {
+  .full-top-nav{
+  display: none;
+  }
+}
+
+@media only screen and (min-width: 701px) {
+.full-top-nav{
+}
+}
+
+nb-user{
+  padding-right: 20px;
+  outline: 0;
+}
+
+nb-user:hover{
+  background-color: #eee;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+nb-user:focus{
+  outline: 0;
+}

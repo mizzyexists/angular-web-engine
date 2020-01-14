@@ -18,8 +18,11 @@ export class ViewusersComponent implements OnInit {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
-  constructor(private toastService: ToastService, private authApi:AuthService, private router: Router) { }
-
+  constructor(
+    private toastService: ToastService,
+    private authApi:AuthService,
+    private router: Router
+  ){}
   ngOnInit() {
     this.authApi.checkAuthToken();
     this.authApi.checkADUserType();
@@ -46,6 +49,10 @@ export class ViewusersComponent implements OnInit {
 
   editUser(uid:number): void{
     this.router.navigate(['edituser/' + uid]);
+  }
+
+  viewUser(uid:number): void{
+    this.router.navigate(['profile/' + uid]);
   }
 
 }

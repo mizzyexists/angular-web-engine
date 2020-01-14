@@ -51,8 +51,8 @@ export class ChangepassComponent implements OnInit {
   onUpdate(){
     this.authApi.updatePass(this.changePasswordForm.value).subscribe(()=>{
       console.log(this.changePasswordForm.value);
-      this.toastService.show('Password Updated. Please Wait...', { classname: 'bg-success text-light'});
-      setTimeout(() => this.router.navigate(['viewusers']), 3000);
+      this.toastService.show('Password Updated.', { classname: 'bg-success text-light'});
+      setTimeout(() => this.router.navigate(['viewusers']), 500);
   });
   }
   checkPass(){
