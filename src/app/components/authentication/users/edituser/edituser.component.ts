@@ -25,6 +25,8 @@ export class EdituserComponent implements OnInit {
   uploadResponse: any;
   image_path: any;
   profileAvatar: any;
+  jwtUID: any;
+  currentPageID: any;
   constructor(
     private toastService: ToastService,
     private formBuilder:FormBuilder,
@@ -35,33 +37,39 @@ export class EdituserComponent implements OnInit {
   ){}
   ngOnInit() {
     this.authApi.checkAuthToken();
-    this.authApi.checkADUserType();
+    const routeParams = this.routes.snapshot.params;
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];
       this.jwtUsername = this.jwtData.data.username;
+      this.jwtUID = this.jwtData.data.uid;
       this.jwtUsertype = this.jwtData.data.usertype;
       this.loggedUser = this.jwtUsername;
       this.image_path = this.jwtData.data.image_path;
+      this.currentPageID = routeParams.uid;
+      if(routeParams.uid==this.jwtUID || this.jwtUsertype == "Super-Admin" || this.jwtUsertype == "Admin"){
+      this.authApi.fetchUsers().subscribe((userData: UserData[])=>{
+      this.userData = userData;
     });
-    this.authApi.fetchUsers().subscribe((userData: UserData[])=>{
-    this.userData = userData;
-  });
-    const routeParams = this.routes.snapshot.params;
-    this.usereditForm = this.formBuilder.group({
-      uid: [],
-      username: ['', Validators.required],
-      usertype: ['', Validators.required],
-      fname: ['', Validators.required],
-      lname: ['', Validators.required],
-      bio_text: ['', Validators.required],
-      image_path: [''],
-      avatar: ['']
+      this.usereditForm = this.formBuilder.group({
+        uid: [],
+        username: ['', Validators.required],
+        usertype: ['', Validators.required],
+        fname: ['', Validators.required],
+        lname: ['', Validators.required],
+        bio_text: ['', Validators.required],
+        image_path: [''],
+        avatar: ['']
+      });
+      this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {
+        this.usereditForm.patchValue(data);
+      });
+      this.userID = routeParams.uid;
+    }
+    else{
+      this.router.navigate(['/viewusers']);
+    }
     });
-    this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {
-      this.usereditForm.patchValue(data);
-    });
-    this.userID = routeParams.uid;
 }
 onFileSelect(event: { target: { files: any[]; }; }) {
   if (event.target.files.length > 0) {

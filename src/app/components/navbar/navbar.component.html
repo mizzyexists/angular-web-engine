@@ -1,21 +1,23 @@
 <nb-actions class="logo-only" size="medium">
   <nb-action><div class="logo-container">
-    <a class="logo" href="#">BIQ Admin</a>
+    <a class="logo" routerLink="/dashboard">BIQ Admin</a>
   </div></nb-action>
 </nb-actions>
 <nb-actions class="full-top-nav" size="medium">
   <nb-action><div class="logo-container">
-    <a class="logo" href="#">BIQ Admin</a>
+    <a class="logo" routerLink="/dashboard">BIQ Admin</a>
   </div></nb-action>
 <nb-action title="Dashboard" icon="home-outline" link="/dashboard"></nb-action>
 <nb-action title="Blog" icon="book-outline" link="/blog"></nb-action>
-<nb-action title="Users" icon="people-outline" *ngIf="loggedUser && jwtUsertype!='Moderator' && jwtUsertype!='User'" link="/viewusers"></nb-action>
+<nb-action title="Users" icon="people-outline" *ngIf="loggedUser && jwtUsertype!='User'" link="/viewusers"></nb-action>
 <nb-action title="Settings" icon="settings-2-outline" *ngIf="jwtUsertype=='Super-Admin'" link="/settings"></nb-action>
 </nb-actions>
-<nb-user *ngIf="loggedUser" style="position:absolute;right:105px;top:12px;" size="large"
-         name="{{loggedUser | titlecase}}"
-         picture="{{image_path}}" routerLink="/profile/{{userID}}">
-</nb-user>
+<a routerLink="/profile/{{userID}}">
+  <nb-user *ngIf="loggedUser" style="position:absolute;right:105px;top:12px;" size="large"
+           name="{{loggedUser | titlecase}}"
+           picture="{{image_path}}">
+  </nb-user>
+</a>
 <nb-actions style="position:absolute;right:0px;top:20px;" size="medium">
 <nb-action *ngIf="!loggedUser"><span class="navbar-text">
   Please Sign In

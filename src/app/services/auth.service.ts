@@ -75,7 +75,6 @@ export class AuthService {
       this.jwtUsertype = this.jwtData.data.usertype;
       this.loggedUser = this.jwtUsername;
     if(!this.jwtUsertype || this.jwtUsertype!='Super-Admin'){
-    console.log(this.jwtUsertype);
     this.router.navigate(['login']);
       };
       });
@@ -94,4 +93,20 @@ export class AuthService {
       };
       });
     };
+    checkModUserType(){
+      this.token = window.localStorage.getItem('jwt');
+      this.authorize(this.token).subscribe((authData: AuthData) => {
+        this.jwtData = authData[1];
+        this.jwtUsername = this.jwtData.data.username;
+        this.jwtUsertype = this.jwtData.data.usertype;
+        this.loggedUser = this.jwtUsername;
+      if(!this.jwtUsertype || this.jwtUsertype!='Super-Admin'){
+        if(!this.jwtUsertype || this.jwtUsertype!='Admin'){
+          if(!this.jwtUsertype || this.jwtUsertype!='Moderator'){
+      this.router.navigate(['login']);
+            };
+          };
+        };
+        });
+      };
   }

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  version: string = '1.1.0';
+  version: string = '1.1.1';
   constructor() { }
 
   ngOnInit() {

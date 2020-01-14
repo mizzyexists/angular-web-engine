@@ -10,7 +10,6 @@ import { ToastService } from '../../services/toast.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
   token: any;
   data: any;
   jwt: any;
@@ -22,8 +21,10 @@ export class NavbarComponent implements OnInit {
   jwtUsertype: any;
   image_path: any;
   userID: any;
-  constructor(private toastService: ToastService, private authApi: AuthService) { }
-
+  constructor(
+    private toastService: ToastService,
+    private authApi: AuthService
+  ){}
   ngOnInit() {
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {

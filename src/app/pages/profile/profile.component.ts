@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { UserData } from 'src/app/models/userdata';
 import { AuthData } from 'src/app/models/authdata';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ToastService } from '../../services/toast.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -20,19 +18,19 @@ export class ProfileComponent implements OnInit {
   jwtData: any;
   userID: any;
   profileID: any;
+  jwtUsertype: any;
   constructor(
-    private toastService: ToastService,
     private authApi: AuthService,
-    private router: Router,
     private routes: ActivatedRoute
   ){}
   ngOnInit() {
     this.authApi.checkAuthToken();
-    this.authApi.checkADUserType();
+    this.authApi.checkModUserType();
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];
       this.userID = this.jwtData.data.uid;
+      this.jwtUsertype = this.jwtData.data.usertype;
     });
     const routeParams = this.routes.snapshot.params;
     this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {

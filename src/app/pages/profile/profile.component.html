@@ -8,4 +8,6 @@ Full Name: {{profileName}}
 <br>
 Bio:<br>{{profileBio}}
 <br>
-<button *ngIf="userID==profileID" style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/edituser/{{userID}}">Edit Profile</button>
+<button *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'"
+style="margin-top: 5px; margin-left: 5px;"
+class="btn btn-primary" routerLink="/edituser/{{profileID}}">Edit Profile</button>

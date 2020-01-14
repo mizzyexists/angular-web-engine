@@ -2,6 +2,14 @@
 
 ## Version 1
 
+### 1.1.1
+- Permission fixes for profile editing
+- Added Moderator specific permissions
+- Allow users to edit their own profile
+- Fixed issue with blog when there are no posts
+- Fixed issue with blogs where author was not in Titlecase
+- Fixed issue when editing a user from profile was not going to the correct user
+
 ### 1.1.0 - MAJOR UPDATE
 - **Added new admin panel using the Nebular System**
     - Improved navigation

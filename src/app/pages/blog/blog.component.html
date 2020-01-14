@@ -10,7 +10,7 @@
   </div>
   </div>
 </div>
-  <div class="contaniner" *ngIf="blogInfo==''">
+  <div class="contaniner" *ngIf="!blogInfo || blogInfo.length < 1">
     <div class="row">
     <div class="col d-flex justify-content-center">
     <h4 style="color:grey;">There are no posts</h4>
