@@ -1,11 +1,11 @@
-<div *ngIf="loggedUser">
+<div class="container "*ngIf="loggedUser">
   <table class="table table-strip">
-    <tr class="bg-dark text-white">
+    <tr class="bg-dark text-white text-center">
       <td>Setting Name</td>
       <td>Setting Value</td>
       <td>Action</td>
       </tr>
-        <tr *ngFor="let setting of settings">
+        <tr class="text-center" *ngFor="let setting of settings">
           <td><strong>{{setting.setting}}</strong></td>
           <td><strong>{{setting.value}}</strong></td>
           <td><button class="btn btn-success" (click)="selectSetting(setting)">Select Setting</button> |
