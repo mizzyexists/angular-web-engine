@@ -34,7 +34,7 @@ export class EditpostComponent implements OnInit {
   ){}
   ngOnInit() {
     this.authApi.checkAuthToken();
-    this.authApi.checkADUserType();
+    this.authApi.checkModUserType();
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];

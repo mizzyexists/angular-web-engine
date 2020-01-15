@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { AuthData } from 'src/app/models/authdata';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -21,25 +21,27 @@ export class ProfileComponent implements OnInit {
   jwtUsertype: any;
   constructor(
     private authApi: AuthService,
-    private routes: ActivatedRoute
-  ){}
+    private routes: ActivatedRoute,
+    private router: Router
+  ){
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
   ngOnInit() {
     this.authApi.checkAuthToken();
-    this.authApi.checkModUserType();
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];
       this.userID = this.jwtData.data.uid;
       this.jwtUsertype = this.jwtData.data.usertype;
-    });
-    const routeParams = this.routes.snapshot.params;
-    this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {
-    this.profileID = data.uid;
-    this.profileUser = data.username;
-    this.profileAvatar = data.image_path;
-    this.profileType = data.usertype;
-    this.profileName = data.fname + " " + data.lname;
-    this.profileBio = data.bio_text;
+        const routeParams = this.routes.snapshot.params;
+        this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {
+        this.profileID = data.uid;
+        this.profileUser = data.username;
+        this.profileAvatar = data.image_path;
+        this.profileType = data.usertype;
+        this.profileName = data.fname + " " + data.lname;
+        this.profileBio = data.bio_text;
+        });
     });
   }
 

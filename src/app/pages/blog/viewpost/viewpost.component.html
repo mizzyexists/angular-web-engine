@@ -2,7 +2,8 @@
 <h1>{{postTitle}}</h1>
 <p>{{postContent}}</p>
 <p>Posted by: {{postAuthor | titlecase}}</p>
-<div *ngIf="loggedUser && jwtUsertype=='Super-Admin'">
+<p>Posted on: {{postDate}}</p>
+<div *ngIf="loggedUser">
 <button style="margin-top: 5px;" class="btn btn-light" routerLink="/blog">Go Back</button>
-<button style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/editpost/{{postID}}">Edit</button>
+<button *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'" style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/editpost/{{postID}}">Edit</button>
 </div>

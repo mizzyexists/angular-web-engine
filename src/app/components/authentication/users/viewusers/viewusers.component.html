@@ -2,19 +2,21 @@
   <br>
 <table class="table table-stip shadow">
 <tr class="bg-dark text-white text-center">
-  <td>UID</td>
+  <!-- <td>UID</td> -->
   <td>Avatar</td>
   <td>Username</td>
   <td>Usertype</td>
   <td>Action</td>
 </tr>
-<tr (click)="viewUser(user.uid)" class="profile-item text-center" *ngFor="let user of userData">
-  <td class="align-middle">{{user.uid}}</td>
-  <td class="text-center align-middle"><img style="border-radius:40px; margin-right: 10px;" width=40px height=40px src={{user.image_path}}/></td>
-  <td class="align-middle" (click)="viewUser(user.uid)">{{user.username}}</td>
-  <td class="align-middle">{{user.usertype}}</td>
-  <td class="align-middle" *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'"><a href="javascript:void(0);" class="btn btn-success" (click)="editUser(user.uid)">Edit</a> | <a href="javascript:void(0);" class="btn btn-danger" (click)="deleteUser(user.uid)">Delete</a></td>
-  <td class="align-middle" *ngIf="jwtUsertype!='Super-Admin' && jwtUsertype!='Admin'">No Actions Available</td>
+<tr class="profile-item text-center" *ngFor="let user of userData">
+  <!-- <td (click)="viewUser(user.uid)" class="align-middle">{{user.uid}}</td> -->
+  <td (click)="viewUser(user.uid)" class="text-center align-middle"><img style="border-radius:40px;" width=40px height=40px src={{user.image_path}}/></td>
+  <td (click)="viewUser(user.uid)" class="align-middle" (click)="viewUser(user.uid)">{{user.username}}</td>
+  <td (click)="viewUser(user.uid)" class="align-middle">{{user.usertype}}</td>
+  <td class="align-middle" *ngIf="jwtUsertype=='Super-Admin'"><a href="javascript:void(0);" class="btn btn-success" (click)="editUser(user.uid)">Edit</a> | <a href="javascript:void(0);" class="btn btn-danger" (click)="deleteUser(user.uid)">Delete</a></td>
+  <td class="align-middle" *ngIf="jwtUsertype=='Admin' && user.usertype!='Super-Admin'"><a href="javascript:void(0);" class="btn btn-success" (click)="editUser(user.uid)">Edit</a> | <a href="javascript:void(0);" class="btn btn-danger" (click)="deleteUser(user.uid)">Delete</a></td>
+  <td (click)="viewUser(user.uid)" class="align-middle" *ngIf="jwtUsertype=='Admin' && user.usertype=='Super-Admin'">No Actions Available</td>
+  <td (click)="viewUser(user.uid)" class="align-middle" *ngIf="jwtUsertype!='Super-Admin' && jwtUsertype!='Admin'">No Actions Available</td>
 </tr>
 </table>
 <div *ngIf="loggedUser">

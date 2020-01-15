@@ -2,6 +2,24 @@
 
 ## Version 1
 
+### 1.1.2 - **SECURITY UPDATE**
+- Increased Maximum size warning to 3 MB
+- Fixed sidebar viewing permissions
+- Fixed bug where deleting a user showed a nulled profile page
+- Added "Last_Login" parameter to user DB which updates date and time on login
+- Fixed bug where data would not change when switching between users on profile
+- Fixed bug where data would not change when switching between posts on blog
+- Fixed vulnerability where user could change their UserType
+- Fixed vulnerability where Admins could edit Super-Admins
+- Fixed issue where Moderators could not see other profiles
+- Show 'User not Found' message for invalid UID
+- Removed ability to change username (Disabled form-group)
+- Fixed vulnerability where Admins could register a new Super-Admin account
+- Removed edit buttons on Super-Admins viewed by Admins
+- Fixed Avatar image position on 'view-users' page
+- Allowed Moderators to make new blog posts
+- Added 'Post_Date' parameter to DB for blog posts
+
 ### 1.1.1
 - Permission fixes for profile editing
 - Added Moderator specific permissions
@@ -10,7 +28,7 @@
 - Fixed issue with blogs where author was not in Titlecase
 - Fixed issue when editing a user from profile was not going to the correct user
 
-### 1.1.0 - MAJOR UPDATE
+### 1.1.0 - **MAJOR UPDATE**
 - **Added new admin panel using the Nebular System**
     - Improved navigation
     - Improved UI/UX

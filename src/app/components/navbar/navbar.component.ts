@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthData } from '../../models/authdata';
 import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../services/toast.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +23,8 @@ export class NavbarComponent implements OnInit {
   userID: any;
   constructor(
     private toastService: ToastService,
-    private authApi: AuthService
+    private authApi: AuthService,
+    private router: Router
   ){}
   ngOnInit() {
     this.token = window.localStorage.getItem('jwt');
@@ -43,4 +44,9 @@ export class NavbarComponent implements OnInit {
     this.toastService.show('You have been logged out', { classname: 'bg-success text-light'});
     setTimeout(() => window.location.href = '/', 500);
   }
+
+  viewMyProfile(){
+  this.router.navigate(['/profile/' + this.userID]);
+  }
+
   }

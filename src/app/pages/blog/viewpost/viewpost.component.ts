@@ -21,6 +21,7 @@ export class ViewpostComponent implements OnInit {
   postTitle: any;
   postContent: any;
   postAuthor: any;
+  postDate: any;
   constructor(
     private blogApi: BlogApiService,
     private authApi: AuthService,
@@ -41,6 +42,7 @@ export class ViewpostComponent implements OnInit {
       this.postTitle = data.blogtitle;
       this.postContent = data.blogcontent;
       this.postAuthor = data.blogauthor;
+      this.postDate = data.post_date;
     });
   }
 }

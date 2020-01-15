@@ -27,6 +27,7 @@ export class EdituserComponent implements OnInit {
   profileAvatar: any;
   jwtUID: any;
   currentPageID: any;
+  currentPageUsertype: any;
   constructor(
     private toastService: ToastService,
     private formBuilder:FormBuilder,
@@ -63,6 +64,7 @@ export class EdituserComponent implements OnInit {
       });
       this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {
         this.usereditForm.patchValue(data);
+        this.currentPageUsertype = data.usertype;
       });
       this.userID = routeParams.uid;
     }

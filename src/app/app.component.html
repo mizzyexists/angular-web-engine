@@ -12,9 +12,9 @@
   <nb-menu *ngIf="sidebarCompact==true" [items]="sidebarctrls" (click)="expandSB()"></nb-menu>
   <hr>
   <nb-menu *ngIf="loggedUser && jwtUsertype=='Super-Admin'" [items]="saitems"></nb-menu>
-  <nb-menu *ngIf="loggedUser && jwtUsertype=='Admin'" [items]="aitems"></nb-menu>
-  <nb-menu *ngIf="!loggedUser && jwtUsertype!='Admin' && jwtUsertype!='Super-Admin'" [items]="items"></nb-menu>
-  <nb-menu *ngIf="loggedUser && jwtUsertype!='Admin' && jwtUsertype!='Super-Admin'" [items]="uitems"></nb-menu>
+  <div *ngIf="loggedUser"><nb-menu *ngIf="jwtUsertype=='Admin' || jwtUsertype=='Moderator'" [items]="aitems"></nb-menu></div>
+  <nb-menu *ngIf="!loggedUser && jwtUsertype!='Admin' && jwtUsertype!='Super-Admin'" [items]="litems"></nb-menu>
+  <nb-menu *ngIf="loggedUser && jwtUsertype!='Admin' && jwtUsertype!='Super-Admin' && jwtUsertype!='Moderator'" [items]="uitems"></nb-menu>
   </nb-sidebar>
 
   <nb-layout-column>

@@ -4,7 +4,6 @@ import { BlogInfo } from 'src/app/models/bloginfo';
 import { Router } from '@angular/router';
 import { AuthData } from 'src/app/models/authdata';
 import { AuthService } from '../../services/auth.service';
-import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-blog',
@@ -20,11 +19,12 @@ export class BlogComponent implements OnInit {
   jwtUsername: any;
   jwtUsertype: any;
   constructor(
-    private toastService: ToastService,
     private authApi : AuthService,
     private blogApi : BlogApiService,
     private router : Router
-  ){}
+  ){
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
   ngOnInit() {
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {

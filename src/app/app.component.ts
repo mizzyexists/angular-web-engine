@@ -77,8 +77,13 @@ export class AppComponent implements OnInit {
       icon: 'book-outline',
       link: ['/blog'],
     },
+    {
+      title: 'Users',
+      icon: 'people-outline',
+      link: ['/viewusers'],
+    },
   ];
-  items = [
+  litems = [
     {
       title: 'Login',
       icon: 'person-outline',

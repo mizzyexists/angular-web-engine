@@ -12,7 +12,7 @@
 <nb-action title="Users" icon="people-outline" *ngIf="loggedUser && jwtUsertype!='User'" link="/viewusers"></nb-action>
 <nb-action title="Settings" icon="settings-2-outline" *ngIf="jwtUsertype=='Super-Admin'" link="/settings"></nb-action>
 </nb-actions>
-<a routerLink="/profile/{{userID}}">
+<a (click)="viewMyProfile()">
   <nb-user *ngIf="loggedUser" style="position:absolute;right:105px;top:12px;" size="large"
            name="{{loggedUser | titlecase}}"
            picture="{{image_path}}">

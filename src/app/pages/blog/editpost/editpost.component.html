@@ -1,5 +1,5 @@
-<div *ngIf="loggedUser && jwtUsertype=='Super-Admin'">
-<div class="col-md-6 user-container">
+<div *ngIf="loggedUser">
+<div *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'" class="col-md-6 user-container">
   <h2 class="text-center">Edit Post</h2>
   <form [formGroup]="posteditForm" (ngSubmit)="onUpdate()">
     <div class="form-group">

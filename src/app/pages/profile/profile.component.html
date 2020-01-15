@@ -1,3 +1,5 @@
+<div *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'">
+  <div *ngIf="profileUser">
 <img width="200px" src="{{profileAvatar}}"/>
 <br>
 Username: {{profileUser}}
@@ -8,6 +10,22 @@ Full Name: {{profileName}}
 <br>
 Bio:<br>{{profileBio}}
 <br>
-<button *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'"
+<div *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'">
+  <div *ngIf="profileType!='Super-Admin' || jwtUsertype=='Super-Admin'">
+<button
 style="margin-top: 5px; margin-left: 5px;"
 class="btn btn-primary" routerLink="/edituser/{{profileID}}">Edit Profile</button>
+</div>
+</div>
+</div>
+<div *ngIf="!profileUser">
+  <h4 class="text-center" style="color:grey;">User does not exist</h4>
+  </div>
+</div>
+<div class="container" *ngIf="userID!=profileID">
+  <div class="row">
+      <div class="col d-flex justify-content-center">
+      <h4 *ngIf="jwtUsertype!='Super-Admin' && jwtUsertype!='Admin' && jwtUsertype!='Moderator'" style="color:grey;">You don't have permission to view this user</h4>
+    </div>
+    </div>
+</div>

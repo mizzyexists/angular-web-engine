@@ -15,8 +15,8 @@
       <select formControlName="usertype" name="usertype.name" id="usertype" class="form-control">
                <option value = "User">User</option>
                <option value = "Moderator">Moderator</option>
-               <option value = "Admin">Administrator</option>
-               <option value = "Super-Admin">Super-Admin</option>
+               <option *ngIf="jwtUsertype=='Super-Admin'" value = "Admin">Administrator</option>
+               <option *ngIf="jwtUsertype=='Super-Admin'" value = "Super-Admin">Super-Admin</option>
       </select>
     </div>
     <button class="btn btn-success">Register</button>
