@@ -3,10 +3,12 @@
 </div>
 <div class="contaniner">
   <div class="row">
-<div class="col-12 blog-post" *ngFor="let post of blogInfo">
-    <a routerLink="/viewpost/{{post.id}}"><h1>{{post.blogtitle}}</h1>
-    <p>{{post.blogcontent | slice:0:20}}...</p>
-    <button class="btn btn-dark">Read More</button></a>
+<div class="col-12 blog-post" *ngFor="let post of blogInfo.slice().reverse()">
+    <a routerLink="/viewpost/{{post.id}}">
+      <small>Post ID: {{post.id}}</small>
+      <h1>{{post.blogtitle | uppercase}}</h1>
+      <p>Posted on: {{post.post_date | uppercase}}</p>
+    </a>
   </div>
   </div>
 </div>

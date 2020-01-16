@@ -12,7 +12,6 @@ import { AuthService } from '../../services/auth.service';
 })
 export class BlogComponent implements OnInit {
   blogInfo: BlogInfo[];
-  selectedPost:  BlogInfo  = { id:  null , blogtitle: null, blogcontent:  null, blogauthor: null};
   loggedUser: string;
   token: string;
   jwtData: any;

@@ -41,10 +41,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.registerForm.value)
-    this.authApi.createUser(this.registerForm.value).subscribe(()=>{
+    this.authApi.createUser(this.registerForm.value).subscribe((data)=>{
+      if(data[0]==0){
       this.toastService.show('User Created.', { classname: 'bg-success text-light'});
       setTimeout(() => this.router.navigate(['viewusers']), 500);
+    }
+    else{
+      this.toastService.show('User Already Exists.', { classname: 'bg-danger text-light'});
+      this.registerForm.reset();
+    }
     });
   }
 

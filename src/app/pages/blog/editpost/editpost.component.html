@@ -3,15 +3,31 @@
   <h2 class="text-center">Edit Post</h2>
   <form [formGroup]="posteditForm" (ngSubmit)="onUpdate()">
     <div class="form-group">
-      <label for="blogtitle">Blog Title:</label>
+      <label for="blogtitle">Post Title:</label>
       <input type="text" formControlName="blogtitle" name="blogtitle" class="form-control" id="blogtitle">
     </div>
     <div class="form-group">
-      <label for="blogcontent">Blog Content:</label>
-        <textarea rows="10" cols="40" formControlName="blogcontent" name="blogcontent" class="form-control" id="blogcontent"></textarea>
+      <label for="blogcontent">Post Content:</label>
+      <editor [init]="{
+            base_url: '/tinymce',
+            branding: false,
+            suffix: '.min',
+            height: 400,
+            menubar: false,
+            plugins: [
+              'advlist autolink lists link image charmap print preview anchor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar:
+              'undo redo | formatselect | bold italic backcolor | \
+              alignleft aligncenter alignright alignjustify | \
+              bullist numlist outdent indent | removeformat | help'
+          }" formControlName="blogcontent" name="blogcontent" id="blogcontent">
+     </editor>
     </div>
     <div class="form-group">
-      <label for="blogauthor">Blog Author:</label>
+      <label for="blogauthor">Post Author:</label>
       <input type="text" disabled formControlName="blogauthor" name="blogauthor" class="form-control" id="blogauthor">
     </div>
     <button class="btn btn-success">Apply Settings</button>

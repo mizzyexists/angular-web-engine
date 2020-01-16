@@ -2,6 +2,20 @@
 
 ## Version 1
 
+### 1.1.3
+- Fixed duplicate users from being created.
+    - Server now checks if user exists before creating DB entry
+- Added TinyMCE Editor to blog and user bio fields
+    - Use going forward as an alternative to 'text-area'
+- Added new box in 'Profile' page for future use
+- Added new UX to 'Profile' page
+- Fixed TinyMCE display fields to show compiled HTML markup
+- Fixed text formatting on 'Profile' page
+- Added date to blog preview
+- Removed content from blog preview
+- Changed blog posts to show in descending ID order
+- Updated wording from 'Blog' to 'Post' when editing or creating a new post
+
 ### 1.1.2 - **SECURITY UPDATE**
 - Increased Maximum size warning to 3 MB
 - Fixed sidebar viewing permissions

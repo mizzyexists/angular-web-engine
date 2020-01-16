@@ -23,6 +23,7 @@ import { EditpostComponent } from './pages/blog/editpost/editpost.component';
 import { NewpostComponent } from './pages/blog/newpost/newpost.component';
 import { ViewpostComponent } from './pages/blog/viewpost/viewpost.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
   ],
   imports: [
     BrowserModule,
+    EditorModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

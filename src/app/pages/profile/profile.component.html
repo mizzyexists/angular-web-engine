@@ -1,31 +1,48 @@
-<div *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'">
+<div class="container">
+  <div class="row">
+<div class="col-md-6 user-container" *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'">
   <div *ngIf="profileUser">
-<img width="200px" src="{{profileAvatar}}"/>
-<br>
-Username: {{profileUser}}
-<br>
-UserType: {{profileType}}
-<br>
-Full Name: {{profileName}}
-<br>
-Bio:<br>{{profileBio}}
-<br>
-<div *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'">
-  <div *ngIf="profileType!='Super-Admin' || jwtUsertype=='Super-Admin'">
-<button
-style="margin-top: 5px; margin-left: 5px;"
-class="btn btn-primary" routerLink="/edituser/{{profileID}}">Edit Profile</button>
-</div>
-</div>
-</div>
-<div *ngIf="!profileUser">
-  <h4 class="text-center" style="color:grey;">User does not exist</h4>
+    <nb-card>
+      <nb-card-header><img width="100px" height="100px;" src="{{profileAvatar}}"/><span class="profile-username">{{profileUser}}</span></nb-card-header>
+        <nb-card-body>
+          <strong>Usertype:</strong> {{profileType}}
+          <br><br>
+          <strong>Full Name:</strong> {{profileName}}
+          <br><br>
+          <strong>Bio:</strong>
+          <p [innerHTML]="profileBio"></p>
+        </nb-card-body>
+      <nb-card-footer>
+        <div *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'">
+          <div *ngIf="profileType!='Super-Admin' || jwtUsertype=='Super-Admin'">
+            <button style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/edituser/{{profileID}}">Edit Profile</button>
+          </div>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  <div *ngIf="!profileUser">
+    <h4 class="text-center" style="color:grey;">User does not exist</h4>
   </div>
+</div>
+</div>
+<div class="col-md-6 user-container" *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'">
+  <div *ngIf="profileUser">
+    <nb-card>
+      <nb-card-header>Something will go here later</nb-card-header>
+        <nb-card-body>
+        </nb-card-body>
+    </nb-card>
+  <div *ngIf="!profileUser">
+    <h4 class="text-center" style="color:grey;">User does not exist</h4>
+  </div>
+</div>
+</div>
+</div>
 </div>
 <div class="container" *ngIf="userID!=profileID">
   <div class="row">
-      <div class="col d-flex justify-content-center">
+    <div class="col d-flex justify-content-center">
       <h4 *ngIf="jwtUsertype!='Super-Admin' && jwtUsertype!='Admin' && jwtUsertype!='Moderator'" style="color:grey;">You don't have permission to view this user</h4>
     </div>
-    </div>
+  </div>
 </div>

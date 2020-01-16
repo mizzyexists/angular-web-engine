@@ -96,8 +96,10 @@ onFileSelect(event: { target: { files: any[]; }; }) {
       }
     });
     this.authApi.editUser(this.usereditForm.value).subscribe(()=>{
+      const routeParams = this.routes.snapshot.params;
+      this.userID = routeParams.uid;
       this.toastService.show('User Updated', { classname: 'bg-success text-light'});
-      setTimeout(() => this.router.navigate(['viewusers']), 500);
+      setTimeout(() => this.router.navigate(['profile/' + this.userID]), 500);
     });
   }
   changePassword(userID:number): void{

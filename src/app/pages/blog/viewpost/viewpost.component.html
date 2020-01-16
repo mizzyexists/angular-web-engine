@@ -1,6 +1,6 @@
 <br><br>
 <h1>{{postTitle}}</h1>
-<p>{{postContent}}</p>
+<p [innerHTML]="postContent"></p>
 <p>Posted by: {{postAuthor | titlecase}}</p>
 <p>Posted on: {{postDate}}</p>
 <div *ngIf="loggedUser">
