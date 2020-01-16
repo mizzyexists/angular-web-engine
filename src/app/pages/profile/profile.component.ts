@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   userID: any;
   profileID: any;
   jwtUsertype: any;
+  profileLogin: any;
   constructor(
     private authApi: AuthService,
     private routes: ActivatedRoute,
@@ -41,6 +42,7 @@ export class ProfileComponent implements OnInit {
         this.profileType = data.usertype;
         this.profileName = data.fname + " " + data.lname;
         this.profileBio = data.bio_text;
+        this.profileLogin = data.last_login;
         });
     });
   }

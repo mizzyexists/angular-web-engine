@@ -1,17 +1,18 @@
 <div *ngIf="loggedUser">
 <button *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'" class="btn btn-primary" routerLink="/newpost">New Post</button>
 </div>
-<div class="contaniner">
+<div *ngIf="blogInfo" class="contaniner">
   <div class="row">
 <div class="col-12 blog-post" *ngFor="let post of blogInfo.slice().reverse()">
     <a routerLink="/viewpost/{{post.id}}">
-      <small>Post ID: {{post.id}}</small>
-      <h1>{{post.blogtitle | uppercase}}</h1>
+      <small class="postid">Post ID: {{post.id}}</small>
+      <h1 class="posttitle">{{post.blogtitle | uppercase}}</h1>
       <p>Posted on: {{post.post_date | uppercase}}</p>
+      <p>By: {{post.blogauthor}}</p>
     </a>
   </div>
   </div>
-</div>
+  </div>
   <div class="contaniner" *ngIf="!blogInfo || blogInfo.length < 1">
     <div class="row">
     <div class="col d-flex justify-content-center">

@@ -1,22 +1,25 @@
-#blog-title h1{
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-family: cursive;
-  color: #fff;
-}
-
-#blog-title{
-  background-color: #444;
-  margin-bottom: 20px;
-}
-
 .blog-post{
   text-align: center;
   background-color: #fff;
   border: 1px solid #ccc;
-  padding: 20px;
-  margin: 5px;
+  margin-bottom: 8px;
+  padding-top: 10px;
+  line-height: 20px;
+}
+
+.blog-post:hover{
+  background-color: #f6faff;
+}
+
+.blog-post .posttitle{
+  padding-top: 10px;
+}
+
+.blog-post .postid{
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  background-color: #fff;
 }
 
 label{

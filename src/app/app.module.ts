@@ -17,7 +17,14 @@ import { ChangepassComponent } from './components/authentication/users/changepas
 import { ToastsContainer } from './models/toast.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbUserModule, NbCardModule, NbMenuModule, NbActionsModule, NbSidebarModule, NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import {
+  NbUserModule,
+  NbCardModule,
+  NbMenuModule,
+  NbActionsModule,
+  NbSidebarModule,
+  NbThemeModule,
+  NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EditpostComponent } from './pages/blog/editpost/editpost.component';
 import { NewpostComponent } from './pages/blog/newpost/newpost.component';

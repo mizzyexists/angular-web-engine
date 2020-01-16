@@ -31,10 +31,10 @@ export class BlogComponent implements OnInit {
       this.jwtUsername = this.jwtData.data.username;
       this.jwtUsertype = this.jwtData.data.usertype;
       this.loggedUser = this.jwtUsername;
+      this.blogApi.readPosts().subscribe((blogInfo: BlogInfo[])=>{
+      this.blogInfo = blogInfo;
     });
-    this.blogApi.readPosts().subscribe((blogInfo: BlogInfo[])=>{
-    this.blogInfo = blogInfo;
-  });
+    });
 }
   editPost(id:number): void{
     this.router.navigate(['editpost/' + id]);

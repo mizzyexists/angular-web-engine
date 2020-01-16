@@ -1,16 +1,20 @@
 <div class="container "*ngIf="loggedUser">
-  <table class="table table-stip shadow">
+  <table class="table table-striped shadow">
+    <thead>
     <tr class="bg-dark text-white text-center">
       <td>Setting Name</td>
       <td>Setting Value</td>
       <td>Action</td>
       </tr>
+      </thead>
+      <tbody>
         <tr class="text-center" *ngFor="let setting of settings">
           <td><strong>{{setting.setting}}</strong></td>
           <td><strong>{{setting.value}}</strong></td>
           <td><button class="btn btn-success" (click)="selectSetting(setting)">Select Setting</button> |
               <button class="btn btn-danger" (click)="deleteSetting(setting.id)">Delete Setting</button></td>
           </tr>
+          </tbody>
     </table>
 <br>
 <!-- ---------------------- -->

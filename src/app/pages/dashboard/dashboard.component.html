@@ -3,9 +3,9 @@
     <div id="content" class="row less-width">
       <div class="col">
         <h2>Blog Posts</h2>
-        <table class="table table-striped">
+        <table class="table table-striped shadow">
         <thead>
-        <tr>
+        <tr class="bg-dark text-white">
           <th scope="col">#</th>
           <th scope="col">Title</th>
           <th scope="col">Author</th>
@@ -22,9 +22,9 @@
       </div>
       <div *ngIf="jwtUsertype!='User'" class="col">
         <h2>Users</h2>
-        <table class="table table-striped">
+        <table class="table table-striped shadow">
         <thead>
-        <tr>
+        <tr class="bg-dark text-white">
           <th scope="col">UID</th>
           <th scope="col">Username</th>
         </tr>
@@ -39,9 +39,9 @@
       </div>
       <div *ngIf="jwtUsertype!='User'" class="col">
         <h2>Site Settings</h2>
-        <table class="table table-striped">
+        <table class="table table-striped shadow">
         <thead>
-        <tr>
+        <tr class="bg-dark text-white">
           <th scope="col">Setting</th>
           <th scope="col">Value</th>
         </tr>

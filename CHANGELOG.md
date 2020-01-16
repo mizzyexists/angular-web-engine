@@ -2,6 +2,16 @@
 
 ## Version 1
 
+### 1.1.4
+- Added menubar to TinyMCE
+- Fixed vulnerability where an admin could change a Super-Admin's password
+- Added 'appVersion' model for easier version placement
+- Removed copyright from footer (Temporary)
+- Fixed striped tables for 'settings' and 'view-users' pages
+- Updated UX on 'Dashboard' tables
+- Fixed error on 'blog' page where it was looking for blogInfo before it was loaded
+- Added loading bar on navigation
+
 ### 1.1.3
 - Fixed duplicate users from being created.
     - Server now checks if user exists before creating DB entry
@@ -16,8 +26,8 @@
 - Changed blog posts to show in descending ID order
 - Updated wording from 'Blog' to 'Post' when editing or creating a new post
 
-### 1.1.2 - **SECURITY UPDATE**
-- Increased Maximum size warning to 3 MB
+### 1.1.2 | **SECURITY UPDATE**
+- Increased maximum size warning to 3 MB
 - Fixed sidebar viewing permissions
 - Fixed bug where deleting a user showed a nulled profile page
 - Added "Last_Login" parameter to user DB which updates date and time on login
@@ -42,7 +52,7 @@
 - Fixed issue with blogs where author was not in Titlecase
 - Fixed issue when editing a user from profile was not going to the correct user
 
-### 1.1.0 - **MAJOR UPDATE**
+### 1.1.0 | **MAJOR UPDATE**
 - **Added new admin panel using the Nebular System**
     - Improved navigation
     - Improved UI/UX
@@ -96,7 +106,7 @@
 ### 1.0.6
 - Fixed username in nav to always be in titlecase
 - Added Hash-bangs as a temp-fix for correct production routing (Will remove later)
-- Added "Add User" button to "viewusers" page
+- Added "Add User" button to "view-users" page
 - Decreased logout/login/action delay time
 - Fixed blog page button styling
 

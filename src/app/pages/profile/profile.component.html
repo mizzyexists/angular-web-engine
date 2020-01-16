@@ -11,6 +11,8 @@
           <br><br>
           <strong>Bio:</strong>
           <p [innerHTML]="profileBio"></p>
+          <br>
+          <strong>Last Login:</strong> {{profileLogin}}
         </nb-card-body>
       <nb-card-footer>
         <div *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'">

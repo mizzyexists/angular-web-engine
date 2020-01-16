@@ -23,30 +23,35 @@ export class ChangepassComponent implements OnInit {
   jwtUsername: any;
   jwtUsertype: any;
   passwordInput: string = "Unlock";
+  jwtUID: any;
+  currentPageUsertype: any;
   constructor(private toastService: ToastService, private formBuilder:FormBuilder, private authApi: AuthService, private router: Router, private routes: ActivatedRoute) { }
 
   ngOnInit() {
     this.authApi.checkAuthToken();
-    this.authApi.checkADUserType();
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];
       this.jwtUsername = this.jwtData.data.username;
       this.jwtUsertype = this.jwtData.data.usertype;
       this.loggedUser = this.jwtUsername;
+      this.jwtUID = this.jwtData.data.uid;
     });
     this.authApi.fetchUsers().subscribe((userData: UserData[])=>{
     this.userData = userData;
   });
     const routeParams = this.routes.snapshot.params;
+    this.userID = routeParams.uid;
     this.changePasswordForm = this.formBuilder.group({
       uid: [],
       password: ['', Validators.required]
     });
     this.authApi.fetchUserByIDPass(routeParams.uid).subscribe((data: any) => {
       this.changePasswordForm.patchValue(data);
+      this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {
+        this.currentPageUsertype = data.usertype;
+      });
     });
-    this.userID = routeParams.uid;
   }
   onUpdate(){
     this.authApi.updatePass(this.changePasswordForm.value).subscribe(()=>{

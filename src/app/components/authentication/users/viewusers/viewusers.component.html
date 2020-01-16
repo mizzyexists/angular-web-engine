@@ -1,6 +1,7 @@
 <div class="container" *ngIf="loggedUser">
   <br>
-<table class="table table-stip shadow">
+<table class="table table-striped shadow">
+<thead>
 <tr class="bg-dark text-white text-center">
   <!-- <td>UID</td> -->
   <td>Avatar</td>
@@ -8,8 +9,9 @@
   <td>Usertype</td>
   <td>Action</td>
 </tr>
+</thead>
+<tbody>
 <tr class="profile-item text-center" *ngFor="let user of userData">
-  <!-- <td (click)="viewUser(user.uid)" class="align-middle">{{user.uid}}</td> -->
   <td (click)="viewUser(user.uid)" class="text-center align-middle"><img style="border-radius:40px;" width=40px height=40px src={{user.image_path}}/></td>
   <td (click)="viewUser(user.uid)" class="align-middle" (click)="viewUser(user.uid)">{{user.username}}</td>
   <td (click)="viewUser(user.uid)" class="align-middle">{{user.usertype}}</td>
@@ -18,6 +20,7 @@
   <td (click)="viewUser(user.uid)" class="align-middle" *ngIf="jwtUsertype=='Admin' && user.usertype=='Super-Admin'">No Actions Available</td>
   <td (click)="viewUser(user.uid)" class="align-middle" *ngIf="jwtUsertype!='Super-Admin' && jwtUsertype!='Admin'">No Actions Available</td>
 </tr>
+</tbody>
 </table>
 <div *ngIf="loggedUser">
 <button *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/register">New User</button>
