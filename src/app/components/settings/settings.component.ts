@@ -3,6 +3,7 @@ import { SettingsApiService } from '../../services/settingsapi.service';
 import { Settings } from '../../models/settings';
 import { AuthData } from 'src/app/models/authdata';
 import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-settings',
@@ -12,15 +13,21 @@ import { AuthService } from '../../services/auth.service';
 export class SettingsComponent implements OnInit {
   settings: Settings[];
   token: any;
-  saveSuccess: boolean;
-  deleteSuccess: boolean;
-  selectedSetting:  Settings  = { id:  null , setting:  null, value: null};
   authCheck: AuthData;
   loggedUser: string;
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
-  constructor(private authApi: AuthService, private setttingsApi : SettingsApiService) { }
+  values: any;
+  touched: boolean = false;
+  settingID: number;
+  settingValue: any;
+  textLock: boolean = true;
+  constructor(
+    private authApi: AuthService,
+    private settingsApi :SettingsApiService,
+    private toastService: ToastService,
+  ){}
 
   ngOnInit() {
     this.authApi.checkAuthToken();
@@ -31,63 +38,38 @@ export class SettingsComponent implements OnInit {
       this.jwtUsername = this.jwtData.data.username;
       this.jwtUsertype = this.jwtData.data.usertype;
       this.loggedUser = this.jwtUsername;
-    });
-    this.saveSuccess = false;
-    this.deleteSuccess = false;
-    this.setttingsApi.readSettings().subscribe((settings: Settings[])=>{
-    this.settings = settings;
-    });
-    }
-
-  createSetting(form: { value: Settings; reset: () => void; }){
-    this.setttingsApi.createSetting(form.value).subscribe((settings: Settings)=>{
-      console.log("New Setting Submitted", settings);
-      form.reset();
-        this.setttingsApi.readSettings().subscribe((settings: Settings[])=>{
-        this.settings = settings;
-        this.saveSuccess = true;
-        setTimeout(() => this.saveSuccess = false, 5000);
-      });
-    });
-  }
-  deleteSetting(id:number){
-    this.setttingsApi.deleteSetting(id).subscribe((settings: Settings)=>{
-      console.log("Setting Deleted", settings)
-        this.setttingsApi.readSettings().subscribe((settings: Settings[])=>{
-        this.settings = settings;
-        this.deleteSuccess = true;
-        setTimeout(() => this.deleteSuccess = false, 5000);
-      });
-    });
-  }
-  editSetting(form: { value: Settings; reset: { (): void; (): void; }; }){
-    if(this.selectedSetting && this.selectedSetting.id){
-      form.value.id = this.selectedSetting.id;
-    this.setttingsApi.updateSetting(form.value).subscribe((settings: Settings)=>{
-      console.log("Setting Edited Successfully", settings)
-      this.setttingsApi.readSettings().subscribe((settings: Settings[])=>{
+      this.settingsApi.readSettings().subscribe((settings: Settings[])=>{
       this.settings = settings;
-      form.reset();
-      this.selectedSetting = { id:  null , setting:  null, value: null};
-      this.saveSuccess = true;
-      setTimeout(() => this.saveSuccess = false, 5000);
+      });
     });
-    })
-  }
-  else{
-    form.reset();
-    console.log("No Selected Post")
-  }
-  }
-  selectSetting(settings: Settings){
-  this.selectedSetting = settings;
-  console.log("Post Selected", this.selectedSetting)
   }
 
-  settingDeclaration(){
-    this.setttingsApi.siteURL = this.settings[0].value;
-    this.setttingsApi.logoURL = this.settings[1].value;
-    this.setttingsApi.faviconURL = this.settings[2].value;
-    this.setttingsApi.companyName = this.settings[3].value;
+  onKey(event: any){
+    this.settingValue = event.target.value;
+    this.touched = true;
+  }
+
+  onInit(settingID: number){
+    this.settingID = settingID;
+  }
+
+  textLocker(){
+    if(this.textLock==false){
+      this.textLock=true;
+    }
+    else{
+      this.textLock=false;
+    }
+  }
+
+  onUpdate(){
+    this.values = {id: this.settingID,value: this.settingValue};
+    if(this.touched==true){
+    this.touched = false;
+    this.settingsApi.updateSetting(this.values).subscribe(()=>{
+    });
+  } else{
+    this.toastService.show('No Changes Made', { classname: 'bg-info text-light'});
+  }
   }
 }

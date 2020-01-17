@@ -31,6 +31,7 @@ import { NewpostComponent } from './pages/blog/newpost/newpost.component';
 import { ViewpostComponent } from './pages/blog/viewpost/viewpost.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { OrderBy } from './pipes/orderby';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     EditpostComponent,
     NewpostComponent,
     ViewpostComponent,
-    ProfileComponent
+    ProfileComponent,
+    OrderBy,
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+  styleUrls: ['./blog.component.css'],
 })
 export class BlogComponent implements OnInit {
   blogInfo: BlogInfo[];
@@ -20,7 +20,7 @@ export class BlogComponent implements OnInit {
   constructor(
     private authApi : AuthService,
     private blogApi : BlogApiService,
-    private router : Router
+    private router : Router,
   ){
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }

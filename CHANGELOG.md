@@ -2,6 +2,30 @@
 
 ## Version 1
 
+### 1.1.5
+- **Setting System V2**
+    - Removed legacy forms and setting selection functions
+    - Added inputs inline with setting name
+    - Values save automatically on input change
+    - Lockable settings to prevent accidental change
+- Updated 'Dashboard', 'Users', and 'Settings' UI with 'cards'
+- Updated wording on 'save' buttons
+- New date formats for both 'Last_Login' and 'Post_Date'
+- New OrderBy Pipe and 'Pipes' folder
+    - Blog posts are now ordered by ID
+        - on Page
+        - on Dashboard
+    - Users are now ordered by UID
+        - on Page
+        - on Dashboard
+    - Settings are now ordered by ID
+        - on Page  
+        - on Dashboard
+- Some minor housekeeping
+    - Titlecase where needed
+    - Added profile links to Dashboard
+    - Made loading bar thinner
+
 ### 1.1.4
 - Added menubar to TinyMCE
 - Fixed vulnerability where an admin could change a Super-Admin's password

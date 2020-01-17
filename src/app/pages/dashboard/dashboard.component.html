@@ -1,28 +1,29 @@
 <div *ngIf="loggedUser">
   <div class="container-fluid">
-    <div id="content" class="row less-width">
+    <div id="content" class="row">
       <div class="col">
+        <div class="card shadow">
         <h2>Blog Posts</h2>
-        <table class="table table-striped shadow">
+        <table class="table table-striped">
         <thead>
         <tr class="bg-dark text-white">
-          <th scope="col">#</th>
           <th scope="col">Title</th>
           <th scope="col">Author</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let post of blogInfo; index as i">
-          <th scope="row">{{ i + 1 }}</th>
+        <tr *ngFor="let post of blogInfo | orderBy : ['-id']">
           <td><a routerLink="/viewpost/{{post.id}}">{{ post.blogtitle | slice:0:20 }}...</a></td>
-          <td>{{ post.blogauthor }}</td>
+          <td>{{ post.blogauthor | titlecase }}</td>
         </tr>
         </tbody>
       </table>
       </div>
+      </div>
       <div *ngIf="jwtUsertype!='User'" class="col">
+        <div class="card shadow">
         <h2>Users</h2>
-        <table class="table table-striped shadow">
+        <table class="table table-striped">
         <thead>
         <tr class="bg-dark text-white">
           <th scope="col">UID</th>
@@ -30,16 +31,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let user of userData">
+        <tr *ngFor="let user of userData | orderBy : ['uid']">
           <td>{{ user.uid }}</td>
-          <td>{{ user.username }}</td>
+          <a routerLink="/profile/{{user.uid}}"><td>{{ user.username }}</td></a>
         </tr>
         </tbody>
       </table>
       </div>
+      </div>
       <div *ngIf="jwtUsertype!='User'" class="col">
+        <div class="card shadow">
         <h2>Site Settings</h2>
-        <table class="table table-striped shadow">
+        <table class="table table-striped">
         <thead>
         <tr class="bg-dark text-white">
           <th scope="col">Setting</th>
@@ -47,12 +50,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let setting of settings">
+        <tr *ngFor="let setting of settings | orderBy : ['id']">
           <td>{{ setting.setting }}</td>
           <td>{{ setting.value }}</td>
         </tr>
         </tbody>
       </table>
+      </div>
       </div>
     </div>
   </div>

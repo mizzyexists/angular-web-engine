@@ -1,46 +1,29 @@
 <div class="container "*ngIf="loggedUser">
-  <table class="table table-striped shadow">
+  <div class="card shadow">
+  <table class="table table-striped">
     <thead>
     <tr class="bg-dark text-white text-center">
       <td>Setting Name</td>
       <td>Setting Value</td>
-      <td>Action</td>
       </tr>
       </thead>
-      <tbody>
-        <tr class="text-center" *ngFor="let setting of settings">
-          <td><strong>{{setting.setting}}</strong></td>
-          <td><strong>{{setting.value}}</strong></td>
-          <td><button class="btn btn-success" (click)="selectSetting(setting)">Select Setting</button> |
-              <button class="btn btn-danger" (click)="deleteSetting(setting.id)">Delete Setting</button></td>
-          </tr>
+      <tbody class="align-middle">
+          <tr class="text-center" *ngFor="let setting of settings | orderBy : ['id']">
+            <td>
+              {{setting.setting | titlecase}}
+            </td>
+            <td>
+            <input [disabled]="textLock" (keyup)="onKey($event)" (keyup)="onInit(setting.id)" (keyup)="onUpdate()" type="text" name="setting.value" class="form-control" id="setting.value" [ngModel]="setting.value">
+            </td>
+        </tr>
           </tbody>
     </table>
-<br>
-<!-- ---------------------- -->
-<form #newsetting="ngForm" (ngSubmit)="createSetting(newsetting)">
-  <label>Setting Name</label>
-  <br>
-  <input type="text" name="setting" ngModel>
-  <br>
-  <label>Setting Value</label>
-  <br>
-  <input type="text" name="value" ngModel>
-  <br>
-  <br>
-  <input class="btn btn-success" type="submit" value="Create Setting">
-  </form>
-  <br>
-  <form #editsetting="ngForm" (ngSubmit)="editSetting(editsetting)">
-    <label>Setting Name</label>
+    </div>
     <br>
-    <input type="text" name="setting" [(ngModel)]="selectedSetting.setting">
+    <div class="card shadow">
+    <p class="text-center">Changes save automatically</p>
+    <p class="text-center">Locked: {{textLock}}</p>
     <br>
-    <label>Setting Value</label>
-    <br>
-    <input type="text" name="value" [(ngModel)]="selectedSetting.value">
-    <br>
-    <br>
-    <input class="btn btn-success" type="submit" value="Submit Edits">
-    </form>
+    <button (click)="textLocker()" class="btn btn-primary text-center">Toggle Settings Lock</button>
+</div>
 </div>

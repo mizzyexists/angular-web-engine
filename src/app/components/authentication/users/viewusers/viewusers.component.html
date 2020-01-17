@@ -1,6 +1,6 @@
 <div class="container" *ngIf="loggedUser">
-  <br>
-<table class="table table-striped shadow">
+<div class="card shadow">
+<table class="table table-striped">
 <thead>
 <tr class="bg-dark text-white text-center">
   <!-- <td>UID</td> -->
@@ -11,7 +11,7 @@
 </tr>
 </thead>
 <tbody>
-<tr class="profile-item text-center" *ngFor="let user of userData">
+<tr class="profile-item text-center" *ngFor="let user of userData  | orderBy : ['uid']">
   <td (click)="viewUser(user.uid)" class="text-center align-middle"><img style="border-radius:40px;" width=40px height=40px src={{user.image_path}}/></td>
   <td (click)="viewUser(user.uid)" class="align-middle" (click)="viewUser(user.uid)">{{user.username}}</td>
   <td (click)="viewUser(user.uid)" class="align-middle">{{user.usertype}}</td>
@@ -22,6 +22,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <div *ngIf="loggedUser">
 <button *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/register">New User</button>
 </div>
