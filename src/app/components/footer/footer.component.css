@@ -1,3 +1,13 @@
 footer{
   margin-top: 50px;
 }
+
+.link{
+  cursor: pointer;
+  color: blue;
+  outline: none;
+}
+
+.link:hover{
+  text-decoration: underline;
+}

@@ -24,6 +24,7 @@ import {
   NbActionsModule,
   NbSidebarModule,
   NbThemeModule,
+  NbProgressBarModule,
   NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EditpostComponent } from './pages/blog/editpost/editpost.component';
@@ -32,6 +33,9 @@ import { ViewpostComponent } from './pages/blog/viewpost/viewpost.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { OrderBy } from './pipes/orderby';
+import { ChangelogComponent } from './pages/changelog/changelog.component';
+import { InstallComponent } from './install/install.component';
+import { InstallnavComponent } from './components/installnav/installnav.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,9 @@ import { OrderBy } from './pipes/orderby';
     ViewpostComponent,
     ProfileComponent,
     OrderBy,
+    ChangelogComponent,
+    InstallComponent,
+    InstallnavComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +76,7 @@ import { OrderBy } from './pipes/orderby';
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbUserModule,
+    NbProgressBarModule,
     NbEvaIconsModule
   ],
   providers: [],

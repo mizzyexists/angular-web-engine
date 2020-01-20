@@ -1,0 +1,220 @@
+<h1 id="changelog">CHANGELOG</h1>
+<h2 id="version-1">Version 1</h2>
+<hr>
+<h3 id="1-1-5">1.1.5</h3>
+<ul>
+<li><strong>Setting System V2</strong><ul>
+<li>Removed legacy forms and setting selection functions</li>
+<li>Added inputs inline with setting name</li>
+<li>Values save automatically on input change</li>
+<li>Lockable settings to prevent accidental change</li>
+</ul>
+</li>
+<li>Updated &#39;Dashboard&#39;, &#39;Users&#39;, and &#39;Settings&#39; UI with &#39;cards&#39;</li>
+<li>Updated wording on &#39;save&#39; buttons</li>
+<li>New date formats for both &#39;Last_Login&#39; and &#39;Post_Date&#39;</li>
+<li>New OrderBy Pipe and &#39;Pipes&#39; folder<ul>
+<li>Blog posts are now ordered by ID<ul>
+<li>on Page</li>
+<li>on Dashboard</li>
+</ul>
+</li>
+<li>Users are now ordered by UID<ul>
+<li>on Page</li>
+<li>on Dashboard</li>
+</ul>
+</li>
+<li>Settings are now ordered by ID<ul>
+<li>on Page  </li>
+<li>on Dashboard</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Some minor housekeeping<ul>
+<li>Titlecase where needed</li>
+<li>Added profile links to Dashboard</li>
+<li>Made loading bar thinner</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-4">1.1.4</h3>
+<ul>
+<li>Added menubar to TinyMCE</li>
+<li>Fixed vulnerability where an admin could change a Super-Admin&#39;s password</li>
+<li>Added &#39;appVersion&#39; model for easier version placement</li>
+<li>Removed copyright from footer (Temporary)</li>
+<li>Fixed striped tables for &#39;settings&#39; and &#39;view-users&#39; pages</li>
+<li>Updated UX on &#39;Dashboard&#39; tables</li>
+<li>Fixed error on &#39;blog&#39; page where it was looking for blogInfo before it was loaded</li>
+<li>Added loading bar on navigation</li>
+</ul>
+<h3 id="1-1-3">1.1.3</h3>
+<ul>
+<li>Fixed duplicate users from being created.<ul>
+<li>Server now checks if user exists before creating DB entry</li>
+</ul>
+</li>
+<li>Added TinyMCE Editor to blog and user bio fields<ul>
+<li>Use going forward as an alternative to &#39;text-area&#39;</li>
+</ul>
+</li>
+<li>Added new box in &#39;Profile&#39; page for future use</li>
+<li>Added new UX to &#39;Profile&#39; page</li>
+<li>Fixed TinyMCE display fields to show compiled HTML markup</li>
+<li>Fixed text formatting on &#39;Profile&#39; page</li>
+<li>Added date to blog preview</li>
+<li>Removed content from blog preview</li>
+<li>Changed blog posts to show in descending ID order</li>
+<li>Updated wording from &#39;Blog&#39; to &#39;Post&#39; when editing or creating a new post</li>
+</ul>
+<h3 id="1-1-2-security-update-">1.1.2 | <strong>SECURITY UPDATE</strong></h3>
+<ul>
+<li>Increased maximum size warning to 3 MB</li>
+<li>Fixed sidebar viewing permissions</li>
+<li>Fixed bug where deleting a user showed a nulled profile page</li>
+<li>Added &quot;Last_Login&quot; parameter to user DB which updates date and time on login</li>
+<li>Fixed bug where data would not change when switching between users on profile</li>
+<li>Fixed bug where data would not change when switching between posts on blog</li>
+<li>Fixed vulnerability where user could change their UserType</li>
+<li>Fixed vulnerability where Admins could edit Super-Admins</li>
+<li>Fixed issue where Moderators could not see other profiles</li>
+<li>Show &#39;User not Found&#39; message for invalid UID</li>
+<li>Removed ability to change username (Disabled form-group)</li>
+<li>Fixed vulnerability where Admins could register a new Super-Admin account</li>
+<li>Removed edit buttons on Super-Admins viewed by Admins</li>
+<li>Fixed Avatar image position on &#39;view-users&#39; page</li>
+<li>Allowed Moderators to make new blog posts</li>
+<li>Added &#39;Post_Date&#39; parameter to DB for blog posts</li>
+</ul>
+<h3 id="1-1-1">1.1.1</h3>
+<ul>
+<li>Permission fixes for profile editing</li>
+<li>Added Moderator specific permissions</li>
+<li>Allow users to edit their own profile</li>
+<li>Fixed issue with blog when there are no posts</li>
+<li>Fixed issue with blogs where author was not in Titlecase</li>
+<li>Fixed issue when editing a user from profile was not going to the correct user</li>
+</ul>
+<h3 id="1-1-0-major-update-">1.1.0 | <strong>MAJOR UPDATE</strong></h3>
+<ul>
+<li><strong>Added new admin panel using the Nebular System</strong><ul>
+<li>Improved navigation</li>
+<li>Improved UI/UX</li>
+<li>Added permission-based views to sidebar navigation</li>
+</ul>
+</li>
+<li><strong>Blog System V2</strong><ul>
+<li>Blog posts are now edited on their own pages per post</li>
+<li>Each blog post has its own ID</li>
+<li>Dashboard links now go to individual blog posts</li>
+<li>Admins can edit posts from &#39;post-view&#39; page</li>
+<li>New posts are made on &#39;new-post&#39; page</li>
+<li>&#39;No posts&#39; message shows when there are no blog posts</li>
+<li>Reduced time delay on post save redirect</li>
+<li>Updating a post redirects user back to &#39;post-view&#39; page</li>
+<li>Updated the UI/UX of &#39;blog-view&#39;</li>
+</ul>
+</li>
+<li><strong>Media Uploading</strong><ul>
+<li>Added profile images to users</li>
+<li>Keeps old image if no image is saved</li>
+<li>Saved on Server side</li>
+</ul>
+</li>
+<li>Blocked user editing out to only Super-Admins but Admins can view all users</li>
+<li>Removed console log of login data</li>
+<li>Side-nav compacts on button click</li>
+<li>Added &#39;Profile&#39; pages for user information</li>
+<li>Added &#39;Edit&#39; button on profile page</li>
+<li>Top-nav responsiveness</li>
+<li>Checked and patched all permissions and restricted areas for vulnerabilities</li>
+</ul>
+<h3 id="1-0-9">1.0.9</h3>
+<ul>
+<li>Expired user tokens get refreshed and cleared on read</li>
+</ul>
+<h3 id="1-0-8">1.0.8</h3>
+<ul>
+<li>Added new styling to blog page with new forms</li>
+<li>Updated permissions to be more specific for blog editing privileges</li>
+<li>Added new styling to user list</li>
+</ul>
+<h3 id="1-0-7c">1.0.7c</h3>
+<ul>
+<li>Added title to &quot;Blog&quot; page</li>
+</ul>
+<h3 id="1-0-7b">1.0.7b</h3>
+<ul>
+<li>Removed un-needed variables from AUTH code</li>
+</ul>
+<h3 id="1-0-7">1.0.7</h3>
+<ul>
+<li>Fixed cancel button on &quot;Register&quot; page</li>
+<li>Made username when adding a blog post titlecase</li>
+<li>Added Footer with Build Version</li>
+<li>Added app name to Nav Brand</li>
+</ul>
+<h3 id="1-0-6b">1.0.6b</h3>
+<ul>
+<li>Fixed Nav brand Link 404 with Hash-bangs</li>
+<li>Added Cancel button to register page</li>
+</ul>
+<h3 id="1-0-6">1.0.6</h3>
+<ul>
+<li>Fixed username in nav to always be in titlecase</li>
+<li>Added Hash-bangs as a temp-fix for correct production routing (Will remove later)</li>
+<li>Added &quot;Add User&quot; button to &quot;view-users&quot; page</li>
+<li>Decreased logout/login/action delay time</li>
+<li>Fixed blog page button styling</li>
+</ul>
+<h3 id="1-0-5">1.0.5</h3>
+<ul>
+<li>Fixed routing login/logout issue when app is in production</li>
+<li>Removed lingering console.log entries</li>
+<li>Removed unused Router imports</li>
+</ul>
+<h3 id="1-0-4b">1.0.4b</h3>
+<ul>
+<li>General clean-up and error correcting for compiler</li>
+</ul>
+<h3 id="1-0-4">1.0.4</h3>
+<ul>
+<li>Added Users to Dashboard if logged in user is above &#39;User&#39; level</li>
+<li>Added break to blog title on Dashboard if it exceeds 20 characters</li>
+</ul>
+<h3 id="1-0-3b">1.0.3b</h3>
+<ul>
+<li>Removed blog post editing buttons for &quot;User&quot; level</li>
+</ul>
+<h3 id="1-0-3">1.0.3</h3>
+<ul>
+<li>Added Toast Notifications</li>
+<li>Removed Old Notifications</li>
+<li>Added permissions to blog editing</li>
+<li>Fixed password form issue where it was not posting value from the form</li>
+</ul>
+<h3 id="1-0-2">1.0.2</h3>
+<ul>
+<li>Added data to Dashboard. (Blog posts and settings)</li>
+<li>Made certain menu items only visible based of logged in user&#39;s permissions</li>
+</ul>
+<h3 id="1-0-1">1.0.1</h3>
+<ul>
+<li>Fixed issue with logout where username was not removed from nav-bar</li>
+<li>Improved how JWT expires and removes the token from local storage</li>
+<li>Updated auth service to check permissions more efficiently</li>
+</ul>
+<h3 id="1-0-0">1.0.0</h3>
+<ul>
+<li>Created login system</li>
+<li>Created permissions based admin system<ul>
+<li>Pages check permissions before loading</li>
+</ul>
+</li>
+<li>Created blogging system that pulls posts from MySQL DB</li>
+<li>Created settings values that are stored in MySQL DB</li>
+<li>Created user list area with edit and password change functions</li>
+<li>Added placeholder navigation</li>
+<li>Added Dashboard area</li>
+</ul>

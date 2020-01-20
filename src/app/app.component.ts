@@ -3,6 +3,8 @@ import { NbSidebarService } from '@nebular/theme';
 import { AuthService } from './services/auth.service';
 import { AuthData } from './models/authdata';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angular/router'
+import { SettingsApiService } from './services/settingsapi.service';
+import { Settings } from './models/settings';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +12,7 @@ import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angul
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'NGPHPTEST';
+  title = 'Angular Web Engine';
   token: any;
   jwtData: any;
   jwtUsername: any;
@@ -18,11 +20,20 @@ export class AppComponent implements OnInit {
   loggedUser: any;
   sidebarCompact: boolean = false;
   loading: boolean = false;
+  installed: boolean = true;
+  settings: Settings[];
+  installCheck: any;
   constructor(
     private authApi: AuthService,
     private sidebarService: NbSidebarService,
-    private router: Router
+    private router: Router,
+    private settingsApi: SettingsApiService
   ){
+    this.settingsApi.readSettings().subscribe((settings: Settings[])=>{
+    this.settings = settings;
+    this.installCheck = this.settings[4];
+    this.installed = this.installCheck.value;
+  });
   }
 
   ngOnInit() {

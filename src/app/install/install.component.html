@@ -1,0 +1,104 @@
+<div *ngIf="installed=='false'">
+  <div class="container">
+  <div class="row">
+    <div *ngIf="installStep==0" class="col">
+      <img class="mx-auto d-block" src="../assets/images/AWEColor1.png" width="300px">
+      <br>
+      <nb-card>
+        <nb-card-header>
+          <h2 class="text-center">Welcome to the Angular Website Engine <br>Installation Wizard</h2>
+        </nb-card-header>
+          <nb-card-body class="text-center">
+            <p>This wizard will walk you through installing AWE so you can start building your website!</p>
+            <p>To get started, simply click the button below</p>
+          </nb-card-body>
+        <nb-card-footer class="text-center">
+          <button class="btn btn-primary" (click)="Step1()">Install</button>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+    <div *ngIf="installStep==1" class="col">
+      <img class="mx-auto d-block" src="../assets/images/AWEColor1.png" width="300px">
+      <br>
+      <nb-card>
+        <nb-card-header>
+          <h2 class="text-center">Starting Install</h2>
+          <p class="text-center">{{step1Task}}</p>
+        </nb-card-header>
+          <nb-card-body class="text-center">
+            <nb-progress-bar [value]="step1Value"></nb-progress-bar>
+          </nb-card-body>
+      </nb-card>
+    </div>
+    <div *ngIf="installStep==2" class="col">
+      <img class="mx-auto d-block" src="../assets/images/AWEColor1.png" width="300px">
+      <br>
+      <nb-card>
+        <nb-card-header>
+          <h2 class="text-center">License Check</h2>
+        </nb-card-header>
+            <nb-card-body class="text-center">
+              <p>Please enter your license key to continue with the installation</p>
+              <input (keyup.enter)="Step2()" [(ngModel)]="licenseForm" type="text" id="license" name="license" placeholder="License Key" class="form-control">
+            </nb-card-body>
+          <nb-card-footer class="text-center">
+            <button class="btn btn-primary" (click)="Step2()">Verify</button>
+          </nb-card-footer>
+      </nb-card>
+    </div>
+    <div *ngIf="installStep==3" class="col">
+      <img class="mx-auto d-block" src="../assets/images/AWEColor1.png" width="300px">
+      <br>
+      <nb-card>
+        <nb-card-header>
+          <h2 class="text-center">Admin User</h2>
+        </nb-card-header>
+            <nb-card-body class="text-center">
+              <p>You must now create a Super-Admin Account</p>
+              <input (keyup.enter)="Step3()" [(ngModel)]="saUser" type="text" id="sauser" name="sauser" placeholder="Username" class="form-control">
+              <br>
+              <input (keyup.enter)="Step3()" [(ngModel)]="saPass" type="password" id="sapass" name="sapass" placeholder="Password" class="form-control">
+            </nb-card-body>
+          <nb-card-footer class="text-center">
+            <button type="submit" class="btn btn-primary" (click)="Step3()">Create Account</button>
+          </nb-card-footer>
+      </nb-card>
+    </div>
+    <div *ngIf="installStep==4" class="col">
+      <img class="mx-auto d-block" src="../assets/images/AWEColor1.png" width="300px">
+      <br>
+      <nb-card>
+        <nb-card-header>
+          <h2 class="text-center">Website Info</h2>
+        </nb-card-header>
+            <nb-card-body class="text-center">
+              <p>Now, please fill out all of the information for your Angular site.</p>
+              <br>
+              <input [(ngModel)]="siteURL" disabled type="text" id="siteURL" name="siteURL" placeholder="Site URL" class="form-control">
+              <br>
+              <input [(ngModel)]="siteName" type="text" id="siteName" name="siteName" placeholder="Site Name" class="form-control">
+          </nb-card-body>
+          <nb-card-footer class="text-center">
+            <button type="submit" class="btn btn-primary" (click)="Step4()">Submit</button>
+          </nb-card-footer>
+      </nb-card>
+    </div>
+    <div *ngIf="installStep==5" class="col">
+      <img class="mx-auto d-block" src="../assets/images/AWEColor1.png" width="300px">
+      <br>
+      <nb-card>
+        <nb-card-header>
+          <h2 class="text-center">Done!</h2>
+        </nb-card-header>
+            <nb-card-body class="text-center">
+              <p>You're site is ready to go!</p>
+              <p>Click "Finish Installation" to leave the Installer</p>
+          </nb-card-body>
+          <nb-card-footer class="text-center">
+            <button type="submit" class="btn btn-primary" (click)="Step5()">Finish Installation</button>
+          </nb-card-footer>
+      </nb-card>
+    </div>
+  </div>
+</div>
+</div>

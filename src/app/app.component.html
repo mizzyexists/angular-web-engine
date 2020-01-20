@@ -1,5 +1,5 @@
 <app-toasts></app-toasts>
-<nb-layout>
+<nb-layout *ngIf="installed=='true'">
   <nb-layout-header fixed>
     <div class="header-container">
       <app-navbar></app-navbar>
@@ -24,5 +24,17 @@
   <nb-layout-footer fixed>
     <app-footer></app-footer>
   </nb-layout-footer>
-
+</nb-layout>
+<nb-layout *ngIf="!installed || installed=='false'">
+  <nb-layout-header fixed>
+    <div class="header-container">
+      <app-installnav></app-installnav>
+      <div *ngIf="loading==true" class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="loading" aria-valuemin="0" aria-valuemax="100" style="height: 5px; width: 100%;"></div>
+      </div>
+    </div>
+  </nb-layout-header>
+  <nb-layout-column>
+  <app-install></app-install>
+  </nb-layout-column>
 </nb-layout>

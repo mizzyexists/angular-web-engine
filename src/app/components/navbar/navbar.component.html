@@ -1,14 +1,14 @@
 <nb-actions class="logo-only" size="medium">
   <nb-action><div class="logo-container">
-    <a class="logo" routerLink="/dashboard">BIQ Admin</a>
+    <a class="logo" routerLink="/dashboard"><img src="../../assets/images/AWEBlack.png" width="100px"></a>
   </div></nb-action>
 </nb-actions>
 <nb-actions class="full-top-nav" size="medium">
   <nb-action><div class="logo-container">
-    <a class="logo" routerLink="/dashboard">BIQ Admin</a>
+    <a class="logo" routerLink="/dashboard"><img src="../../assets/images/AWEBlack.png" width="100px"></a>
   </div></nb-action>
-<nb-action title="Dashboard" icon="home-outline" link="/dashboard"></nb-action>
-<nb-action title="Blog" icon="book-outline" link="/blog"></nb-action>
+<nb-action title="Dashboard" icon="home-outline" *ngIf="loggedUser" link="/dashboard"></nb-action>
+<nb-action title="Blog" icon="book-outline" *ngIf="loggedUser" link="/blog"></nb-action>
 <nb-action title="Users" icon="people-outline" *ngIf="loggedUser && jwtUsertype!='User'" link="/viewusers"></nb-action>
 <nb-action title="Settings" icon="settings-2-outline" *ngIf="jwtUsertype=='Super-Admin'" link="/settings"></nb-action>
 </nb-actions>

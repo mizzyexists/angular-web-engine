@@ -12,9 +12,12 @@ import { EditpostComponent } from './pages/blog/editpost/editpost.component';
 import { NewpostComponent } from './pages/blog/newpost/newpost.component';
 import { ViewpostComponent } from './pages/blog/viewpost/viewpost.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ChangelogComponent } from './pages/changelog/changelog.component';
+import { InstallComponent } from './install/install.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: LoginComponent, pathMatch: 'full' },
+  { path: 'changelog', component: ChangelogComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'viewusers', component: ViewusersComponent },
   { path: 'profile/:uid', component: ProfileComponent },
@@ -26,7 +29,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'blog', component: BlogComponent },
-  { path: 'settings', component: SettingsComponent }
+  { path: 'settings', component: SettingsComponent },
+  // NOT INSTALLED SECTION
+  { path: 'install', component: InstallComponent },
 ];
 
 @NgModule({

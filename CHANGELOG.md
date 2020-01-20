@@ -2,6 +2,18 @@
 
 ## Version 1
 
+### 1.1.6
+- **INSTALLATION SYSTEM BETA**
+    - Install system that writes vital DB info
+        - Creates Super-Admin
+        - Writes Site URL
+        - Writes Site Name
+    - Only active when DB value for "Installed" is false
+    - Unaccessible after install
+- Added 'Change-log' page
+    - Updated 'Footer' with link
+- Made Profile cards full width
+
 ### 1.1.5
 - **Setting System V2**
     - Removed legacy forms and setting selection functions
