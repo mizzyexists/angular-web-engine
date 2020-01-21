@@ -1,5 +1,4 @@
-import { config } from '../../assets/config';
-
 export class ServerInfo {
-  static phpApiServer = config.path + '/api';
+  static siteURL = window.location.origin
+  static phpApiServer = ServerInfo.siteURL + '/api';
 }

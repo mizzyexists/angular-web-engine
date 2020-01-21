@@ -2,6 +2,10 @@
 
 ## Version 1
 
+### 1.1.7b
+- Fix attempt Image Links when running in Production
+- Fix attempt for Site URL
+
 ### 1.1.7
 - **INSTALLATION SYSTEM BETA**
     - Major improvements including:
