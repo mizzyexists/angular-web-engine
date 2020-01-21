@@ -1,4 +1,5 @@
+import { config } from '../config';
+
 export class ServerInfo {
-  static siteURL = window.location.origin
-  static phpApiServer = ServerInfo.siteURL + '/api';
+  static phpApiServer = config.path + '/api';
 }

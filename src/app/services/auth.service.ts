@@ -6,7 +6,6 @@ import { ServerInfo } from '../models/serverinfo';
 import { AuthData } from '../models/authdata';
 import { Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root'
 })
