@@ -59,7 +59,7 @@ export class AuthService {
     this.authorize(this.token).subscribe((authData: AuthData) => {
     if(!authData || authData[0]!=true){
     window.localStorage.removeItem('jwt');
-    window.location.href = '/';
+    window.location.href = './';
       };
     this.jwtData = authData[1];
     this.jwtUsername = this.jwtData.data.username;

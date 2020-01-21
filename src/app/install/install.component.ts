@@ -116,7 +116,7 @@ licenseSubmit: any;
   }
   Step5(){
     this.installer.deleteInstallFile().subscribe(() =>{
-      window.location.href = '/';
+      window.location.href = './';
     });
   }
 }

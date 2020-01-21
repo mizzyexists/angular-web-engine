@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   settings: Settings[];
   userData: UserData[];
 
-  constructor(private authApi: AuthService, private blogApi : BlogApiService, private setttingsApi : SettingsApiService) { }
+  constructor(private authApi: AuthService, private blogApi : BlogApiService, private settingsApi : SettingsApiService) { }
 
   ngOnInit() {
     this.authApi.checkAuthToken();
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
     this.blogApi.readPosts().subscribe((blogInfo: BlogInfo[])=>{
     this.blogInfo = blogInfo;
   });
-    this.setttingsApi.readSettings().subscribe((settings: Settings[])=>{
+    this.settingsApi.readSettings().subscribe((settings: Settings[])=>{
     this.settings = settings;
   });
   this.authApi.fetchUsers().subscribe((userData: UserData[])=>{

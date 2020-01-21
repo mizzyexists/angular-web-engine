@@ -20,7 +20,12 @@ export class LoginComponent implements OnInit {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
-  constructor(private toastService: ToastService, private formBuilder:FormBuilder, private authApi: AuthService, private router: Router) { }
+  constructor(
+    private toastService: ToastService,
+    private formBuilder:FormBuilder,
+    private authApi: AuthService,
+    private router: Router
+  ){}
 
   ngOnInit() {
     this.token = window.localStorage.getItem('jwt');
@@ -53,7 +58,7 @@ export class LoginComponent implements OnInit {
       if(data.jwt || data.email) {
         window.localStorage.setItem('jwt', data.jwt);
         this.toastService.show('Login Succesful. Please Wait...', { classname: 'bg-success text-light'});
-        setTimeout(() => window.location.href = '/', 500);
+        setTimeout(() => window.location.href = './', 500);
       }
       else {
         this.toastService.show('Please check your username and password and try again', { classname: 'bg-danger text-light'});

@@ -2,6 +2,9 @@
 
 ## Version 1
 
+### 1.1.7c
+- Fix for broken links when being redirected after install/login/logout
+
 ### 1.1.7b
 - Fix attempt Image Links when running in Production
 - Fix attempt for Site URL
