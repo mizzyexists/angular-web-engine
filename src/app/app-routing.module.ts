@@ -14,9 +14,11 @@ import { ViewpostComponent } from './pages/blog/viewpost/viewpost.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ChangelogComponent } from './pages/changelog/changelog.component';
 import { InstallComponent } from './install/install.component';
+import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
+  { path: 'about', component: AboutComponent},
   { path: 'changelog', component: ChangelogComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'viewusers', component: ViewusersComponent },

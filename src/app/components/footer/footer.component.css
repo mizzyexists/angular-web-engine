@@ -4,10 +4,22 @@ footer{
 
 .link{
   cursor: pointer;
-  color: blue;
   outline: none;
+}
+
+.about-link{
+  cursor: pointer;
+  outline: none;
+}
+
+.about-link:hover{
+  text-decoration: underline;
 }
 
 .link:hover{
   text-decoration: underline;
+}
+
+.logo{
+  padding-right: 15px;
 }

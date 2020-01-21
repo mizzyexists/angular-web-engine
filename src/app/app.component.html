@@ -1,5 +1,5 @@
 <app-toasts></app-toasts>
-<nb-layout *ngIf="installed=='true'">
+<nb-layout *ngIf="!installStatus || installStatus=='0'">
   <nb-layout-header fixed>
     <div class="header-container">
       <app-navbar></app-navbar>
@@ -25,7 +25,7 @@
     <app-footer></app-footer>
   </nb-layout-footer>
 </nb-layout>
-<nb-layout *ngIf="!installed || installed=='false'">
+<nb-layout *ngIf="installStatus=='1'">
   <nb-layout-header fixed>
     <div class="header-container">
       <app-installnav></app-installnav>

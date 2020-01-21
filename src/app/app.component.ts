@@ -3,8 +3,9 @@ import { NbSidebarService } from '@nebular/theme';
 import { AuthService } from './services/auth.service';
 import { AuthData } from './models/authdata';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angular/router'
-import { SettingsApiService } from './services/settingsapi.service';
 import { Settings } from './models/settings';
+import { InstallerService } from './services/installer.service';
+import { InstallFile } from './models/installfile';
 
 @Component({
   selector: 'app-root',
@@ -20,19 +21,18 @@ export class AppComponent implements OnInit {
   loggedUser: any;
   sidebarCompact: boolean = false;
   loading: boolean = false;
-  installed: boolean = true;
   settings: Settings[];
-  installCheck: any;
+  installFile: InstallFile;
+  installStatus: any;
   constructor(
     private authApi: AuthService,
     private sidebarService: NbSidebarService,
     private router: Router,
-    private settingsApi: SettingsApiService
+    private installer: InstallerService
   ){
-    this.settingsApi.readSettings().subscribe((settings: Settings[])=>{
-    this.settings = settings;
-    this.installCheck = this.settings[4];
-    this.installed = this.installCheck.value;
+    this.installer.checkInstall().subscribe((installFile: InstallFile) =>{
+      this.installFile = installFile;
+      this.installStatus = this.installFile.status
   });
   }
 

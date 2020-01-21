@@ -1,3 +1,5 @@
+import { config } from '../../assets/config';
+
 export class ServerInfo {
-  static phpApiServer = "https://mzydigital.com/api";
+  static phpApiServer = config.path + '/api';
 }

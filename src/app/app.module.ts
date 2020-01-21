@@ -36,6 +36,7 @@ import { OrderBy } from './pipes/orderby';
 import { ChangelogComponent } from './pages/changelog/changelog.component';
 import { InstallComponent } from './install/install.component';
 import { InstallnavComponent } from './components/installnav/installnav.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { InstallnavComponent } from './components/installnav/installnav.componen
     ChangelogComponent,
     InstallComponent,
     InstallnavComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

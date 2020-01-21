@@ -1,4 +1,4 @@
-<div *ngIf="installed=='false'">
+<div *ngIf="installStatus=='1'">
   <div class="container">
   <div class="row">
     <div *ngIf="installStep==0" class="col">
@@ -10,10 +10,12 @@
         </nb-card-header>
           <nb-card-body class="text-center">
             <p>This wizard will walk you through installing AWE so you can start building your website!</p>
+            <p><strong><em>Please be sure that you have updated the SITE URL PATH in '/assets/config.js' before starting.</em></strong></p>
+            <p>API URL is currently set to<br><strong>({{PHP_API_SERVER}})</strong></p>
             <p>To get started, simply click the button below</p>
           </nb-card-body>
         <nb-card-footer class="text-center">
-          <button class="btn btn-primary" (click)="Step1()">Install</button>
+          <button class="btn btn-primary" (click)="Step1()">Install AWE</button>
         </nb-card-footer>
       </nb-card>
     </div>
@@ -76,7 +78,7 @@
               <br>
               <input [(ngModel)]="siteURL" disabled type="text" id="siteURL" name="siteURL" placeholder="Site URL" class="form-control">
               <br>
-              <input [(ngModel)]="siteName" type="text" id="siteName" name="siteName" placeholder="Site Name" class="form-control">
+              <input [(ngModel)]="siteName" (keyup.enter)="Step4()" type="text" id="siteName" name="siteName" placeholder="Site Name" class="form-control">
           </nb-card-body>
           <nb-card-footer class="text-center">
             <button type="submit" class="btn btn-primary" (click)="Step4()">Submit</button>

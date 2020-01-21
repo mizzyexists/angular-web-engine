@@ -1,3 +1,3 @@
 export class AppVersion {
-  static version = "1.1.6";
+  static version = "1.1.7";
 }

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { SettingsApiService } from '../services/settingsapi.service';
-import { Settings } from '../models/settings';
 import { ToastService } from '../services/toast.service';
+import { InstallerService } from '../services/installer.service';
+import { InstallFile } from '../models/installfile';
+import { ServerInfo } from '../models/serverinfo';
 
 @Component({
   selector: 'app-install',
@@ -18,34 +20,37 @@ licenseForm: any;
 saUser: any;
 saPass: any;
 userPayload: any;
-  settings: Settings[];
-  installCheck: Settings;
-  installed: string = 'true';
-  siteURL: any;
-  siteurlUpload: any;
-  siteName: any;
-  sitenameUpload: any;
-  finishInstall: any;
+installed: string = 'true';
+siteURL: any;
+siteurlUpload: any;
+siteName: any;
+sitenameUpload: any;
+serverInfo = ServerInfo;
+PHP_API_SERVER = this.serverInfo.phpApiServer;
+installFile: InstallFile;
+installStatus: any;
+response: InstallFile;
+licenseSubmit: any;
   constructor(
     private router: Router,
     private authApi: AuthService,
     private settingsApi: SettingsApiService,
     private toastService: ToastService,
+    private installer: InstallerService
   ) { }
 
   ngOnInit() {
-    this.settingsApi.readSettings().subscribe((settings: Settings[])=>{
-    this.settings = settings;
-    this.installCheck = this.settings[4];
-    this.installed = this.installCheck.value;
-    this.siteURL = window.location.origin
-    if(this.installed=='false'){
+    window.localStorage.removeItem('jwt');
+    this.installer.checkInstall().subscribe((installFile: InstallFile) =>{
+      this.installFile = installFile;
+      this.installStatus = this.installFile.status
+    if(this.installStatus==1){
+      this.siteURL = window.location.origin
       this.router.navigate(['install']);
-    }
-    else{
+    }else{
       this.router.navigate(['login']);
     }
-  });
+    });
   }
 
   Step1(){
@@ -53,24 +58,30 @@ userPayload: any;
     setTimeout(() => this.step1Value = 25, 1900);
     setTimeout(() => this.step1Task = "Getting Assets", 1900);
     setTimeout(() => this.step1Value = 50, 2350);
-    setTimeout(() => this.step1Task = "Compiling Scripts", 2350);
+    setTimeout(() => this.step1Task = "Compiling Database Import File", 2350);
     setTimeout(() => this.step1Value = 75, 2700);
     setTimeout(() => this.step1Value = 85, 2900);
     setTimeout(() => this.step1Value = 90, 3500);
     setTimeout(() => this.step1Task = "Checking Configuration", 3500);
     setTimeout(() => this.step1Value = 95, 4900);
-    setTimeout(() => this.step1Task = "Starting Installation", 4900);
+    setTimeout(() => this.step1Task = "Pushing Database File", 4900);
     setTimeout(() => this.step1Value = 100, 6900);
     setTimeout(() => this.installStep = 2, 8000);
+    this.installer.installDBTables().subscribe(() =>{});
   }
 
   Step2(){
-    if(this.licenseForm=="12345"){
-      this.installStep = 3;
-    }
-    else{
-      this.toastService.show('Invalid License Key', { classname: 'bg-danger text-light'});
-    }
+    this.licenseSubmit = {key: this.licenseForm};
+    this.installer.licenseCheck(this.licenseSubmit).subscribe((data) =>{
+      this.response = data;
+      if(this.response.status==1){
+        this.toastService.show('Valid Key!', { classname: 'bg-success text-light'});
+        setTimeout(() => this.installStep = 3, 2000);
+      }
+      else{
+        this.toastService.show('Invalid License Key', { classname: 'bg-danger text-light'});
+      }
+    });
   }
   Step3(){
     if(!this.saUser || !this.saPass){
@@ -104,8 +115,7 @@ userPayload: any;
     }
   }
   Step5(){
-    this.finishInstall = {id: 75, value: 'true'};
-    this.settingsApi.updateSetting(this.finishInstall).subscribe(()=>{
+    this.installer.deleteInstallFile().subscribe(() =>{
       window.location.href = '/';
     });
   }
