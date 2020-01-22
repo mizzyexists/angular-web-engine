@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserData } from 'src/app/models/userdata';
 import { AuthData } from 'src/app/models/authdata';
 import { ToastService } from '../../../../services/toast.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-viewusers',
@@ -23,11 +24,13 @@ export class ViewusersComponent implements OnInit {
   constructor(
     private toastService: ToastService,
     private authApi:AuthService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ){}
   ngOnInit() {
     this.authApi.checkAuthToken();
     this.authApi.checkModUserType();
+    this.titleService.setTitle( "User Overview - AWE" );
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];

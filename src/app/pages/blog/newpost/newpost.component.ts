@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthData } from 'src/app/models/authdata';
 import { AuthService } from '../../../services/auth.service';
 import { ToastService } from '../../../services/toast.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-newpost',
@@ -25,11 +26,13 @@ export class NewpostComponent implements OnInit {
     private authApi : AuthService,
     private formBuilder:FormBuilder,
     private blogApi : BlogApiService,
-    private router : Router
+    private router : Router,
+    private titleService: Title
   ){}
   ngOnInit() {
     this.authApi.checkAuthToken();
     this.authApi.checkModUserType();
+    this.titleService.setTitle( "New Post - AWE" );
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];

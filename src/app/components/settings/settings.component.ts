@@ -4,6 +4,7 @@ import { Settings } from '../../models/settings';
 import { AuthData } from 'src/app/models/authdata';
 import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../services/toast.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-settings',
@@ -27,11 +28,13 @@ export class SettingsComponent implements OnInit {
     private authApi: AuthService,
     private settingsApi :SettingsApiService,
     private toastService: ToastService,
+    private titleService: Title
   ){}
 
   ngOnInit() {
     this.authApi.checkAuthToken();
     this.authApi.checkSAUserType();
+    this.titleService.setTitle( "Settings - AWE" );
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];

@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../services/toast.service';
 import { AuthData } from 'src/app/models/authdata';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -19,10 +20,17 @@ export class RegisterComponent implements OnInit {
   jwtUsername: any;
   jwtUsertype: any;
   loggedUser: any;
-  constructor(private toastService: ToastService, private formBuilder:FormBuilder, private authApi: AuthService, private router: Router) { }
+  constructor(
+    private toastService: ToastService,
+    private formBuilder:FormBuilder,
+    private authApi: AuthService,
+    private router: Router,
+    private titleService: Title
+  ){}
   ngOnInit() {
     this.authApi.checkAuthToken();
     this.authApi.checkADUserType();
+    this.titleService.setTitle( "Register - AWE" );
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
     this.authCheck = authData
@@ -41,6 +49,19 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
+    if(!this.registerForm.value.username){
+      this.toastService.show('No Username', { classname: 'bg-danger text-light'});
+    }
+    if(!this.registerForm.value.password){
+      this.toastService.show('No Password', { classname: 'bg-danger text-light'});
+    }
+    if(!this.registerForm.value.usertype){
+      this.toastService.show('No Usertype', { classname: 'bg-danger text-light'});
+    }
+    if(this.registerForm.value.password && this.registerForm.value.password.length<=5){
+      this.toastService.show('Password must be longer than 5 characters', { classname: 'bg-danger text-light'});
+    }
+    if(this.registerForm.value.username && this.registerForm.value.password && this.registerForm.value.usertype && this.registerForm.value.password.length>=6){
     this.authApi.createUser(this.registerForm.value).subscribe((data)=>{
       if(data[0]==0){
       this.toastService.show('User Created.', { classname: 'bg-success text-light'});
@@ -51,6 +72,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.reset();
     }
     });
+  }
   }
 
 }

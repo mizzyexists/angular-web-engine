@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserData } from 'src/app/models/userdata';
 import { AuthData } from 'src/app/models/authdata';
 import { BlogApiService } from '../../../services/blogapi.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-viewpost',
@@ -27,7 +28,8 @@ export class ViewpostComponent implements OnInit {
   constructor(
     private blogApi: BlogApiService,
     private authApi: AuthService,
-    private routes: ActivatedRoute
+    private routes: ActivatedRoute,
+    private titleService: Title
   ){}
   ngOnInit() {
     this.authApi.checkAuthToken();
@@ -45,6 +47,7 @@ export class ViewpostComponent implements OnInit {
         this.postAuthor = data.blogauthor;
         this.postDate = data.post_date;
         this.postSlug = data.slug;
+        this.titleService.setTitle( this.postTitle + " | Blog - AWE" );
         this.authApi.fetchUserBySlug(this.postAuthor).subscribe((data: any) =>{
           this.authorSlug = data.slug;
         });

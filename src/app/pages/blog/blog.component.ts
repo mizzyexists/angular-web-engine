@@ -4,6 +4,7 @@ import { BlogInfo } from 'src/app/models/bloginfo';
 import { Router } from '@angular/router';
 import { AuthData } from 'src/app/models/authdata';
 import { AuthService } from '../../services/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog',
@@ -21,10 +22,12 @@ export class BlogComponent implements OnInit {
     private authApi : AuthService,
     private blogApi : BlogApiService,
     private router : Router,
+    private titleService: Title
   ){
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
   ngOnInit() {
+    this.titleService.setTitle( "Blog Overview - AWE" );
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];

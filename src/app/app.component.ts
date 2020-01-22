@@ -24,11 +24,12 @@ export class AppComponent implements OnInit {
   settings: Settings[];
   installFile: InstallFile;
   installStatus: any;
+  currentTitle: string;
   constructor(
     private authApi: AuthService,
     private sidebarService: NbSidebarService,
     private router: Router,
-    private installer: InstallerService
+    private installer: InstallerService,
   ){
     this.installer.checkInstall().subscribe((installFile: InstallFile) =>{
       this.installFile = installFile;

@@ -7,6 +7,7 @@ import { AuthData } from 'src/app/models/authdata';
 import { ToastService } from '../../../services/toast.service';
 import { BlogApiService } from '../../../services/blogapi.service';
 import { BlogInfo } from 'src/app/models/bloginfo';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-editpost',
@@ -31,11 +32,13 @@ export class EditpostComponent implements OnInit {
     private formBuilder:FormBuilder,
     private authApi: AuthService,
     private router: Router,
-    private routes: ActivatedRoute
+    private routes: ActivatedRoute,
+    private titleService: Title
   ){}
   ngOnInit() {
     this.authApi.checkAuthToken();
     this.authApi.checkModUserType();
+    this.titleService.setTitle( "Edit Post - AWE" );
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];

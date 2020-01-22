@@ -6,6 +6,7 @@ import { UserData } from 'src/app/models/userdata';
 import { AuthData } from 'src/app/models/authdata';
 import { ToastService } from '../../../../services/toast.service';
 import { UploadService } from '../../../../services/upload.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edituser',
@@ -35,10 +36,12 @@ export class EdituserComponent implements OnInit {
     private authApi: AuthService,
     private uploadService: UploadService,
     private router: Router,
-    private routes: ActivatedRoute
+    private routes: ActivatedRoute,
+    private titleService: Title
   ){}
   ngOnInit() {
     this.authApi.checkAuthToken();
+    this.titleService.setTitle( "Edit User - AWE" );
     const routeParams = this.routes.snapshot.params;
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
@@ -73,6 +76,8 @@ export class EdituserComponent implements OnInit {
       this.router.navigate(['/viewusers']);
     }
     });
+    this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {
+      this.userSlug = data.slug;});
 }
 onFileSelect(event: { target: { files: any[]; }; }) {
   if (event.target.files.length > 0) {

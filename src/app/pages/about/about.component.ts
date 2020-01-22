@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppVersion } from '../../models/appversion';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -9,9 +10,10 @@ import { AppVersion } from '../../models/appversion';
 export class AboutComponent implements OnInit {
   appVersion = AppVersion;
   version = this.appVersion.version;
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle( "About AWE - AWE" );
   }
 
 }

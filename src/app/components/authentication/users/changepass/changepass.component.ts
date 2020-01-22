@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserData } from 'src/app/models/userdata';
 import { AuthData } from 'src/app/models/authdata';
 import { ToastService } from '../../../../services/toast.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-changepass',
@@ -12,7 +13,6 @@ import { ToastService } from '../../../../services/toast.service';
   styleUrls: ['./changepass.component.css']
 })
 export class ChangepassComponent implements OnInit {
-  isDisabled: boolean = true;
   changePasswordForm: FormGroup;
   userData: UserData[]
   token: string;
@@ -25,10 +25,18 @@ export class ChangepassComponent implements OnInit {
   passwordInput: string = "Unlock";
   jwtUID: any;
   currentPageUsertype: any;
-  constructor(private toastService: ToastService, private formBuilder:FormBuilder, private authApi: AuthService, private router: Router, private routes: ActivatedRoute) { }
+  constructor(
+    private toastService: ToastService,
+    private formBuilder:FormBuilder,
+    private authApi: AuthService,
+    private router: Router,
+    private routes: ActivatedRoute,
+    private titleService: Title
+  ){}
 
   ngOnInit() {
     this.authApi.checkAuthToken();
+    this.titleService.setTitle( "Change Password - AWE" );
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];
@@ -37,9 +45,6 @@ export class ChangepassComponent implements OnInit {
       this.loggedUser = this.jwtUsername;
       this.jwtUID = this.jwtData.data.uid;
     });
-    this.authApi.fetchUsers().subscribe((userData: UserData[])=>{
-    this.userData = userData;
-  });
     const routeParams = this.routes.snapshot.params;
     this.userID = routeParams.uid;
     this.changePasswordForm = this.formBuilder.group({
@@ -47,27 +52,24 @@ export class ChangepassComponent implements OnInit {
       password: ['', Validators.required]
     });
     this.authApi.fetchUserByIDPass(routeParams.uid).subscribe((data: any) => {
-      this.changePasswordForm.patchValue(data);
       this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {
         this.currentPageUsertype = data.usertype;
       });
     });
   }
   onUpdate(){
-    this.authApi.updatePass(this.changePasswordForm.value).subscribe(()=>{
-      console.log(this.changePasswordForm.value);
-      this.toastService.show('Password Updated.', { classname: 'bg-success text-light'});
-      setTimeout(() => this.router.navigate(['viewusers']), 500);
-  });
-  }
-  checkPass(){
-    if(this.isDisabled == true){
-      this.isDisabled = false;
-      this.passwordInput = "Lock";
-    } else {
-      this.isDisabled = true;
-      this.passwordInput = "Unlock";
+    this.changePasswordForm.value.uid = this.userID;
+    if(!this.changePasswordForm.value.password){
+      this.toastService.show('No Password', { classname: 'bg-danger text-light'});
     }
+    if(this.changePasswordForm.value.password && this.changePasswordForm.value.password.length<=5){
+      this.toastService.show('Password must be longer than 5 characters', { classname: 'bg-danger text-light'});
+    }
+    if(this.changePasswordForm.value.password && this.changePasswordForm.value.password.length>=6){
+    this.authApi.updatePass(this.changePasswordForm.value).subscribe(()=>{
+      this.toastService.show('Password Updated', { classname: 'bg-success text-light'});
+      setTimeout(() => this.router.navigate(['viewusers']), 500);
+  });}
   }
 
   cancelChange(userID:number): void{

@@ -6,6 +6,7 @@ import { BlogInfo } from 'src/app/models/bloginfo';
 import { SettingsApiService } from 'src/app/services/settingsapi.service';
 import { Settings } from 'src/app/models/settings';
 import { UserData } from 'src/app/models/userdata';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,9 +24,15 @@ export class DashboardComponent implements OnInit {
   settings: Settings[];
   userData: UserData[];
 
-  constructor(private authApi: AuthService, private blogApi : BlogApiService, private settingsApi : SettingsApiService) { }
+  constructor(
+    private authApi: AuthService,
+    private blogApi: BlogApiService,
+    private settingsApi: SettingsApiService,
+    private titleService: Title
+  ){}
 
   ngOnInit() {
+    this.titleService.setTitle( "Dashboard - AWE" );
     this.authApi.checkAuthToken();
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {

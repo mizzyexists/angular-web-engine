@@ -30,11 +30,11 @@
 <div class="col-md-6 user-container" *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'">
   <div *ngIf="profileUser">
     <nb-card>
-      <nb-card-header>Blog Posts:</nb-card-header>
+      <nb-card-header>Latest Blog Posts:</nb-card-header>
         <nb-card-body>
             <div class="blog-section" *ngIf="blogInfo">
             <div class="post-title text-center blog-post-card card" *ngFor="let post of blogInfo" routerLink="/viewpost/{{post.slug}}">
-              <strong>{{post.blogtitle | titlecase}}</strong>
+              <strong>{{post.blogtitle}}</strong>
             </div>
             </div>
         </nb-card-body>

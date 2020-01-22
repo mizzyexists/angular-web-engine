@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { AuthData } from 'src/app/models/authdata';
 import { ToastService } from '../../../services/toast.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -24,10 +25,12 @@ export class LoginComponent implements OnInit {
     private toastService: ToastService,
     private formBuilder:FormBuilder,
     private authApi: AuthService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ){}
 
   ngOnInit() {
+    this.titleService.setTitle( "Login - AWE" );
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
     this.authCheck = authData

@@ -6,6 +6,7 @@ import { ToastService } from '../services/toast.service';
 import { InstallerService } from '../services/installer.service';
 import { InstallFile } from '../models/installfile';
 import { ServerInfo } from '../models/serverinfo';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-install',
@@ -36,10 +37,12 @@ licenseSubmit: any;
     private authApi: AuthService,
     private settingsApi: SettingsApiService,
     private toastService: ToastService,
-    private installer: InstallerService
+    private installer: InstallerService,
+    private titleService: Title
   ) { }
 
   ngOnInit() {
+    this.titleService.setTitle( "AWE Installation Wizard" );
     window.localStorage.removeItem('jwt');
     this.installer.checkInstall().subscribe((installFile: InstallFile) =>{
       this.installFile = installFile;

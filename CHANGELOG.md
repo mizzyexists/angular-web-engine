@@ -2,6 +2,20 @@
 
 ## Version 1
 
+### 1.1.9
+- Added Titles to all pages
+- Added new favicon
+- Added ability to post notification badge to user picture
+- Fixed letter case on profile blog posts view
+- Fixed bug where canceling a user edit, returned user to a null page
+- Fixed bug where canceling a blog post edit, returned user to a null page
+- Set API to only serve a user's last 5 blog posts to a profile page.
+- **Password V2**
+    - Password field now starts empty and receives input correctly
+    - Password field will throw error if left empty
+    - Password field will throw error if password is less than 6 characters
+    - Validation on 'Register' form
+
 ### 1.1.8
 - **Blog System V3 Beta**
     - Created "fetchPostBySlug" service function

@@ -4,6 +4,7 @@ import { AuthData } from 'src/app/models/authdata';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BlogApiService } from '../../services/blogapi.service';
 import { BlogInfo } from '../../models/bloginfo';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -27,7 +28,8 @@ export class ProfileComponent implements OnInit {
     private authApi: AuthService,
     private routes: ActivatedRoute,
     private router: Router,
-    private blogApi: BlogApiService
+    private blogApi: BlogApiService,
+    private titleService: Title
   ){
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -47,6 +49,7 @@ export class ProfileComponent implements OnInit {
         this.profileName = data.fname + " " + data.lname;
         this.profileBio = data.bio_text;
         this.profileLogin = data.last_login;
+        this.titleService.setTitle( this.profileUser + "'s Profile - AWE" );
         this.blogApi.fetcUserPosts(this.profileUser).subscribe((blogInfo: BlogInfo[]) =>{
           this.blogInfo = blogInfo;
           });

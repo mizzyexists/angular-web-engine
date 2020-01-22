@@ -15,7 +15,10 @@
 <a (click)="viewMyProfile()">
   <nb-user *ngIf="loggedUser" style="position:absolute;right:105px;top:12px;" size="large"
            name="{{loggedUser | titlecase}}"
-           picture="{{image_path}}">
+           picture="{{image_path}}"
+           badgeText=""
+           badgeStatus="danger"
+           badgePosition="top left">>
   </nb-user>
 </a>
 <nb-actions style="position:absolute;right:0px;top:20px;" size="medium">
