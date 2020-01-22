@@ -30,6 +30,9 @@ export class AuthService {
   fetchUserByID(uid: number): Observable<UserData[]>{
     return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/authentication/readbyid.php/?uid=${uid}`);
   }
+  fetchUserBySlug(slug: string): Observable<UserData[]>{
+    return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/authentication/readbyslug.php/?slug=${slug}`);
+  }
   fetchUserByIDPass(uid: number): Observable<UserData[]>{
     return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/authentication/readbyidpass.php/?uid=${uid}`);
   }

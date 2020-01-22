@@ -30,16 +30,26 @@
 <div class="col-md-6 user-container" *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'">
   <div *ngIf="profileUser">
     <nb-card>
-      <nb-card-header>Something will go here later</nb-card-header>
+      <nb-card-header>Blog Posts:</nb-card-header>
+        <nb-card-body>
+            <div class="blog-section" *ngIf="blogInfo">
+            <div class="post-title text-center blog-post-card card" *ngFor="let post of blogInfo" routerLink="/viewpost/{{post.slug}}">
+              <strong>{{post.blogtitle | titlecase}}</strong>
+            </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>Something Here Later:</nb-card-header>
         <nb-card-body>
         </nb-card-body>
     </nb-card>
-  <div *ngIf="!profileUser">
-    <h4 class="text-center" style="color:grey;">User does not exist</h4>
-  </div>
 </div>
 </div>
 </div>
+</div>
+<div *ngIf="!profileUser">
+  <h4 class="text-center" style="color:grey;">User does not exist</h4>
 </div>
 <div class="container" *ngIf="userID!=profileID">
   <div class="row">

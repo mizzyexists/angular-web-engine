@@ -20,3 +20,21 @@ nb-card-body{
   padding-left: 115px;
   z-index: 1;
 }
+
+.blog-section{
+  margin: 5px;
+}
+
+.blog-post-card{
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.blog-post-card:hover{
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.post-title{
+  font-size: 18px;
+}

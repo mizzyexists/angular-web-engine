@@ -1,7 +1,7 @@
 <br><br>
 <h1>{{postTitle}}</h1>
 <p [innerHTML]="postContent"></p>
-<p>Posted by: {{postAuthor | titlecase}}</p>
+<p>Posted by: <a routerLink="/profile/{{authorSlug}}">{{postAuthor | titlecase}}</a></p>
 <p>Posted on: {{postDate}}</p>
 <div *ngIf="loggedUser">
 <button style="margin-top: 5px;" class="btn btn-light" routerLink="/blog">Go Back</button>

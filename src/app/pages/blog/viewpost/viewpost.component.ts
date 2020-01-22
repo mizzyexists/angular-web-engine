@@ -22,6 +22,8 @@ export class ViewpostComponent implements OnInit {
   postContent: any;
   postAuthor: any;
   postDate: any;
+  postSlug: any;
+  authorSlug: any;
   constructor(
     private blogApi: BlogApiService,
     private authApi: AuthService,
@@ -35,14 +37,18 @@ export class ViewpostComponent implements OnInit {
       this.jwtUsername = this.jwtData.data.username;
       this.jwtUsertype = this.jwtData.data.usertype;
       this.loggedUser = this.jwtUsername;
-    });
-    const routeParams = this.routes.snapshot.params;
-    this.blogApi.fetchPostByID(routeParams.id).subscribe((data: any) => {
-      this.postID = data.id;
-      this.postTitle = data.blogtitle;
-      this.postContent = data.blogcontent;
-      this.postAuthor = data.blogauthor;
-      this.postDate = data.post_date;
+      const routeParams = this.routes.snapshot.params;
+      this.blogApi.fetchPostBySlug(routeParams.slug).subscribe((data: any) => {
+        this.postID = data.id;
+        this.postTitle = data.blogtitle;
+        this.postContent = data.blogcontent;
+        this.postAuthor = data.blogauthor;
+        this.postDate = data.post_date;
+        this.postSlug = data.slug;
+        this.authApi.fetchUserBySlug(this.postAuthor).subscribe((data: any) =>{
+          this.authorSlug = data.slug;
+        });
+      });
     });
   }
 }

@@ -23,6 +23,7 @@ export class EditpostComponent implements OnInit {
   posteditForm: FormGroup;
   postID: number;
   blogInfo: BlogInfo[];
+  postSlug: any;
 
   constructor(
     private blogApi: BlogApiService,
@@ -51,6 +52,7 @@ export class EditpostComponent implements OnInit {
     });
     this.blogApi.fetchPostByID(routeParams.id).subscribe((data: any) => {
       this.posteditForm.patchValue(data);
+      this.postSlug = data.slug;
     });
     this.postID = routeParams.id;
   }
@@ -61,7 +63,10 @@ export class EditpostComponent implements OnInit {
     console.log(this.posteditForm.value)
     this.blogApi.updatePost(this.posteditForm.value).subscribe(()=>{
       this.toastService.show('Blog Post Updated', { classname: 'bg-success text-light'});
-      setTimeout(() => this.router.navigate(['viewpost/'+this.postID]), 500);
+      this.blogApi.fetchPostByID(routeParams.id).subscribe((data: any) => {
+        this.postSlug = data.slug;
+        setTimeout(() => this.router.navigate(['viewpost/'+this.postSlug]), 500);
+      });
     });
   }
 

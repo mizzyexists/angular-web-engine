@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
   jwtUsertype: any;
   image_path: any;
   userID: any;
+  userSlug: any;
   constructor(
     private toastService: ToastService,
     private authApi: AuthService,
@@ -46,7 +47,10 @@ export class NavbarComponent implements OnInit {
   }
 
   viewMyProfile(){
-  this.router.navigate(['/profile/' + this.userID]);
-  }
+    this.authApi.fetchUserByID(this.userID).subscribe((data: any) => {
+      this.userSlug = data.slug;
+      this.router.navigate(['/profile/' + this.userSlug]);
 
+    });
+    }
   }

@@ -13,7 +13,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let post of blogInfo | orderBy : ['-id']">
-          <td><a routerLink="/viewpost/{{post.id}}">{{ post.blogtitle | slice:0:20 }}...</a></td>
+          <td><a routerLink="/viewpost/{{post.slug}}">{{ post.blogtitle | slice:0:20 }}...</a></td>
           <td>{{ post.blogauthor | titlecase }}</td>
         </tr>
         </tbody>
@@ -33,7 +33,7 @@
         <tbody>
         <tr *ngFor="let user of userData | orderBy : ['uid']">
           <td>{{ user.uid }}</td>
-          <a routerLink="/profile/{{user.uid}}"><td>{{ user.username }}</td></a>
+          <a routerLink="/profile/{{user.slug}}"><td>{{ user.username }}</td></a>
         </tr>
         </tbody>
       </table>

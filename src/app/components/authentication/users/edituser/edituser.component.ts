@@ -28,6 +28,7 @@ export class EdituserComponent implements OnInit {
   jwtUID: any;
   currentPageID: any;
   currentPageUsertype: any;
+  userSlug: any;
   constructor(
     private toastService: ToastService,
     private formBuilder:FormBuilder,
@@ -98,8 +99,11 @@ onFileSelect(event: { target: { files: any[]; }; }) {
     this.authApi.editUser(this.usereditForm.value).subscribe(()=>{
       const routeParams = this.routes.snapshot.params;
       this.userID = routeParams.uid;
-      this.toastService.show('User Updated', { classname: 'bg-success text-light'});
-      setTimeout(() => this.router.navigate(['profile/' + this.userID]), 500);
+      this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {
+        this.userSlug = data.slug;
+          this.toastService.show('User Updated', { classname: 'bg-success text-light'});
+          setTimeout(() => this.router.navigate(['profile/' + this.userSlug]), 500);
+            });
     });
   }
   changePassword(userID:number): void{

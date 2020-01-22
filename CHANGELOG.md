@@ -2,6 +2,22 @@
 
 ## Version 1
 
+### 1.1.8
+- **Blog System V3 Beta**
+    - Created "fetchPostBySlug" service function
+    - Slug links implemented for 'view-post'
+        - Stored in DB
+        - Updated on 'Post Title' update
+    - ID still used for editing posts
+    - Updated links on Dashboard
+    - Updated blogInfo model
+- Added Blog posts to profile pages if user owns the post
+- Added profile slug links to profile pages of users
+- Added profile links to blog posts
+- Updated Nav-bar profile slug link
+- Fixed issue with empty link parameters (edit-user/profile/edit-post/etc.)
+- Fixed issue where saving user was redirecting to 'profile/UID'
+
 ### 1.1.7c
 - Fix for broken links when being redirected after install/login/logout
 

@@ -15,7 +15,7 @@
   <td (click)="viewUser(user.uid)" class="text-center align-middle"><img style="border-radius:40px;" width=40px height=40px src={{user.image_path}}/></td>
   <td (click)="viewUser(user.uid)" class="align-middle" (click)="viewUser(user.uid)">{{user.username}}</td>
   <td (click)="viewUser(user.uid)" class="align-middle">{{user.usertype}}</td>
-  <td class="align-middle" *ngIf="jwtUsertype=='Super-Admin'"><a href="javascript:void(0);" class="btn btn-success" (click)="editUser(user.uid)">Edit</a> | <a href="javascript:void(0);" class="btn btn-danger" (click)="deleteUser(user.uid)">Delete</a></td>
+  <td class="align-middle" *ngIf="jwtUsertype=='Super-Admin'"><a href="javascript:void(0);" class="btn btn-success" (click)="editUser(user.uid)">Edit</a><span *ngIf="user.uid!=jwtUID"> | <a href="javascript:void(0);" class="btn btn-danger" (click)="deleteUser(user.uid)">Delete</a></span></td>
   <td class="align-middle" *ngIf="jwtUsertype=='Admin' && user.usertype!='Super-Admin'"><a href="javascript:void(0);" class="btn btn-success" (click)="editUser(user.uid)">Edit</a> | <a href="javascript:void(0);" class="btn btn-danger" (click)="deleteUser(user.uid)">Delete</a></td>
   <td (click)="viewUser(user.uid)" class="align-middle" *ngIf="jwtUsertype=='Admin' && user.usertype=='Super-Admin'">No Actions Available</td>
   <td (click)="viewUser(user.uid)" class="align-middle" *ngIf="jwtUsertype!='Super-Admin' && jwtUsertype!='Admin'">No Actions Available</td>

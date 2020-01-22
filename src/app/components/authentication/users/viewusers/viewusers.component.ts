@@ -18,6 +18,8 @@ export class ViewusersComponent implements OnInit {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
+  jwtUID: any;
+  userSlug: any;
   constructor(
     private toastService: ToastService,
     private authApi:AuthService,
@@ -31,6 +33,7 @@ export class ViewusersComponent implements OnInit {
       this.jwtData = authData[1];
       this.jwtUsername = this.jwtData.data.username;
       this.jwtUsertype = this.jwtData.data.usertype;
+      this.jwtUID = this.jwtData.data.uid;
       this.loggedUser = this.jwtUsername;
     });
     this.authApi.fetchUsers().subscribe((userData: UserData[])=>{
@@ -52,7 +55,10 @@ export class ViewusersComponent implements OnInit {
   }
 
   viewUser(uid:number): void{
-    this.router.navigate(['profile/' + uid]);
+    this.authApi.fetchUserByID(uid).subscribe((data: any) => {
+      this.userSlug = data.slug;
+      this.router.navigate(['/profile/' + this.userSlug]);
+    });
   }
 
 }

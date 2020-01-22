@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { AuthData } from 'src/app/models/authdata';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BlogApiService } from '../../services/blogapi.service';
+import { BlogInfo } from '../../models/bloginfo';
 
 @Component({
   selector: 'app-profile',
@@ -20,10 +22,12 @@ export class ProfileComponent implements OnInit {
   profileID: any;
   jwtUsertype: any;
   profileLogin: any;
+  blogInfo: BlogInfo[];
   constructor(
     private authApi: AuthService,
     private routes: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private blogApi: BlogApiService
   ){
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -35,7 +39,7 @@ export class ProfileComponent implements OnInit {
       this.userID = this.jwtData.data.uid;
       this.jwtUsertype = this.jwtData.data.usertype;
         const routeParams = this.routes.snapshot.params;
-        this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {
+        this.authApi.fetchUserBySlug(routeParams.slug).subscribe((data: any) => {
         this.profileID = data.uid;
         this.profileUser = data.username;
         this.profileAvatar = data.image_path;
@@ -43,6 +47,9 @@ export class ProfileComponent implements OnInit {
         this.profileName = data.fname + " " + data.lname;
         this.profileBio = data.bio_text;
         this.profileLogin = data.last_login;
+        this.blogApi.fetcUserPosts(this.profileUser).subscribe((blogInfo: BlogInfo[]) =>{
+          this.blogInfo = blogInfo;
+          });
         });
     });
   }

@@ -4,4 +4,5 @@ export  class  BlogInfo {
     blogcontent:  string;
     blogauthor: string;
     post_date: string;
+    slug: string;
 }

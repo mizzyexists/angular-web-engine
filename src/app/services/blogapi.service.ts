@@ -18,8 +18,14 @@ export class BlogApiService {
   readPosts(): Observable<BlogInfo[]>{
     return this.httpClient.get<BlogInfo[]>(`${this.PHP_API_SERVER}/blog/read.php`);
   }
+  fetchPostBySlug(slug: string): Observable<BlogInfo[]>{
+    return this.httpClient.get<BlogInfo[]>(`${this.PHP_API_SERVER}/blog/readbyslug.php/?slug=${slug}`);
+  }
   fetchPostByID(id: number): Observable<BlogInfo[]>{
     return this.httpClient.get<BlogInfo[]>(`${this.PHP_API_SERVER}/blog/readbyid.php/?id=${id}`);
+  }
+  fetcUserPosts(author: string): Observable<BlogInfo[]>{
+    return this.httpClient.get<BlogInfo[]>(`${this.PHP_API_SERVER}/blog/readuserposts.php/?author=${author}`);
   }
   createPost(blogInfo: BlogInfo): Observable<BlogInfo>{
     return this.httpClient.post<BlogInfo>(`${this.PHP_API_SERVER}/blog/create.php`, blogInfo);

@@ -7,4 +7,5 @@ export  class  UserData {
     bio_text:  string;
     image_path:  string;
     usertype: string;
+    slug: string;
 }
