@@ -1,7 +1,9 @@
 <div *ngIf="loggedUser">
-  <div *ngIf="userID==jwtUID || jwtUsertype == 'Super-Admin' || jwtUsertype == 'Admin'" class="col-md-6 user-container">
+  <nb-card>
+  <div *ngIf="userID==jwtUID || jwtUsertype == 'Super-Admin' || jwtUsertype == 'Admin'" class="col-md-6 user-container pb-3">
     <div *ngIf="currentPageUsertype!='Super-Admin' || jwtUsertype=='Super-Admin'">
-      <h2 class="text-center">Change Password</h2>
+      <nb-card-header><h2 class="text-center">Change Password</h2></nb-card-header>
+      <nb-card-body>
       <form [formGroup]="changePasswordForm" (ngSubmit)="onUpdate()">
         <div class="form-group">
           <label for="password">New Password:</label>
@@ -12,8 +14,10 @@
     <button type="submit" class="btn btn-success">Change Password</button>
   </form>
   <button style="margin-top: 5px;" class="btn btn-danger" (click)="cancelChange(userID)">Cancel</button>
+  </nb-card-body>
     </div>
   </div>
+  </nb-card>
 </div>
 <div *ngIf="loggedUser">
 <div *ngIf="userID!=jwtUID || jwtUsertype != 'Super-Admin'">

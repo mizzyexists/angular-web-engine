@@ -1,11 +1,9 @@
 <app-toasts></app-toasts>
-<nb-layout *ngIf="!installStatus || installStatus=='0'">
+<div *ngIf="!installStatus || installStatus=='0'">
+<nb-layout *ngIf="token">
   <nb-layout-header fixed>
     <div class="header-container">
       <app-navbar></app-navbar>
-      <div *ngIf="loading==true" class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="loading" aria-valuemin="0" aria-valuemax="100" style="height: 5px; width: 100%;"></div>
-      </div>
     </div>
   </nb-layout-header>
   <nb-sidebar responsive collapsedBreakpoints="['']">
@@ -17,21 +15,30 @@
   <nb-menu *ngIf="!loggedUser && jwtUsertype!='Admin' && jwtUsertype!='Super-Admin'" [items]="litems"></nb-menu>
   <nb-menu *ngIf="loggedUser && jwtUsertype!='Admin' && jwtUsertype!='Super-Admin' && jwtUsertype!='Moderator'" [items]="uitems"></nb-menu>
   </nb-sidebar>
-
-  <nb-layout-column>
-    <router-outlet></router-outlet>
+  <nb-layout-column [nbSpinner]="loading" nbSpinnerSize="giant" nbSpinnerStatus="primary">
+    <router-outlet *ngIf="loading2==false"></router-outlet>
   </nb-layout-column>
   <nb-layout-footer fixed>
     <app-footer></app-footer>
   </nb-layout-footer>
 </nb-layout>
+<nb-layout *ngIf="!token && installStatus=='0'">
+  <nb-layout-header fixed>
+    <div class="header-container">
+      <app-installnav></app-installnav>
+    </div>
+  </nb-layout-header>
+  <nb-layout-column>
+    <div class="login-box card">
+  <app-login></app-login>
+  </div>
+  </nb-layout-column>
+</nb-layout>
+</div>
 <nb-layout *ngIf="installStatus=='1'">
   <nb-layout-header fixed>
     <div class="header-container">
       <app-installnav></app-installnav>
-      <div *ngIf="loading==true" class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="loading" aria-valuemin="0" aria-valuemax="100" style="height: 5px; width: 100%;"></div>
-      </div>
     </div>
   </nb-layout-header>
   <nb-layout-column>

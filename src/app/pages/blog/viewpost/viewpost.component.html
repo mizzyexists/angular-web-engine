@@ -1,9 +1,12 @@
-<br><br>
-<h1>{{postTitle}}</h1>
-<p [innerHTML]="postContent"></p>
-<p>Posted by: <a routerLink="/profile/{{authorSlug}}">{{postAuthor | titlecase}}</a></p>
-<p>Posted on: {{postDate}}</p>
-<div *ngIf="loggedUser">
-<button style="margin-top: 5px;" class="btn btn-light" routerLink="/blog">Go Back</button>
-<button *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'" style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/editpost/{{postID}}">Edit</button>
-</div>
+<nb-card accent="primary">
+  <nb-card-header><h1>{{postTitle}}</h1></nb-card-header>
+  <nb-card-body>
+  <p [innerHTML]="postContent"></p>
+  <p>Posted by: <a routerLink="/profile/{{authorSlug}}">{{postAuthor | titlecase}}</a></p>
+  <p>Posted on: {{postDate}}</p>
+  <div *ngIf="loggedUser">
+  <button style="margin-top: 5px;" class="btn btn-light" routerLink="/blog">Go Back</button>
+  <button *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'" style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/editpost/{{postID}}">Edit</button>
+  </div>
+</nb-card-body>
+</nb-card>

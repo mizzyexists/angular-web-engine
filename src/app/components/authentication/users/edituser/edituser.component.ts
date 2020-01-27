@@ -7,6 +7,7 @@ import { AuthData } from 'src/app/models/authdata';
 import { ToastService } from '../../../../services/toast.service';
 import { UploadService } from '../../../../services/upload.service';
 import { Title } from '@angular/platform-browser';
+import { MailerService } from '../../../../services/mailer.service';
 
 @Component({
   selector: 'app-edituser',
@@ -30,6 +31,9 @@ export class EdituserComponent implements OnInit {
   currentPageID: any;
   currentPageUsertype: any;
   userSlug: any;
+  jwtEmail: any;
+  userName: any;
+  userEmail: any;
   constructor(
     private toastService: ToastService,
     private formBuilder:FormBuilder,
@@ -37,7 +41,8 @@ export class EdituserComponent implements OnInit {
     private uploadService: UploadService,
     private router: Router,
     private routes: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
+    private mailer: MailerService
   ){}
   ngOnInit() {
     this.authApi.checkAuthToken();
@@ -47,6 +52,7 @@ export class EdituserComponent implements OnInit {
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];
       this.jwtUsername = this.jwtData.data.username;
+      this.jwtEmail = this.jwtData.data.email;
       this.jwtUID = this.jwtData.data.uid;
       this.jwtUsertype = this.jwtData.data.usertype;
       this.loggedUser = this.jwtUsername;
@@ -59,6 +65,7 @@ export class EdituserComponent implements OnInit {
       this.usereditForm = this.formBuilder.group({
         uid: [],
         username: ['', Validators.required],
+        email: ['', Validators.required],
         usertype: ['', Validators.required],
         fname: ['', Validators.required],
         lname: ['', Validators.required],
@@ -106,6 +113,17 @@ onFileSelect(event: { target: { files: any[]; }; }) {
       this.userID = routeParams.uid;
       this.authApi.fetchUserByID(routeParams.uid).subscribe((data: any) => {
         this.userSlug = data.slug;
+        this.userName = data.username;
+        this.userEmail = data.email;
+        this.token = window.localStorage.getItem('jwt');
+        this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
+          this.jwtData = authData[1];
+          this.jwtUID = this.jwtData.data.uid;
+          this.jwtUsername = this.jwtData.data.username;
+          if(this.userID!=this.jwtUID){
+          this.mailer.editedUser(this.userName, this.userEmail, this.jwtUsername).subscribe(() => {
+          });}
+        });
           this.toastService.show('User Updated', { classname: 'bg-success text-light'});
           setTimeout(() => this.router.navigate(['profile/' + this.userSlug]), 500);
             });

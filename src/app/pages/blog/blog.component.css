@@ -1,21 +1,8 @@
-.blog-post{
-  text-align: center;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  margin-bottom: 8px;
-  padding-top: 10px;
-  line-height: 20px;
-}
-
-.blog-post:hover{
-  background-color: #f6faff;
-}
-
-.blog-post .posttitle{
+.posttitle{
   padding-top: 10px;
 }
 
-.blog-post .postid{
+.postid{
   padding: 5px;
   border: 1px solid #ccc;
   margin-bottom: 5px;
@@ -41,4 +28,8 @@ button{
 
 nb-action{
   margin-left: -20px;
+}
+
+nb-card:hover{
+  background-color: rgba(234, 235, 242, 0.15);
 }

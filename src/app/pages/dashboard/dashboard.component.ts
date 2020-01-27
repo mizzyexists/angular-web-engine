@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     private blogApi: BlogApiService,
     private settingsApi: SettingsApiService,
     private titleService: Title
-  ){}
+    ){}
 
   ngOnInit() {
     this.titleService.setTitle( "Dashboard - AWE" );

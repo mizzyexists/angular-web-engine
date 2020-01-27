@@ -15,9 +15,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ChangelogComponent } from './pages/changelog/changelog.component';
 import { InstallComponent } from './install/install.component';
 import { AboutComponent } from './pages/about/about.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'about', component: AboutComponent},
   { path: 'changelog', component: ChangelogComponent},
   { path: 'register', component: RegisterComponent },

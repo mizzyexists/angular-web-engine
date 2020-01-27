@@ -14,9 +14,6 @@ nb-card-body{
 }
 
 .profile-username{
-  background-color: #eee;
-  border-radius: 50px;
-  padding: 40px;
   padding-left: 115px;
   z-index: 1;
 }

@@ -1,9 +1,10 @@
 <div *ngIf="loggedUser">
   <div class="container-fluid">
-    <div id="content" class="row">
+    <div class="row">
       <div class="col">
-        <div class="card shadow">
-        <h2>Blog Posts</h2>
+        <nb-card accent="primary">
+        <nb-card-header><h4><nb-icon icon="book-outline"></nb-icon>Blog Posts</h4></nb-card-header>
+        <nb-card-body>
         <table class="table table-striped">
         <thead>
         <tr class="bg-dark text-white">
@@ -18,11 +19,13 @@
         </tr>
         </tbody>
       </table>
-      </div>
+      </nb-card-body>
+      </nb-card>
       </div>
       <div *ngIf="jwtUsertype!='User'" class="col">
-        <div class="card shadow">
-        <h2>Users</h2>
+        <nb-card accent="danger">
+        <nb-card-header><h4><nb-icon icon="people-outline"></nb-icon>Users</h4></nb-card-header>
+        <nb-card-body>
         <table class="table table-striped">
         <thead>
         <tr class="bg-dark text-white">
@@ -37,11 +40,13 @@
         </tr>
         </tbody>
       </table>
-      </div>
+      </nb-card-body>
+      </nb-card>
       </div>
       <div *ngIf="jwtUsertype!='User'" class="col">
-        <div class="card shadow">
-        <h2>Site Settings</h2>
+        <nb-card accent="warning">
+        <nb-card-header><h4><nb-icon icon="settings-2-outline"></nb-icon>Site Settings</h4></nb-card-header>
+        <nb-card-body>
         <table class="table table-striped">
         <thead>
         <tr class="bg-dark text-white">
@@ -56,7 +61,8 @@
         </tr>
         </tbody>
       </table>
-      </div>
+      </nb-card-body>
+      </nb-card>
       </div>
     </div>
   </div>

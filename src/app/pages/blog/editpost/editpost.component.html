@@ -1,6 +1,8 @@
 <div *ngIf="loggedUser">
-<div *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'" class="col-md-6 user-container">
-  <h2 class="text-center">Edit Post</h2>
+<nb-card accent="primary">
+<div *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'" class="col-md-6 user-container pb-3">
+  <nb-card-header><h2 class="text-center">Edit Post</h2></nb-card-header>
+  <nb-card-body>
   <form [formGroup]="posteditForm" (ngSubmit)="onUpdate()">
     <div class="form-group">
       <label for="blogtitle">Post Title:</label>
@@ -34,5 +36,7 @@
   </form>
   <button style="margin-top: 5px;" class="btn btn-danger" routerLink="/viewpost/{{postSlug}}">Cancel</button>
   <button style="margin-top: 5px; margin-left: 5px;" class="btn btn-warning" (click)="deletePost()">Delete</button>
+  </nb-card-body>
 </div>
+</nb-card>
 </div>

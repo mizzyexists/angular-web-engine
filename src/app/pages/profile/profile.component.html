@@ -2,9 +2,11 @@
   <div class="row">
 <div class="col-md-6 user-container" *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'">
   <div *ngIf="profileUser">
-    <nb-card>
-      <nb-card-header><img width="100px" height="100px;" src="{{profileAvatar}}"/><span class="profile-username">{{profileUser}}</span></nb-card-header>
+    <nb-card accent="info">
+      <nb-card-header><img width="75px" height="75px;" src="{{profileAvatar}}"/><span class="profile-username">{{profileUser}}</span></nb-card-header>
         <nb-card-body>
+          <strong>E-Mail:</strong> {{profileEmail}}
+          <br><br>
           <strong>Usertype:</strong> {{profileType}}
           <br><br>
           <strong>Full Name:</strong> {{profileName}}
@@ -29,7 +31,7 @@
 </div>
 <div class="col-md-6 user-container" *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'">
   <div *ngIf="profileUser">
-    <nb-card>
+    <nb-card accent="primary">
       <nb-card-header>Latest Blog Posts:</nb-card-header>
         <nb-card-body>
             <div class="blog-section" *ngIf="blogInfo">
@@ -39,7 +41,7 @@
             </div>
         </nb-card-body>
     </nb-card>
-    <nb-card>
+    <nb-card accent="warning">
       <nb-card-header>Something Here Later:</nb-card-header>
         <nb-card-body>
         </nb-card-body>

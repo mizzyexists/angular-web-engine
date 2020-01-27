@@ -1,11 +1,17 @@
 <div *ngIf="loggedUser">
-<div *ngIf="currentPageID==jwtUID || jwtUsertype == 'Super-Admin' || jwtUsertype == 'Admin'" class="col-md-6 user-container">
+  <nb-card>
+<div *ngIf="currentPageID==jwtUID || jwtUsertype == 'Super-Admin' || jwtUsertype == 'Admin'" class="col-md-6 user-container pb-3">
   <div *ngIf="currentPageUsertype!='Super-Admin' || jwtUsertype=='Super-Admin'">
-  <h2 class="text-center">Edit User</h2>
+  <nb-card-header><h2 class="text-center">Edit User</h2></nb-card-header>
+  <nb-card-body>
   <form [formGroup]="usereditForm" (ngSubmit)="onUpdate()">
     <div class="form-group">
       <label for="username">Username:</label>
       <input disabled type="text" formControlName="username" name="username" class="form-control" id="username">
+    </div>
+    <div class="form-group">
+      <label for="email">E-Mail:</label>
+      <input type="text" formControlName="email" name="email" class="form-control" id="email">
     </div>
     <div *ngIf="jwtUsertype=='Super-Admin'" class="form-group">
       <label for="usertype">Usertype:</label>
@@ -55,9 +61,10 @@
   </form>
   <button style="margin-top: 5px;" class="btn btn-primary" (click)="changePassword(userID)">Change Password</button>
   <button style="margin-top: 5px; margin-left: 5px;" class="btn btn-danger" routerLink="/profile/{{userSlug}}">Cancel</button>
-  <br><br>
+  </nb-card-body>
   </div>
 </div>
+</nb-card>
 </div>
 <div *ngIf="loggedUser">
 <div *ngIf="currentPageID==jwtUID || jwtUsertype == 'Super-Admin' || jwtUsertype == 'Admin'">

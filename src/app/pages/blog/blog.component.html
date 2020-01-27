@@ -3,14 +3,16 @@
 </div>
 <div *ngIf="blogInfo" class="contaniner">
   <div class="row">
-<div class="col-12 blog-post" *ngFor="let post of blogInfo | orderBy : ['-id']">
+<nb-card class="col-12 text-center" *ngFor="let post of blogInfo | orderBy : ['-id']">
+  <nb-card-body>
     <a routerLink="/viewpost/{{post.slug}}">
       <small class="postid">Post ID: {{post.id}}</small>
       <h1 class="posttitle">{{post.blogtitle | uppercase}}</h1>
       <p>Posted on: {{post.post_date}}</p>
       <p><a routerLink="/profile/{{post.blogauthor | lowercase}}">{{post.blogauthor | titlecase}}</a></p>
     </a>
-  </div>
+    </nb-card-body>
+  </nb-card>
   </div>
   </div>
   <div class="contaniner" *ngIf="!blogInfo || blogInfo.length < 1">

@@ -1,0 +1,9 @@
+    <img src="./assets/images/AWEColor1.png" width="250px"/>
+      <form [formGroup]="codeForm" (ngSubmit)="checkCode()">
+        <h3>Password Reset</h3>
+      <div class="form-group">
+        <label for="resetcode">Reset Code:</label>
+        <input type="text" class="form-control text-center" formControlName="resetcode" id="resetcode" autocomplete="off">
+      </div>
+      <button class="btn btn-success">Submit Code</button>
+    </form>

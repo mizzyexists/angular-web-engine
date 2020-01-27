@@ -21,15 +21,16 @@ export class AppComponent implements OnInit {
   loggedUser: any;
   sidebarCompact: boolean = false;
   loading: boolean = false;
+  loading2: boolean = false;
   settings: Settings[];
   installFile: InstallFile;
-  installStatus: any;
+  installStatus: any = '0';
   currentTitle: string;
   constructor(
     private authApi: AuthService,
     private sidebarService: NbSidebarService,
     private router: Router,
-    private installer: InstallerService,
+    private installer: InstallerService
   ){
     this.installer.checkInstall().subscribe((installFile: InstallFile) =>{
       this.installFile = installFile;
@@ -52,12 +53,14 @@ export class AppComponent implements OnInit {
            .subscribe((event) => {
                if(event instanceof NavigationStart) {
                    this.loading = true;
+                   this.loading2 = true;
                }
                else if (
                    event instanceof NavigationEnd ||
                    event instanceof NavigationCancel
                    ) {
                    setTimeout(() => this.loading = false, 500);
+                   setTimeout(() => this.loading2 = false, 200);
                }
            });
    }

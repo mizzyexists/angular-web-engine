@@ -1,5 +1,7 @@
 <div class="container" *ngIf="loggedUser">
-<div class="card shadow">
+<nb-card accent="info">
+  <nb-card-header><h4>Registered Users</h4></nb-card-header>
+  <nb-card-body>
 <table class="table table-striped">
 <thead>
 <tr class="bg-dark text-white text-center">
@@ -22,7 +24,8 @@
 </tr>
 </tbody>
 </table>
-</div>
+</nb-card-body>
+</nb-card>
 <div *ngIf="loggedUser">
 <button *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" style="margin-top: 5px; margin-left: 5px;" class="btn btn-primary" routerLink="/register">New User</button>
 </div>

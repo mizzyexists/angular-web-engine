@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class InstallerService {
   serverInfo = ServerInfo;
   PHP_API_SERVER = this.serverInfo.phpApiServer;
+  AWE_AUTH_SERVER = "https://awengine.cloud/validation";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -23,6 +24,6 @@ export class InstallerService {
     return this.httpClient.get<InstallFile>(`${this.PHP_API_SERVER}/install/installtables.php`);
   }
   licenseCheck(data: any): Observable<InstallFile>{
-    return this.httpClient.post<InstallFile>(`https://mzydigital.com/validation/licensecheck.php`, data);
+    return this.httpClient.post<InstallFile>(`${this.AWE_AUTH_SERVER}/licensecheck.php`, data);
   }
 }

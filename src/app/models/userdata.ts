@@ -8,4 +8,5 @@ export  class  UserData {
     image_path:  string;
     usertype: string;
     slug: string;
+    email: string;
 }

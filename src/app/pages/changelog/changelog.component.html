@@ -2,6 +2,43 @@
 
 <h2 id="version1">Version 1</h2>
 <hr>
+<h3 id="1-2-0-major-update-">1.2.0 | <strong>MAJOR UPDATE</strong></h3>
+<ul>
+<li><strong>Implemented Authentication Server for License Validation on Install</strong></li>
+<li><strong>Login System V2</strong><ul>
+<li>Login now occurs on a separate page from the main app</li>
+<li>AppComponent now checks for token instead of loggedUser for faster Login/Dashboard decision</li>
+<li>Added Password Reset system for forgotten passwords<ul>
+<li>Reset code saved to DB for challenge</li>
+<li>Email is sent with the reset code</li>
+<li>When correct code is entered, email is sent with new random password</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Email System</strong><ul>
+<li>Added Email field to Register/Edit/Profile pages</li>
+<li>Email system created</li>
+<li>Email is sent when a user is registered to to their specified email</li>
+<li>Email is sent to a user when an admin edits that user&#39;s page</li>
+</ul>
+</li>
+<li><strong>Install System Improvements</strong><ul>
+<li>Installer now checks if connected to DB before installing</li>
+<li>Improved routing to installer to be more specific</li>
+<li>Removed unnecessary variables from Install script</li>
+</ul>
+</li>
+<li><strong>Other Changes</strong><ul>
+<li>Removed old progress bar and added new loading spinner</li>
+<li>Updated Profile in nav to give a dropdown for &quot;Profile&quot; and &quot;Logout&quot; functions</li>
+<li>Added user-type to Profile module in nav</li>
+<li>Fixed wrong color on &quot;Edit&quot; button hover on &#39;view-users page&#39;</li>
+<li>Change all div cards to new cards</li>
+<li>Added colored accents to new cards</li>
+</ul>
+</li>
+</ul>
 <h3 id="1-1-9">1.1.9</h3>
 <ul>
 <li>Added Titles to all pages</li>

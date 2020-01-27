@@ -25,7 +25,11 @@ import {
   NbSidebarModule,
   NbThemeModule,
   NbProgressBarModule,
-  NbLayoutModule } from '@nebular/theme';
+  NbLayoutModule,
+  NbSpinnerModule,
+  NbWindowModule,
+  NbContextMenuModule,
+  NbIconModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EditpostComponent } from './pages/blog/editpost/editpost.component';
 import { NewpostComponent } from './pages/blog/newpost/newpost.component';
@@ -37,6 +41,7 @@ import { ChangelogComponent } from './pages/changelog/changelog.component';
 import { InstallComponent } from './install/install.component';
 import { InstallnavComponent } from './components/installnav/installnav.component';
 import { AboutComponent } from './pages/about/about.component';
+import { CheckresetcodeComponent } from './components/authentication/checkresetcode/checkresetcode.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +66,7 @@ import { AboutComponent } from './pages/about/about.component';
     InstallComponent,
     InstallnavComponent,
     AboutComponent,
+    CheckresetcodeComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,9 +83,13 @@ import { AboutComponent } from './pages/about/about.component';
     NbActionsModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
+    NbWindowModule,
     NbUserModule,
     NbProgressBarModule,
-    NbEvaIconsModule
+    NbSpinnerModule,
+    NbContextMenuModule,
+    NbEvaIconsModule,
+    NbIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

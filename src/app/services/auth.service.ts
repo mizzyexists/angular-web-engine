@@ -54,6 +54,12 @@ export class AuthService {
   login(loginData: any): Observable<UserData>{
     return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/authentication/login.php`, loginData);
   }
+  resetPass(resetData: any){
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/authentication/forgotpass.php`, resetData);
+  }
+  checkCode(codeData: any){
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/authentication/checkcode.php`, codeData);
+  }
   authorize(authData: any): Observable<AuthData>{
     return this.httpClient.post<AuthData>(`${this.PHP_API_SERVER}/authentication/protected.php`, authData);
   }

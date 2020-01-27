@@ -12,18 +12,17 @@
 <nb-action title="Users" icon="people-outline" *ngIf="loggedUser && jwtUsertype!='User'" link="/viewusers"></nb-action>
 <nb-action title="Settings" icon="settings-2-outline" *ngIf="jwtUsertype=='Super-Admin'" link="/settings"></nb-action>
 </nb-actions>
-<a (click)="viewMyProfile()">
-  <nb-user *ngIf="loggedUser" style="position:absolute;right:105px;top:12px;" size="large"
+  <nb-user *ngIf="loggedUser" style="position:absolute;right:5px;top:12px;" size="large"
            name="{{loggedUser | titlecase}}"
+           title="{{jwtEmail}}"
            picture="{{image_path}}"
            badgeText=""
            badgeStatus="danger"
-           badgePosition="top left">>
+           badgePosition="top left"
+           [nbContextMenu]="items"
+            nbContextMenuTag="profile-menu">
   </nb-user>
-</a>
 <nb-actions style="position:absolute;right:0px;top:20px;" size="medium">
 <nb-action *ngIf="!loggedUser"><span class="navbar-text">
   Please Sign In
 </span></nb-action>
-<nb-action *ngIf="loggedUser"><button class="btn btn-outline-dark my-2 my-sm-0" (click)="logout()" type="submit">Logout</button></nb-action>
-</nb-actions>

@@ -1,5 +1,7 @@
 <div class="container "*ngIf="loggedUser">
-  <div class="card shadow">
+  <nb-card accent="warning">
+    <nb-card-header><h4>Settings</h4></nb-card-header>
+      <nb-card-body>
   <table class="table table-striped">
     <thead>
     <tr class="bg-dark text-white text-center">
@@ -18,12 +20,15 @@
         </tr>
           </tbody>
     </table>
-    </div>
+    </nb-card-body>
+    </nb-card>
     <br>
-    <div class="card shadow">
+    <nb-card>
+      <nb-card-body>
     <p class="text-center">Changes save automatically</p>
     <p class="text-center">Locked: {{textLock}}</p>
     <br>
-    <button (click)="textLocker()" class="btn btn-primary text-center">Toggle Settings Lock</button>
-</div>
+    <button (click)="textLocker()" class="btn btn-primary d-block mx-auto">Toggle Settings Lock</button>
+    </nb-card-body>
+</nb-card>
 </div>

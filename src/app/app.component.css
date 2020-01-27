@@ -3,11 +3,6 @@ hr{
   margin-right: -20px;
 }
 
-.progress{
-  position: absolute;
-  top: 0px;
-  margin-left: -10px;
-  left: 0;
-  width: 101%;
-  background-color: unset;
+.login-box{
+  padding: 40px;
 }

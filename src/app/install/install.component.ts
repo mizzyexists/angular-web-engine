@@ -5,7 +5,6 @@ import { SettingsApiService } from '../services/settingsapi.service';
 import { ToastService } from '../services/toast.service';
 import { InstallerService } from '../services/installer.service';
 import { InstallFile } from '../models/installfile';
-import { ServerInfo } from '../models/serverinfo';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -21,24 +20,22 @@ licenseForm: any;
 saUser: any;
 saPass: any;
 userPayload: any;
-installed: string = 'true';
 siteURL: any;
 siteurlUpload: any;
 siteName: any;
 sitenameUpload: any;
-serverInfo = ServerInfo;
-PHP_API_SERVER = this.serverInfo.phpApiServer;
 installFile: InstallFile;
 installStatus: any;
 response: InstallFile;
 licenseSubmit: any;
+dberror: InstallFile;
   constructor(
     private router: Router,
     private authApi: AuthService,
     private settingsApi: SettingsApiService,
     private toastService: ToastService,
     private installer: InstallerService,
-    private titleService: Title
+    private titleService: Title,
   ) { }
 
   ngOnInit() {
@@ -57,20 +54,29 @@ licenseSubmit: any;
   }
 
   Step1(){
-    this.installStep = 1;
-    setTimeout(() => this.step1Value = 25, 1900);
-    setTimeout(() => this.step1Task = "Getting Assets", 1900);
-    setTimeout(() => this.step1Value = 50, 2350);
-    setTimeout(() => this.step1Task = "Compiling Database Import File", 2350);
-    setTimeout(() => this.step1Value = 75, 2700);
-    setTimeout(() => this.step1Value = 85, 2900);
-    setTimeout(() => this.step1Value = 90, 3500);
-    setTimeout(() => this.step1Task = "Checking Configuration", 3500);
-    setTimeout(() => this.step1Value = 95, 4900);
-    setTimeout(() => this.step1Task = "Pushing Database File", 4900);
-    setTimeout(() => this.step1Value = 100, 6900);
-    setTimeout(() => this.installStep = 2, 8000);
-    this.installer.installDBTables().subscribe(() =>{});
+    this.installer.installDBTables().subscribe(result => {
+      },
+      error => {
+        this.dberror = error;
+        if(this.dberror){
+          alert("CANT CONNECT TO DB. PLEASE CHECK YOUR CONFIG.PHP FILE");
+          setTimeout(() => window.location.href = '/', 100);
+        }},
+        () => {
+          this.installStep = 1;
+          setTimeout(() => this.step1Value = 25, 1900);
+          setTimeout(() => this.step1Task = "Getting Assets", 1900);
+          setTimeout(() => this.step1Value = 50, 2350);
+          setTimeout(() => this.step1Task = "Compiling Database Import File", 2350);
+          setTimeout(() => this.step1Value = 75, 2700);
+          setTimeout(() => this.step1Value = 85, 2900);
+          setTimeout(() => this.step1Value = 90, 3500);
+          setTimeout(() => this.step1Task = "Checking Configuration", 3500);
+          setTimeout(() => this.step1Value = 95, 4900);
+          setTimeout(() => this.step1Task = "Pushing Database File", 4900);
+          setTimeout(() => this.step1Value = 100, 6900);
+          setTimeout(() => this.installStep = 2, 8000);
+        });
   }
 
   Step2(){

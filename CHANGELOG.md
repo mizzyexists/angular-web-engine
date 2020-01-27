@@ -2,6 +2,32 @@
 
 ## Version 1
 
+### 1.2.0 | **MAJOR UPDATE**
+- **Implemented Authentication Server for License Validation on Install**
+- **Login System V2**
+    - Login now occurs on a separate page from the main app
+    - AppComponent now checks for token instead of loggedUser for faster Login/Dashboard decision
+    - Added Password Reset system for forgotten passwords
+        - Reset code saved to DB for challenge
+        - Email is sent with the reset code
+        - When correct code is entered, email is sent with new random password
+- **Email System**
+    - Added Email field to Register/Edit/Profile pages
+    - Email system created
+    - Email is sent when a user is registered to to their specified email
+    - Email is sent to a user when an admin edits that user's page
+- **Install System Improvements**
+    - Installer now checks if connected to DB before installing
+    - Improved routing to installer to be more specific
+    - Removed unnecessary variables from Install script
+- **Other Changes**
+    - Removed old progress bar and added new loading spinner
+    - Updated Profile in nav to give a dropdown for "Profile" and "Logout" functions
+    - Added user-type to Profile module in nav
+    - Fixed wrong color on "Edit" button hover on 'view-users page'
+    - Change all div cards to new cards
+    - Added colored accents to new cards
+
 ### 1.1.9
 - Added Titles to all pages
 - Added new favicon
@@ -9,12 +35,12 @@
 - Fixed letter case on profile blog posts view
 - Fixed bug where canceling a user edit, returned user to a null page
 - Fixed bug where canceling a blog post edit, returned user to a null page
-- Set API to only serve a user's last 5 blog posts to a profile page.
+- Set API to only serve a user's last 5 blog posts to a profile page
 - **Password V2**
     - Password field now starts empty and receives input correctly
     - Password field will throw error if left empty
     - Password field will throw error if password is less than 6 characters
-    - Validation on 'Register' form
+    - Validation on 'Register' Form
 
 ### 1.1.8
 - **Blog System V3 Beta**

@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   jwtUsertype: any;
   profileLogin: any;
   blogInfo: BlogInfo[];
+  profileEmail: any;
   constructor(
     private authApi: AuthService,
     private routes: ActivatedRoute,
@@ -49,6 +50,7 @@ export class ProfileComponent implements OnInit {
         this.profileName = data.fname + " " + data.lname;
         this.profileBio = data.bio_text;
         this.profileLogin = data.last_login;
+        this.profileEmail = data.email;
         this.titleService.setTitle( this.profileUser + "'s Profile - AWE" );
         this.blogApi.fetcUserPosts(this.profileUser).subscribe((blogInfo: BlogInfo[]) =>{
           this.blogInfo = blogInfo;

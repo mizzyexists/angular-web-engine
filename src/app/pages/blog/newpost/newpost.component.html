@@ -1,7 +1,9 @@
 <div *ngIf="loggedUser && jwtUsertype!='User'">
-<div *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'" class="row">
-<div class="col-md-6 user-container">
-    <h2 class="text-center">New Post</h2>
+  <nb-card accent="primary">
+<div *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Moderator'">
+<div class="col-md-6 user-container pb-3">
+    <nb-card-header><h2 class="text-center">New Post</h2></nb-card-header>
+    <nb-card-body>
 <form [formGroup]="newpostform" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="blogtitle">Post Title:</label>
@@ -33,8 +35,8 @@
 <button class="btn btn-primary">Create Post</button>
   </form>
   <button style="margin-top: 5px;" class="btn btn-danger" routerLink="/blog">Cancel</button>
+  </nb-card-body>
   </div>
-  <br>
     </div>
-    <br>
+    </nb-card>
   </div>
