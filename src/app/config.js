@@ -3,6 +3,6 @@ export var config = {
   // Correct: http://localhost
   // Wrong: http://localhost/
   // Be sure to keep URL in ' '
-  path: 'https://mzydigital.com'
+  path: 'https://awengine.cloud'
   // path: window.location.origin
 }

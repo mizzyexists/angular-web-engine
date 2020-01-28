@@ -10,10 +10,11 @@ import { Title } from '@angular/platform-browser';
 export class AboutComponent implements OnInit {
   appVersion = AppVersion;
   version = this.appVersion.version;
-  constructor(private titleService: Title) { }
+  constructor(
+    private titleService: Title,
+  ){}
 
   ngOnInit() {
     this.titleService.setTitle( "About AWE - AWE" );
   }
-
 }
