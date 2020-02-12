@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle( "Dashboard - AWE" );
-    this.authApi.checkAuthToken();
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];

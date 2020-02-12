@@ -45,7 +45,6 @@ export class EdituserComponent implements OnInit {
     private mailer: MailerService
   ){}
   ngOnInit() {
-    this.authApi.checkAuthToken();
     this.titleService.setTitle( "Edit User - AWE" );
     const routeParams = this.routes.snapshot.params;
     this.token = window.localStorage.getItem('jwt');

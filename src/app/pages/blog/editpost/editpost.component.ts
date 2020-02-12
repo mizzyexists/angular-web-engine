@@ -36,7 +36,6 @@ export class EditpostComponent implements OnInit {
     private titleService: Title
   ){}
   ngOnInit() {
-    this.authApi.checkAuthToken();
     this.authApi.checkModUserType();
     this.titleService.setTitle( "Edit Post - AWE" );
     this.token = window.localStorage.getItem('jwt');

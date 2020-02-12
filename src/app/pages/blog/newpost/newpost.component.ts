@@ -30,7 +30,6 @@ export class NewpostComponent implements OnInit {
     private titleService: Title
   ){}
   ngOnInit() {
-    this.authApi.checkAuthToken();
     this.authApi.checkModUserType();
     this.titleService.setTitle( "New Post - AWE" );
     this.token = window.localStorage.getItem('jwt');

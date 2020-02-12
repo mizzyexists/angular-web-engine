@@ -35,7 +35,6 @@ export class ChangepassComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    this.authApi.checkAuthToken();
     this.titleService.setTitle( "Change Password - AWE" );
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {

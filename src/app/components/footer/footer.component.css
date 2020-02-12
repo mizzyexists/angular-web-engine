@@ -5,6 +5,7 @@ footer{
 .link{
   cursor: pointer;
   outline: none;
+  font-size: 10px;
 }
 
 .about-link{

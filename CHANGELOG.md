@@ -2,6 +2,14 @@
 
 ## Version 1
 
+### 1.3.0 | **GUARDIAN UPDATE**
+- **New Authentication Guard System**
+    - Better method of securing pages and components from unauthorized access
+    - Faster Authentication
+    - Easier to maintain
+    - Native Angular Security
+    - Updated all components to work with new Guard System
+
 ### 1.2.0 | **MAJOR UPDATE**
 - **Implemented Authentication Server for License Validation on Install**
 - **Login System V2**

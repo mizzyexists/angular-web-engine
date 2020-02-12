@@ -15,29 +15,30 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ChangelogComponent } from './pages/changelog/changelog.component';
 import { InstallComponent } from './install/install.component';
 import { AboutComponent } from './pages/about/about.component';
-import { AppComponent } from './app.component';
+import { AuthGuard } from './guards/auth.guard';
+import { LogggedinGuard } from './guards/logggedin.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'about', component: AboutComponent},
   { path: 'changelog', component: ChangelogComponent},
-  { path: 'register', component: RegisterComponent },
-  { path: 'viewusers', component: ViewusersComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: 'viewusers', component: ViewusersComponent, canActivate: [AuthGuard] },
   { path: 'profile', redirectTo: '' },
-  { path: 'profile/:slug', component: ProfileComponent },
+  { path: 'profile/:slug', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'edituser', redirectTo: '' },
-  { path: 'edituser/:uid', component: EdituserComponent },
+  { path: 'edituser/:uid', component: EdituserComponent, canActivate: [AuthGuard] },
   { path: 'changepass', redirectTo: '' },
-  { path: 'changepass/:uid', component: ChangepassComponent },
+  { path: 'changepass/:uid', component: ChangepassComponent, canActivate: [AuthGuard] },
   { path: 'viewpost', redirectTo: '' },
-  { path: 'viewpost/:slug', component: ViewpostComponent },
-  { path: 'newpost', component: NewpostComponent },
+  { path: 'viewpost/:slug', component: ViewpostComponent, canActivate: [AuthGuard] },
+  { path: 'newpost', component: NewpostComponent, canActivate: [AuthGuard] },
   { path: 'editpost', redirectTo: '' },
-  { path: 'editpost/:id', component: EditpostComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'editpost/:id', component: EditpostComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [LogggedinGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'blog', component: BlogComponent },
-  { path: 'settings', component: SettingsComponent },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   // NOT INSTALLED SECTION
   { path: 'install', component: InstallComponent },
 ];

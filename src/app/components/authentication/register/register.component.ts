@@ -31,7 +31,6 @@ export class RegisterComponent implements OnInit {
     private mailer: MailerService
   ){}
   ngOnInit() {
-    this.authApi.checkAuthToken();
     this.authApi.checkADUserType();
     this.titleService.setTitle( "Register - AWE" );
     this.token = window.localStorage.getItem('jwt');

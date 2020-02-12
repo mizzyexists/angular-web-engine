@@ -63,18 +63,6 @@ export class AuthService {
   authorize(authData: any): Observable<AuthData>{
     return this.httpClient.post<AuthData>(`${this.PHP_API_SERVER}/authentication/protected.php`, authData);
   }
-  checkAuthToken(){
-    this.token = window.localStorage.getItem('jwt');
-    this.authorize(this.token).subscribe((authData: AuthData) => {
-    if(!authData || authData[0]!=true){
-    window.localStorage.removeItem('jwt');
-    window.location.href = './';
-      };
-    this.jwtData = authData[1];
-    this.jwtUsername = this.jwtData.data.username;
-    this.jwtUsertype = this.jwtData.data.usertype;
-    });
-  }
   checkSAUserType(){
     this.token = window.localStorage.getItem('jwt');
     this.authorize(this.token).subscribe((authData: AuthData) => {

@@ -32,7 +32,6 @@ export class SettingsComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    this.authApi.checkAuthToken();
     this.authApi.checkSAUserType();
     this.titleService.setTitle( "Settings - AWE" );
     this.token = window.localStorage.getItem('jwt');

@@ -28,7 +28,6 @@ export class ViewusersComponent implements OnInit {
     private titleService: Title
   ){}
   ngOnInit() {
-    this.authApi.checkAuthToken();
     this.authApi.checkModUserType();
     this.titleService.setTitle( "User Overview - AWE" );
     this.token = window.localStorage.getItem('jwt');

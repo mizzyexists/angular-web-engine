@@ -32,7 +32,6 @@ export class ViewpostComponent implements OnInit {
     private titleService: Title
   ){}
   ngOnInit() {
-    this.authApi.checkAuthToken();
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];
