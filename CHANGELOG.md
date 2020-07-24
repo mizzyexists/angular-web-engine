@@ -2,6 +2,10 @@
 
 ## Version 1
 
+### 1.3.1
+- Changed blog overview page to show tiles
+- Moved 'Users' components to '/pages' subfolder and fixed all links
+
 ### 1.3.0 | **GUARDIAN UPDATE**
 - **New Authentication Guard System**
     - Better method of securing pages and components from unauthorized access

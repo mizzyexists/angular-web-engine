@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { UserData } from 'src/app/models/userdata';
 import { AuthData } from 'src/app/models/authdata';
-import { ToastService } from '../../../../services/toast.service';
+import { ToastService } from '../../../services/toast.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({

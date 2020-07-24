@@ -33,3 +33,7 @@ nb-action{
 nb-card:hover{
   background-color: rgba(234, 235, 242, 0.15);
 }
+
+nb-card{
+  margin: 5px;
+}

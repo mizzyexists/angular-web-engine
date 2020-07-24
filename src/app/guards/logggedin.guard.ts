@@ -11,8 +11,8 @@ export class LogggedinGuard implements CanActivate {
     private router: Router
   ){}
   canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    _next: ActivatedRouteSnapshot,
+    _state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this.token = window.localStorage.getItem('jwt');
     if(this.token){
         this.router.navigate(['dashboard']);
