@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://dev.brandiq.agency/mizzy/angular-admin-interface-with-php/raw/master/src/assets/images/AWEColor1.png" width="300px" />
+<img src="https://dev.mzydigital.com/uploads/-/system/project/avatar/1/AWEIcon.png" width="300px" />
 
 <h1>AWE - Angular Web Engine</h1>
 <br />
