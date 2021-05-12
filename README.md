@@ -1,6 +1,4 @@
 <div align="center">
-<img src="https://dev.mzydigital.com/uploads/-/system/project/avatar/1/AWEIcon.png" width="300px" />
-
 <h1>AWE - Angular Web Engine</h1>
 <br />
 <a href="/../../commits/master"><img src="https://img.shields.io/badge/Build-Passed-success?style=for-the-badge"></a>
